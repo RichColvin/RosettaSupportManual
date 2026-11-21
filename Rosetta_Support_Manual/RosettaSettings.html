@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rosetta_Settings.sh - Rosetta Settings Program – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Rosetta_Settings.sh - Rosetta Settings Program</span></p>
+  <h1>Rosetta_Settings.sh - Rosetta Settings Program</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Purpose">Purpose</a></li><li class="toc-l0"><a href="#How-it-is-run">How it is run</a></li><li class="toc-l1"><a href="#Parameters">Parameters</a></li><li class="toc-l1"><a href="#File-menu">File menu</a></li><li class="toc-l0"><a href="#Programs-it-calls">Programs it calls</a></li><li class="toc-l0"><a href="#Files-it-reads">Files it reads</a></li><li class="toc-l0"><a href="#Files-it-creates-or-changes">Files it creates or changes</a></li><li class="toc-l0"><a href="#Notes-for-support">Notes for support</a></li><li class="toc-l0"><a href="#Related-pages">Related pages</a></li></ul></nav>
+  <div class="content">
+
+<p><span style="color: navy;"><strong>Rosetta’s Key Programs:</strong></span> <a href="RosettaKeyPrograms.html">Overview</a> · <a href="RosettaLaunch.html">Rosetta_Launch.sh</a> · <a class="selflink" href="RosettaSettings.html">Rosetta_Settings.sh</a> · <a href="RosettaBackup.html">Rosetta_Backup.sh</a> · <a href="RosettaUpdate.html">Rosetta_Update.sh</a> · <a href="RosettaChangeNetwork.html">Rosetta_Change_Network.sh</a> · <a href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>
+</p><hr/>
+<h1 id="Purpose">Purpose</h1>
+<p>Rosetta_Settings.sh starts <strong>Rosetta Settings</strong>, the window where this machine's setup is changed: which axis or spindle is on each channel, the expansion box, limit jacks, E-stop button, signal tower, sounds, scale, speed limits, backlash, PID tuning, jog speeds, measurement system and device names.
+</p>
+<p class="vspace">Everything it changes is stored in /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong> and takes effect the next time Rosetta is started.  How to use each page is in the  <a class="online" href="https://rosetta.colvintools.com/UserManual" rel="noopener" target="_blank" title="Opens on the Internet">User Manual</a> (web site); this page covers what support needs to know.
+</p>
+<h1 id="How-it-is-run">How it is run</h1>
+<ul><li>The <strong>Rosetta Settings</strong> (gear) desktop icon, and Applications &gt; Rosetta.
+</li><li>From a terminal, which also shows its messages:
+</li></ul>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Settings.sh
+</p></td></tr></table>
+<p class="vspace"><span style="color: red;"><strong>LinuxCNC must be closed first.</strong></span>  If it's running, Rosetta Settings shows "LinuxCNC is currently running" and closes.
+</p>
+<h2 id="Parameters">Parameters</h2>
+<p>None.
+</p>
+<h2 id="File-menu">File menu</h2>
+<ul><li><strong>Save All Settings</strong> (Ctrl+S), <strong>Save All Settings As...</strong> (Shift+Ctrl+S), <strong>Save Subset of Settings As...</strong>, <strong>Load Settings from File...</strong> (Ctrl+O) - the same as the four buttons on the Axis Selection tab.
+</li><li><strong>Back Up to USB...</strong> - opens the same window as the <a href="RosettaBackup.html">Back Up to USB</a> icon.
+</li><li><strong>Restore from USB...</strong> - copies a backup from a USB stick back onto the Raspberry Pi (see <a href="RosettaBackup.html">Rosetta_Backup.sh</a>), then closes Rosetta Settings.
+</li><li><strong>Quit</strong> (Ctrl+Q) - asks about unsaved tuning changes.
+</li></ul><h1 id="Programs-it-calls">Programs it calls</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="35%"> <span style="color: white;"> <strong>Program</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>What for</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Display/<strong>Rosetta_Settings.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The program itself (Python 3, GTK 3).  Uses Rosetta_Display/<strong>rosetta_settings_io.py</strong> to read and write the settings file.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>halcmd</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Reads and sets live HAL values.  Since LinuxCNC isn't running while Rosetta Settings is open, these calls normally find nothing; "halcmd not found" or "pin not found" messages in the terminal are harmless.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> The web browser
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The User Manual buttons open the matching User Manual page.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Display/<strong>Rosetta_Backup.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The File menu's Back Up to USB and Restore from USB windows.
+</td></tr></table>
+<h1 id="Files-it-reads">Files it reads</h1>
+<ul><li>Rosetta_Display/<strong>Rosetta_Settings_v1.ui</strong> - the window layout
+</li><li>/home/reuben/Documents/<strong>RosettaSet_v1.ini</strong> - this machine's settings
+</li><li>Any settings file chosen with <strong>Load Settings</strong> (normally in /home/reuben/Documents)
+</li></ul><h1 id="Files-it-creates-or-changes">Files it creates or changes</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="35%"> <span style="color: white;"> <strong>File</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>When</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>As soon as they change:</strong> channel assignments, expansion box, limit jacks and switch type, E-stop button, signal tower, sounds, startup file check, backlash, jog speeds, measurement system, device names.<br class="clearboth"/><strong>Only on Save All Settings:</strong> scale, Max Speed, Max Acceleration, stepgen limits, PID values.  Closing the window with unsaved tuning asks Save and Close / Close Without Saving / Cancel.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> A file name chosen by the operator, normally in /home/reuben/Documents
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Save All Settings As...</strong> (a full copy) and <strong>Save Subset</strong> (an export of chosen settings, to bring into another machine).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Files restored by <strong>Restore from USB</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> See <a href="RosettaBackup.html">Rosetta_Backup.sh</a>.
+</td></tr></table>
+<p class="vspace">RosettaSet_v1.ini is JSON with comment lines at the top and bottom, despite its .ini name.  <span style="color: red;">Don't edit it by hand</span> - use Rosetta Settings, or Load Settings from a saved copy.
+</p>
+<h1 id="Notes-for-support">Notes for support</h1>
+<ul><li><strong>A change "didn't work":</strong> changes apply at the next launch of Rosetta, not straight away.  Ask whether LinuxCNC was restarted.
+</li><li><strong>Tuning changes lost:</strong> scale, speed limits and PID values are only kept after <strong>Save All Settings</strong> (Ctrl+S).
+</li><li><strong>Duplicate! / Conflict! warnings</strong> (red) mean that change has <strong>not</strong> been saved - two channels have the same role, Sp1 is assigned without Sp0, or two limit jacks clash.  Fix the warning and the setting saves.
+</li><li><strong>Orange "not assigned - cleared"</strong> next to a limit jack means its axis lost its channel, so the jack was set to Not used.
+</li><li><strong>Expansion Box - Connected</strong> needs the 10.10.10.x network - see <a href="RosettaChangeNetwork.html">Rosetta_Change_Network.sh</a>.
+</li><li>LinuxCNC also saves the live scale and other values into RosettaSet_v1.ini when it shuts down, so values tuned in a running session end up in the file too.
+</li><li><strong>Startup File Check</strong> (Other tab) decides what happens when the gcode folder holds a reserved file name - see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>.  Leave it at <strong>Abort startup - recommended</strong>.
+</li><li>Before trying a different set of settings, take a copy with <strong>Save All Settings As...</strong> - it can be loaded back with Load Settings.
+</li><li><strong>Rosetta Settings closed by itself</strong> after Restore from USB - that is deliberate, so it can't save the settings it was showing over the restored ones.  Open it again to see the restored settings.
+</li></ul><h1 id="Related-pages">Related pages</h1>
+<ul><li><a href="AxisMapping.html">Axis Mapping</a>
+</li><li><a href="PanelAccessories.html">Panel Accessories</a>
+</li><li><a href="PIDTuning.html">PID Tuning</a>
+</li><li> <a class="online" href="https://rosetta.colvintools.com/UserManual/index.php?n=Main.AxisAndStepperMotorTuning" rel="noopener" target="_blank" title="Opens on the Internet">Axis and Stepper Motor Tuning</a> (User Manual)
+</li></ul>
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="RosettaLaunch.html"><span>Previous</span>Rosetta_Launch.sh - Start Rosetta</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="RosettaUpdate.html"><span>Next</span>Rosetta_Update.sh - Update Rosetta</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

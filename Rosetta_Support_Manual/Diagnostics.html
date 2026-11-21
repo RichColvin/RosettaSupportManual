@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnostics – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Diagnostics</span></p>
+  <h1>Diagnostics</h1>
+  
+  <div class="content">
+
+<h1 id="Errors-in-LinuxCNC">Errors in LinuxCNC</h1>
+<p>One of the best tools to use when trying to diagnose errors in LinuxCNC, especially for Glade, is to run the system in diagnostic mode by adding the “-d” option.
+</p>
+<p class="vspace"><span style="color: red;"><strong>Do not run Rosetta.ini directly.</strong></span>  Rosetta is always started through the launch script, which first generates <strong>Rosetta.local.ini</strong> and the <strong>.local.hal</strong> files from this machine's settings (see <a href="LaunchingRosetta.html">Launching Rosetta</a>).  Running Rosetta.ini directly would start LinuxCNC with the default axis layout, only the base box's card, and without the operator's limit switches, E-stop button, signal tower, lost-card E-stop, jog speeds, or units.
+</p>
+<p class="vspace">To run in diagnostic mode, open a command prompt and enter this:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cd /home/reuben/linuxcnc/configs/Rosetta <br class="clearboth"/>
+python3 Rosetta_Setup/Rosetta_Generate_Local_Ini.py <br class="clearboth"/>
+linuxcnc -d Rosetta.local.ini
+</p></td></tr></table>
+<p class="vspace">Errors encountered will be displayed in the command prompt area.
+</p>
+<hr/>
+<p>LinuxCNC can also be run in verbose mode by adding the “-v” option.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="DataTypes.html"><span>Previous</span>Data Types</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="DiagnosticTools.html"><span>Next</span>Diagnostic Tools</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

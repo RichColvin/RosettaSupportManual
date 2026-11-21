@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machine Tracker (Serial Numbers and Version Reports) – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Machine Tracker (Serial Numbers and Version Reports)</span></p>
+  <h1>Machine Tracker (Serial Numbers and Version Reports)</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#How-it-works">How it works</a></li><li class="toc-l0"><a href="#What-is-reported">What is reported</a></li><li class="toc-l0"><a href="#Files-on-the-machine">Files on the machine</a></li><li class="toc-l0"><a href="#Files-on-the-server">Files on the server</a></li><li class="toc-l0"><a href="#Common-tasks">Common tasks</a></li><li class="toc-l2"><a href="#Change-a-machine-s-serial-number">Change a machine&#x27;s serial number</a></li><li class="toc-l2"><a href="#A-machine-s-Raspberry-Pi-was-replaced">A machine&#x27;s Raspberry Pi was replaced</a></li><li class="toc-l2"><a href="#Remove-old-or-test-reports">Remove old or test reports</a></li><li class="toc-l2"><a href="#A-machine-doesn-t-appear-in-the-tracker">A machine doesn&#x27;t appear in the tracker</a></li><li class="toc-l2"><a href="#Change-the-Machine-Tracker-password">Change the Machine Tracker password</a></li><li class="toc-l0"><a href="#Privacy">Privacy</a></li></ul></nav>
+  <div class="content">
+
+<table border="0" style="float: right; border-collapse: collapse; margin-left: 6px; margin-bottom: 6px;"><tr><td style="text-align: left; border-style: solid; border-color: gray; border-top-width: thin; border-bottom-width: 0px; border-left-width: thin; border-right-width: thin;" valign="top"> <img alt="" height="45" src="Images/SNSettings.png"/>
+</td></tr><tr><td style="text-align: left; border-style: solid; border-color: gray; border-top-width: 0px; border-bottom-width: thin; border-left-width: thin; border-right-width: thin;" valign="top"> <strong><em>S/N on the both screens</em></strong>
+</td></tr></table>
+<p><strong><span style="color: #b22222;">Key Note:</span></strong>
+</p>
+<table border="0" style="border-collapse: collapse;"><tr><td style="width: 20px; text-align: right; padding-left: 5px; padding-right: 10px; " valign="top"> <span class="pmS1">①</span>
+</td><td style="text-align: left; " valign="top"> <span style="color: #b22222;">A user ID &amp; password are required to access this report.</span> This report is only available to ColvinTools.
+</td></tr></table>
+<hr/>
+<p>Each Rosetta machine reports its serial number and the Rosetta O/S version it is running every time it is updated.  The reports are collected on the support manual web site, so we can see which machines are still in use, and which Rosetta O/S version each Rosetta system runs.  This will be quite useful when an owner calls for support.
+</p>
+<p class="vspace">This page covers the whole process, from setting a machine's serial number to managing the reports on the server.
+</p>
+<p class="vspace">To access the on-line report, use this web link:  <a class="online" href="https://rosetta.colvintools.com/Support/reb_report_view.php" rel="noopener" target="_blank" title="Opens on the Internet">Rosetta O/S Version Report</a> .
+</p>
+<p class="note"><strong>Key Note:</strong>
+</p>
+<table border="0" style="border-collapse: collapse;"><tr><td style="width: 20px; text-align: right; padding-left: 5px; padding-right: 10px; " valign="top"> <span class="pmS1">②</span>
+</td><td style="text-align: left; " valign="top"> Each Rosetta system is identified by its Raspberry Pi's own hardware ID, not by the Rosetta serial number assigned to it when the system is built.  The serial number is only a label.  Changing a machine's serial number does not create a second machine in the tracker - its row simply shows the new serial number assigned to that system after its next update.
+</td></tr></table>
+<hr/>
+<h1 id="How-it-works">How it works</h1>
+<ol><li><strong>The serial number is set on the machine.</strong>  The installer (Step 11) asks for it.  Machines built before this feature are asked during their next update.  It can be skipped; the machine then asks again at every update until a number is entered.
+</li><li><strong>Every update sends a report.</strong>  After <strong>Update Rosetta</strong> (<strong>Rosetta_Update.sh</strong>) pulls the latest files, <strong>Rosetta_Update_Settings.py</strong> runs <strong>Rosetta_Report_Version.py</strong>, which builds the report and sends it to the server.
+</li><li><strong>The machine keeps its own copy.</strong>  Every report is written to a log on the machine first, whether or not it reaches the server.
+</li><li><strong>The server stores it.</strong> <strong>reb_report.php</strong> (on the server) adds each report it receives, as one line, to <strong>reb_reports.jsonl</strong> (on the server) .
+</li><li><strong>The tracker shows it.</strong> <strong>reb_report_view.php</strong> (the <a class="online" href="https://rosetta.colvintools.com/Support/reb_report_view.php" rel="noopener" target="_blank" title="Opens on the Internet">Machine Tracker</a>) shows one row per machine - its most recent report - newest first.  <span style="color: #b22222;">A user ID &amp; password are required to access this report.</span>
+</li></ol><p class="vspace">A machine that is offline when it updates simply isn't reported that time.  A failed report never stops the update.  The report is not sent again later; it goes at the next update.
+</p>
+<hr/>
+<h1 id="What-is-reported">What is reported</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="25%"> <span style="color: white;"> <strong>Field</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>What it is</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>hardware_id</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The Raspberry Pi's own serial number, built into the board (read from /proc/cpuinfo).  Every Pi's is different, so it identifies the machine - including a home-built one - with no chance of two machines clashing.  It changes only if the Pi itself is replaced (see below).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>serial_number</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The Rosetta serial number entered by the owner or builder, e.g. <strong>4</strong> for S/N 4.  A label for talking to support - it doesn't have to be unique.  Empty if it was never set.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>version</strong> and <strong>version_date</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The Rosetta O/S version and date shown at the bottom of the main panel, e.g. <em>1.0 beta 1.1</em> and <em>23 October 2026</em>.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>reported_at</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> When the machine sent the report, by the machine's own clock (local time).
+</td></tr></table>
+<p class="vspace">Nothing else is sent - no owner name, no settings, no G-code.
+</p>
+<hr/>
+<h1 id="Files-on-the-machine">Files on the machine</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="45%"> <span style="color: white;"> <strong>File</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>serial</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The machine's serial number - one line, just the number.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>report_log.jsonl</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Every report this machine has built, one per line, whether or not it reached the server.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta/Rosetta_Setup/<strong>Rosetta_Set_Serial_Number.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Asks for the serial number if none is recorded; does nothing if one already is.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta/Rosetta_Setup/<strong>Rosetta_Report_Version.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Builds the report, logs it, and sends it to the server.
+</td></tr></table>
+<hr/>
+<h1 id="Files-on-the-server">Files on the server</h1>
+<p>These are on the support web site's hosting (GoDaddy), in the Support Manual's own folder, rosetta.colvintools.com/Support/ (until 04 November 2026, the top folder of support.roseenginebutler.com).  They are not in the GitHub repository; they are changed by hand through GoDaddy's File Manager (or FTP).
+</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="30%"> <span style="color: white;"> <strong>File</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>reb_report.php</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Receives each machine's report and adds it to reb_reports.jsonl.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>reb_reports.jsonl</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Every report ever received, one per line, oldest first.  Never edited by the programs - only added to.  <strong>Back this up</strong> before editing it by hand.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>reb_report_view.php</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The Machine Tracker page.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>.htaccess</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Makes the Machine Tracker ask for a password, and stops anyone opening reb_reports.jsonl or .htpasswd directly in a browser.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>.htpasswd</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The Machine Tracker's user name (<strong>REBmachines</strong>) and encrypted password.
+</td></tr></table>
+<p class="vspace">Files starting with a dot are hidden by default in GoDaddy's File Manager - turn on <em>Show hidden files</em> in its settings to see .htaccess and .htpasswd.
+</p>
+<hr/>
+<h1 id="Common-tasks">Common tasks</h1>
+<h3 id="Change-a-machine-s-serial-number">Change a machine's serial number</h3>
+<p>On the machine, in a terminal (replace <strong><em>NewSN</em></strong> with the new serial number to be assigned to this Rosetta system):
+</p>
+<div class="indent"><code class="escaped">echo NewSN &gt; ~/.config/Rosetta/serial</code>
+</div><p class="vspace">Then either run <strong>Update Rosetta</strong>, or send a report straight away:
+</p>
+<div class="indent"><code class="escaped">python3 ~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Report_Version.py</code>
+</div><p class="vspace">Nothing needs to change on the server.  The machine keeps the same row in the Machine Tracker, which now shows the new number.  The older lines in reb_reports.jsonl keep the old number; they can be left alone (see <em>Remove old or test reports</em> to tidy them).
+</p>
+<h3 id="A-machine-s-Raspberry-Pi-was-replaced">A machine's Raspberry Pi was replaced</h3>
+<p>The new Pi has a different hardware ID, so after its next update the machine appears as a <strong>new</strong> row, with the same serial number as the old one.  The old row stays, showing the date of the old Pi's last report.  Remove the old Pi's lines from reb_reports.jsonl (below) once you're sure it's no longer in use.
+</p>
+<h3 id="Remove-old-or-test-reports">Remove old or test reports</h3>
+<ol><li>In GoDaddy's File Manager, download a copy of <strong>reb_reports.jsonl</strong> as a backup.
+</li><li>Open it with the File Manager's editor.  Each line is one report, e.g.<br/><code class="escaped">{"hardware_id": "10000000abcd1234", "serial_number": "4", "version": "1.0 beta 1.1", "version_date": "23 October 2026", "reported_at": "2026-10-24 09:15:02"}</code>
+</li><li>Delete the lines you don't want - every line with that machine's <strong>hardware_id</strong> removes the machine from the tracker entirely.  Delete whole lines only, and leave no blank lines between the others.
+</li><li>Save, and reload the Machine Tracker to check.
+</li></ol><h3 id="A-machine-doesn-t-appear-in-the-tracker">A machine doesn't appear in the tracker</h3>
+<ul><li>Check it has been updated since 23 October 2026 (when reporting started).
+</li><li>On the machine, run the report by hand (the command under <em>Change a machine's serial number</em>).  It prints <em>Version report sent to ...</em> when it works, or a <em>WARNING</em> saying why not - usually no internet connection.
+</li><li>Look at the end of /home/reuben/.config/Rosetta/<strong>report_log.jsonl</strong> to see what the machine has been sending.
+</li></ul><h3 id="Change-the-Machine-Tracker-password">Change the Machine Tracker password</h3>
+<p>Create a new .htpasswd line for user <strong>REBmachines</strong> with an htpasswd generator (or the <em>htpasswd</em> command on a Pi), and replace the line in <strong>.htpasswd</strong> with it.  Keep the password somewhere safe - it isn't recorded anywhere else.
+</p>
+<hr/>
+<h1 id="Privacy">Privacy</h1>
+<p>The tracker holds no names or addresses - only the Pi's hardware ID, the serial number, the version and the date.  Matching a serial number to an owner is done from Colvin Tools' own build records, not here.  <strong>reb_reports.jsonl</strong> and <strong>.htpasswd</strong> can't be opened from a browser, and the Machine Tracker needs the password.
+</p>
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="Licensing.html"><span>Previous</span>Licensing &amp; End User Customization</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="Mesa7i92.html"><span>Next</span>Mesa 7i92 Ethernet Anything I/O Card</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

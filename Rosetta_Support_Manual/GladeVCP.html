@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glade Virtual Control Panel – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Glade Virtual Control Panel</span></p>
+  <h1>Glade Virtual Control Panel</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Key-Notes">Key Notes</a></li><li class="toc-l0"><a href="#The-Settings-program-is-not-GladeVCP">The Settings program is not GladeVCP</a></li><li class="toc-l0"><a href="#Data-types">Data types</a></li><li class="toc-l0"><a href="#Programming-Manual">Programming Manual</a></li></ul></nav>
+  <div class="content">
+
+<h1 id="Key-Notes">Key Notes</h1>
+<p>Rosetta's screens are built with GladeVCP.  All the files are in /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Display.
+</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="200px"> <span style="color: white;"> <strong>File</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Panel_v1.ui</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The main side panel inside AXIS: each axis's ENA, Feed Rate and Device, the Indexing / Sync Move / Threading tabs, and the progress bar.  Loaded by Rosetta.ini's <strong>[DISPLAY] GLADEVCP</strong> line; AXIS starts it as its own <strong>gladevcp</strong> process and shows it inside its window.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Tab_Help_v1.ui</strong> <br class="clearboth"/> <strong>Rosetta_Tab_TsCs_v1.ui</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The ℛ Help and ℛ License tabs.  Each is started by its own <strong>EMBED_TAB_COMMAND</strong> in Rosetta.ini, so each also runs as a <strong>separate process</strong>.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_main.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The one Python handler for all three panels above (each process runs its own copy).  Because they are separate processes, they can only share information through HAL pins or RosettaSet_v1.ini.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_PostGUI_v1.hal</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Loaded after the GUI starts: wires the panel's ENA buttons and indicator pins into HAL.  (LinuxCNC actually loads the generated Rosetta_PostGUI_v1.local.hal copy - see <a href="LaunchingRosetta.html">Launching Rosetta</a>.)
+</td></tr></table>
+<h1 id="The-Settings-program-is-not-GladeVCP">The Settings program is not GladeVCP</h1>
+<p>The <strong>Rosetta Settings</strong> program (<strong>Rosetta_Settings.py</strong> with <strong>Rosetta_Settings_v1.ui</strong>) is a standalone GTK program, run from the Applications menu or <strong>Rosetta_Settings.sh</strong>.  It only runs while LinuxCNC is <strong>not</strong> running, and writes its settings to /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>, which the next launch reads.  See <a href="RosettaSettings.html">Rosetta_Settings.sh</a>.
+</p>
+<h1 id="Data-types">Data types</h1>
+<p>Widget and HAL pin data types must match - see <a href="DataTypes.html">Data Types</a>.
+</p>
+<h1 id="Programming-Manual">Programming Manual</h1>
+<p>See, <a class="online" href="https://linuxcnc.org/docs/stable/html/gui/gladevcp.html" rel="noopener" target="_blank" title="Opens on the Internet">https://linuxcnc.org/docs/stable/html/gui/gladevcp.html</a>.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="FontsUsed.html"><span>Previous</span>Fonts Used</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="HALFile.html"><span>Next</span>HAL File</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

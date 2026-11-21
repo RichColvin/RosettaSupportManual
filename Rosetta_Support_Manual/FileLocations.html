@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>File Locations – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>File Locations</span></p>
+  <h1>File Locations</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Per-machine-files-not-in-the-repository">Per-machine files (not in the repository)</a></li><li class="toc-l0"><a href="#home-reuben-linuxcnc-configs-Rosetta">/home/reuben/linuxcnc/configs/Rosetta</a></li><li class="toc-l0"><a href="#Rosetta-Custom">Rosetta_Custom/</a></li><li class="toc-l0"><a href="#Rosetta-Display">Rosetta_Display/</a></li><li class="toc-l0"><a href="#Rosetta-Setup">Rosetta_Setup/</a></li><li class="toc-l0"><a href="#Rosetta-Subroutines">Rosetta_Subroutines/</a></li><li class="toc-l0"><a href="#Other-files-in-the-top-folder">Other files in the top folder</a></li><li class="toc-l0"><a href="#docs">docs/</a></li></ul></nav>
+  <div class="content">
+
+<p>All Rosetta files are kept in the Git repository on  <a class="online" href="https://github.com/RichColvin/Rosetta" rel="noopener" target="_blank" title="Opens on the Internet">GitHub</a> (web site), and installed at
+</p>
+<div class="indent">/home/reuben/linuxcnc/configs/Rosetta
+</div><p class="vspace"><strong>Update Rosetta</strong> (<strong>Rosetta_Update.sh</strong>) pulls the latest versions of these files from GitHub - see <a href="UpdatingRosetta.html">Updating Rosetta</a>.  The only per-machine settings file lives outside the repository, in /home/reuben/Documents.
+</p>
+<hr/>
+<h1 id="Per-machine-files-not-in-the-repository">Per-machine files (not in the repository)</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="45%"> <span style="color: white;"> <strong>File</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> This machine's settings: axis/channel assignments (channels 00 - 09), whether the expansion box is connected, scale, Max Speed, Max Acceleration, stepgen limits, PID gains and PID Max Output, backlash, jog speeds, measurement system, device names, limit jacks and switch type, E-stop button, signal tower, sounds, and the main panel's remembered values.  Written by the Settings program, by Rosetta_Scale_Persist.py at LinuxCNC shutdown, and (new settings only) by an update.  JSON with comment lines, despite the .ini name - don't edit it by hand.  <strong>Back this up</strong>.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>*.ini</strong> (other than RosettaSet_v1.ini)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Copies made with Save All Settings As..., and Save Subset exports.  Back Up to USB copies them too.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>RosettaSet_v1.ini.bak-</strong><em>date-time</em>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The settings file as it was before an update added new settings.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/<strong>.axisrc</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> AXIS window size/position; copied from Rosetta_Setup/axisrc at install.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/ClamAv/
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Virus scan log and quarantined files.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>serial</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> This machine's serial number, if one was given (Rosetta_Set_Serial_Number.sh).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>report_log.jsonl</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> A copy of every version report sent by an update (see <a href="RosettaUpdate.html">Rosetta_Update.sh</a>).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>shortcuts-added</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Marker: the folder shortcuts have been added (Rosetta_Add_Shortcuts.sh).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/<strong>Rosetta_Update.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> An old copy left by the installer.  Not used - ignore it.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta/<strong>Rosetta.local.ini</strong>, <strong>Rosetta.local.hal</strong>, Rosetta_Display/<strong>Rosetta_PostGUI_v1.local.hal</strong>, Rosetta_Display/<strong>Rosetta_Splash.local.ngc</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Generated at every launch from Rosetta.ini / Rosetta.hal / Rosetta_PostGUI_v1.hal and RosettaSet_v1.ini - these are what LinuxCNC actually loads.  <span style="color: red;">Never edit them</span> - they are overwritten at the next start.  See <a href="LaunchingRosetta.html">Launching Rosetta</a>.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta/<strong>gcode/</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Operator's G-code programs (not in the repository).  AXIS's Open dialog starts here.  No file here may start with <strong>Rosetta</strong> or be named <strong>M100</strong> - <strong>M199</strong> - startup stops if one does (see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta/<strong>sim.var</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> LinuxCNC's parameter file (written while it runs).
+</td></tr></table>
+<h1 id="home-reuben-linuxcnc-configs-Rosetta">/home/reuben/linuxcnc/configs/Rosetta</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="30%"> <span style="color: white;"> <strong>File</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="8%"> <span style="color: white;"> <strong>Edit?</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Launch.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> What the desktop icon runs: generates the .local files, then starts LinuxCNC on Rosetta.local.ini.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> No
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Settings.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Starts the Rosetta Settings program.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> No
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Change_Network.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Sets up the Mesa cards' addresses (base 10.10.10.10, expansion 10.10.10.11) and the Raspberry Pi's wired connection (10.10.10.100); <strong>check</strong> shows which cards answer.  See <a href="Mesa7i92.html">Mesa 7i92</a>.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> No
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Backup.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> What the Back Up to USB icon runs (Rosetta_Display/Rosetta_Backup.py) - see <a href="RosettaBackup.html">Rosetta_Backup.sh</a>.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> No
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Update.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> What the Update icon runs: pulls updates from GitHub, adds new settings, runs one-time steps, sends the version report, then runs apt update / upgrade - see <a href="RosettaUpdate.html">Rosetta_Update.sh</a>.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> No
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta.ini</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Master LinuxCNC configuration template: step timing, home sequence, and the starting speed and acceleration limits for a new machine.  This machine's own tuning is in RosettaSet_v1.ini.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> No
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta.hal</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Realtime HAL template: Mesa card(s), stepgens, PID loops, E-stop latch.  Its loadrt hm2_eth line is rewritten at every launch for one or both cards.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> No
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Shutdown.hal</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Runs Rosetta_Scale_Persist.py at shutdown to save live values.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> No
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>RosettaStartupImage.gif</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Splash image shown while LinuxCNC starts.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> No
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>.axisrc</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Copy of the AXIS window settings.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> No
+</td></tr></table>
+<h1 id="Rosetta-Custom">Rosetta_Custom/</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="30%"> <span style="color: white;"> <strong>File</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="8%"> <span style="color: white;"> <strong>Edit?</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Custom.hal</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The place for machine-specific HAL additions (loaded after Rosetta.hal).
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Yes*
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Tool.tbl</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> LinuxCNC tool table.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Yes*
+</td></tr></table>
+<p><span style="color: red;">*</span> These are tracked in Git, so <strong>Update Rosetta</strong> stashes local changes to them - see <a href="UpdatingRosetta.html">Updating Rosetta</a>.
+</p>
+<h1 id="Rosetta-Display">Rosetta_Display/</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="35%"> <span style="color: white;"> <strong>File</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_main.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Python handler for the side panel and the Help / License tabs (see <a href="GladeVCP.html">GladeVCP</a>).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Panel_v1.ui</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The main side panel (Indexing, Sync Move, Threading).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Tab_Help_v1.ui</strong>, <strong>Rosetta_Tab_TsCs_v1.ui</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The ℛ Help and ℛ License tabs.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_PostGUI_v1.hal</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> HAL wiring for the panel's ENA buttons and status (template for the .local copy).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Settings.py</strong>, <strong>Rosetta_Settings_v1.ui</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The standalone Rosetta Settings program.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>rosetta_settings_io.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Shared reader/writer for RosettaSet_v1.ini.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Settings_Restore.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Applies saved scale / PID / velocity values to the HAL pins at startup.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Scale_Persist.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Saves the live values back to RosettaSet_v1.ini at shutdown.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Splash.ngc</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The empty start-up G-code file, used when X and Z aren't both assigned (otherwise the launch writes Rosetta_Splash.local.ngc).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Backup.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The Back Up to USB program.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Program_Estimate.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Works out the progress bar's percentages when a G-code program starts.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Sounds/
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Done.wav, Rosetta_Pause.wav and Rosetta_Fault.wav - the done and pause sounds and the fault siren; Rosetta_Abort.wav - played when startup is stopped by a reserved file name.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Images/
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Panel images.
+</td></tr></table>
+<h1 id="Rosetta-Setup">Rosetta_Setup/</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="35%"> <span style="color: white;"> <strong>File</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Generate_Local_Ini.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Builds Rosetta.local.ini and the .local.hal files at each launch (see <a href="LaunchingRosetta.html">Launching Rosetta</a>).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Install_Debian_13_Trixie.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Installer for new systems (<a href="InstallationAndSetupForDebian13Trixie.html">Installation and Setup for Debian 13 Trixie</a>); sets up the base card with Rosetta_Change_Network.sh.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Update_Settings.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Run by Rosetta_Update.sh: adds new settings to this machine's RosettaSet_v1.ini (see <a href="UpdatingRosetta.html">Updating Rosetta</a>).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Add_Shortcuts.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Adds the Rosetta and Gcode folder shortcuts, once.  Run by the installer and by updates.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Set_Serial_Number.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Asks for this machine's serial number.  Run by the installer, and by updates until one is given.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Rosetta_Report_Version.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Sends the version report at each update.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>REB_Install_Debian_12_Bookworm.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The old installer for Debian 12 (Bookworm).  No longer maintained - not used for new machines.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>RosettaSet_v1.ini</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Starting settings copied to /home/reuben/Documents at install.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>axisrc</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Copied to /home/reuben/.axisrc at install.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> MesaCard/
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 7i92 firmware (7i92t_Rosetta.bin, used on both the base and expansion cards), pin file, and VHDL source (PIN_Rosetta_34.vhd).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Images/
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Desktop and menu icons (including the Gcode folder's Rosetta_Folder-Gcode.png), wallpaper, and logo.
+</td></tr></table>
+<h1 id="Rosetta-Subroutines">Rosetta_Subroutines/</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="35%"> <span style="color: white;"> <strong>File</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>rosetta_thread.ngc</strong>, <strong>rosetta_thread_return.ngc</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> G-code subroutines used by the Threading tab.
+</td></tr></table>
+<h1 id="Other-files-in-the-top-folder">Other files in the top folder</h1>
+<ul><li><strong>LICENSE</strong> - the MIT/X Consortium License (see <a href="Licensing.html">Licensing</a>).
+</li><li><strong>README.md</strong> - a short description shown on GitHub.
+</li></ul><h1 id="docs">docs/</h1>
+<p>Design notes for developers (e.g., <strong>settings_file.md</strong> describes RosettaSet_v1.ini in detail), and <strong>Rosetta_Tracker.md</strong> - the list of open, untested and recently settled items.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="DiagnosticTools.html"><span>Previous</span>Diagnostic Tools</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="DM542T.html"><span>Next</span>DM542T Digital Stepper Drive</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

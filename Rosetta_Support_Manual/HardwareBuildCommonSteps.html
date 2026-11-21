@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hardware Build - Common Steps – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Hardware Build - Common Steps</span></p>
+  <h1>Hardware Build - Common Steps</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Connections_">Connections</a></li><li class="toc-l2"><a href="#The-Wired-Network">The Wired Network</a></li><li class="toc-l2"><a href="#Power">Power</a></li><li class="toc-l2"><a href="#Development-8-channel-Boxes">Development (8-channel) Boxes</a></li><li class="toc-l0"><a href="#Configure-the-Parts">Configure the Parts</a></li><li class="toc-l2"><a href="#1-1-DM542T-Drivers">1.1 DM542T Drivers</a></li><li class="toc-l2"><a href="#1-2-Channel-Plugs">1.2 Channel Plugs</a></li><li class="toc-l2"><a href="#1-3-Mesa-7i92TH-Cards">1.3 Mesa 7i92TH Cards</a></li></ul></nav>
+  <div class="content">
+
+<p><span style="color: navy;"><strong>Building a Rosetta:</strong></span> <a href="HardwareParts.html">1. Parts</a> · <a class="selflink" href="HardwareBuildCommonSteps.html">2. Common build steps</a> · <a href="HardwareBuildWithRosettaPCB.html">3a. With the Rosetta PCB</a> · <a href="HardwareBuildWithoutPCB.html">3b. Without the PCB</a> · <a href="InstallationAndSetupForDebian13Trixie.html">4. Software</a>
+</p><hr/>
+<p>These steps are the same whether the boxes are built with the Rosetta circuit board or with breakout boards.  Get the parts first (<a href="HardwareParts.html">Hardware Parts</a>), do these steps, then continue with the page for your build.
+</p>
+
+<table border="0" width="100%"><tr><td style="background-color: #b0c4de; padding: 5px;" valign="top">
+<p><strong>The two boxes</strong>
+</p><ul><li>The <strong>base box</strong> holds the Raspberry Pi, an Ethernet switch, one Mesa 7i92TH card and 6 stepper motor drivers (channels 00 - 05).  Limit Jacks 1 - 3, the E-stop button and the signal tower are on the base box.
+</li><li>The <strong>expansion box</strong> is optional.  It holds a second Mesa 7i92TH card and 4 more stepper motor drivers (channels 06 - 09), plus Limit Jacks 4 - 6.  It connects to the switch in the base box with one Ethernet cable.
+</li><li>With both boxes, there is one channel for each of the 10 axes and spindles (Sp0, Sp1, X, Z, U, V, W, A, B and C).
+</li></ul></td></tr></table>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<p><a id="Connections"></a>
+</p><h1 id="Connections_">Connections</h1>
+<p>The overall connections for this system are as shown to the right.  The items in the blue box are shipped as the Rosetta system. The boxes in gray and the associated cabling are optional.
+</p><div class="img imgcaption"> <img alt="" src="Images/REB_System_Diagram.png" width="100%"/><br/><span class="caption"><strong><em>Overall Connections</em></strong></span></div>
+<h3 id="The-Wired-Network">The Wired Network</h3>
+<p>The Raspberry Pi and the Mesa cards talk to each other over a private wired network, through the Ethernet switch in the base box.
+</p><ul><li>Plug the Raspberry Pi, the base card and (if used) the expansion card into the switch.
+</li><li><strong>Nothing else</strong> goes on the switch - no router, no internet connection, no other computers.  Other traffic on that network upsets LinuxCNC's timing.  The Raspberry Pi reaches the internet over WiFi instead.
+</li><li>The addresses used on this network are:
+</li></ul>
+<table style="width: calc(100% - 60px); border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 160px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Raspberry Pi</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 10.10.10.100
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Base card</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 10.10.10.10
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Expansion card</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 10.10.10.11
+</td></tr></table>
+<div class="indent">The software setup sets these addresses.  Until then, a new Mesa card answers at its factory address, 192.168.1.121.
+</div><h3 id="Power">Power</h3>
+<p>In the base box, one 24 VDC to 5 VDC power module powers <strong>both</strong> the Raspberry Pi and the base card.  Switching the card on while the Raspberry Pi is running restarts the Raspberry Pi without shutting it down, which can damage its microSD card.  Always switch the whole machine off and on together.
+</p>
+<h3 id="Development-8-channel-Boxes">Development (8-channel) Boxes</h3>
+<div class="img imgcaption"><span class="frame rfloat"> <img alt="" src="Images/EthernetCrossover.png" width="400px"/><br/><span class="caption"><strong><em>100 Mbit Ethernet Crossover Cable</em></strong></span></span></div>
+<p>The earlier 8-channel boxes are used as a base box: channels 00 - 05 work, and their other two plugs are not used.  Some of them have no Ethernet switch: the Raspberry Pi is wired straight to the single Mesa card with an Ethernet crossover cable.  An expansion box can't be added to such a box until a switch is fitted.
+</p>
+<p class="vspace">The wiring configuration for a 100 Mbit Ethernet crossover cable is shown to the right.
+</p>
+<p class="vspace">Pins 4, 5, 7, &amp; 8 still need to be wired to make this cable work as expected.
+</p>
+<p class="vspace">There is no benefit to using a gigabit crossover cable.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Configure-the-Parts">Configure the Parts</h1>
+<h3 id="1-1-DM542T-Drivers">1.1 DM542T Drivers</h3>
+<div class="img imgcaption"><span class="frame rfloat"> <img alt="" src="Images/DM542T-Switches.png" width="350px"/><br/><span class="caption"><strong><em>DM542T Driver</em></strong></span></span></div>
+<p>Configure each DM542T driver (6 in the base box, 4 in the expansion box)
+</p>
+<ol><li>Set the voltage on the 5V/24V switch to <strong>5V</strong> (that switch is located on the side of the DM542T, not the top where the DIP switches are). 
+</li></ol><div class="indent"><span style="background-color: yellow; color: red;">New drivers come set to 24V.  At 24V the driver does not respond to the Mesa card's signals, and that motor will not move.</span>
+</div><ol><li value="2"> Set the DIP switches as shown in the table below, using the values in  the highlighted rows.
+</li></ol>
+<table style="float: left; margin-right: 10px; margin-left: 40px; border-collapse: collapse; border: 0px solid darkgray;"><tr><td rowspan="2" style="width: 65px; background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Peak Current</strong></span>
+</td><td rowspan="2" style="width: 65px; background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>RMS Current</strong></span>
+</td><td rowspan="2" style="width: 50px; background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>SW1</strong></span>
+</td><td rowspan="2" style="width: 50px; background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>SW2</strong></span>
+</td><td rowspan="2" style="width: 50px; background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>SW3</strong></span>
+</td><td colspan="3" style="background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Default Setting</strong></span>
+</td></tr><tr><td style="width: 60px; background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Axes</strong></span>
+</td><td style="width: 80px; background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Motor</strong></span>
+
+</td></tr><tr><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 1.00A
+</td><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 0.71A
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+
+</td></tr><tr><td style="background-color: #4682b4; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> 1.46A</span>
+</td><td style="background-color: #4682b4; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> 1.04A</span>
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> X, Z, U, V, &amp; W
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> NEMA 17
+
+</td></tr><tr><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 1.91A
+</td><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 1.36A
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+
+</td></tr><tr><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 2.37A
+</td><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 1.69A
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+
+</td></tr><tr><td style="background-color: #4682b4; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> 2.84A</span>
+</td><td style="background-color: #4682b4; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> 2.03A</span>
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Sp0, Sp1, A, B, &amp; C
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> NEMA 23
+
+</td></tr><tr><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 3.31A
+</td><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 2.36A
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+
+</td></tr><tr><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 3.76A
+</td><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 2.69A
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+
+</td></tr><tr><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 4.50A
+</td><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 3.20A
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+</td></tr><tr><td colspan="6" valign="top">  
+
+</td></tr><tr><td colspan="2" style="background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Idle Current %</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>SW4</strong></span>
+</td></tr><tr><td colspan="2" style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 90%
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td></tr><tr><td colspan="2" style="background-color: #4682b4; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> 50%</span>
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+
+</td></tr><tr><td colspan="6" valign="top">  
+</td></tr><tr><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Micro-steps</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Steps/rev on 1.8° motor</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>SW5</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>SW6</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>SW7</strong></span>
+</td><td style="width: 50px; background-color: #00416a; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>SW8</strong></span>
+</td></tr><tr><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 16
+</td><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 3,200
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td></tr><tr><td style="background-color: #4682b4; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> 32</span>
+</td><td style="background-color: #4682b4; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> 6,400</span>
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="background-color: #fff2cc; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td></tr><tr><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 64
+</td><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 12,800
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td></tr><tr><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 128
+</td><td style="background-color: #b0c4de; text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 25,600
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> OFF
+</td><td style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> ON
+</td></tr></table>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h3 id="1-2-Channel-Plugs">1.2 Channel Plugs</h3>
+<p>The channel plugs are laid out with the even numbers on the top row and the odd numbers on the bottom row.  Wire each plug to the step generator with the same number, so the labels on the box match the software.
+</p>
+
+<table style="width: calc(100% - 60px); border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 160px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Base box</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Top row: 00 / 02 / 04 <br class="clearboth"/> Bottom row: 01 / 03 / 05
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Expansion box</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Top row: 06 / 08 <br class="clearboth"/> Bottom row: 07 / 09
+</td></tr></table>
+<p class="vspace">The axis or spindle on each channel is chosen in the Rosetta Settings program, so any of them can go on any channel.  The starting settings are:
+</p>
+
+<table style="width: calc(100% - 60px); border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 160px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Base box</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 00 X, 01 Z, 02 B, 03 W, 04 Sp0, 05 Sp1
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Expansion box</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 06 U, 07 V, 08 A, 09 C
+</td></tr></table>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h3 id="1-3-Mesa-7i92TH-Cards">1.3 Mesa 7i92TH Cards</h3>
+<table border="0" style="float: right; width: 400px; margin-left: 20px;"><tr><td valign="top">
+<div class="img imgcaption"><img alt="" src="Images/7i92TH-W4.png"/><br/><span class="caption"><strong>W4 jumper location</strong></span></div>
+</td></tr><tr><td valign="top">
+<div class="img imgcaption"><img alt="" src="Images/7i92TH-W6.png"/><br/><span class="caption"><strong>W6 jumper location</strong></span></div>
+</td></tr></table>
+<ol><li>Leave the <strong>W4</strong> jumper at its factory setting (<strong>down</strong> - P2's breakout power off).  See note 3 on <a href="MesaBoardPinToAxisMapping.html">Mesa 7i92TH Pin Mapping</a>.
+</li><li>Leave the <strong>W5</strong> and <strong>W6</strong> jumpers at their factory setting (both <strong>down</strong>).  The card then answers at its factory address, 192.168.1.121.
+</li><li>Label each card <strong>Base</strong> or <strong>Expansion</strong> before it goes into its box.  The two cards are set up the same way, but are given different addresses.
+</li><li>The firmware, the address and the jumper change are done during the <a href="InstallationAndSetupForDebian13Trixie.html">software setup</a>, which tells you when to move the jumpers.
+</li></ol>
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<hr/>
+<p><strong>Next:</strong> building the boxes - <a href="HardwareBuildWithRosettaPCB.html">3a. With the Rosetta PCB</a> or <a href="HardwareBuildWithoutPCB.html">3b. Without the PCB</a>.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="HardwareParts.html"><span>Previous</span>Hardware Parts for the Rosetta</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="HardwareBuildWithRosettaPCB.html"><span>Next</span>Hardware Build - With the Rosetta PCB</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

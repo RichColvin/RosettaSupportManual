@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAL File – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>HAL File</span></p>
+  <h1>HAL File</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#HAL-Commands">HAL Commands</a></li><li class="toc-l1"><a href="#addf">addf</a></li><li class="toc-l1"><a href="#loadrt">loadrt</a></li><li class="toc-l1"><a href="#loadusr">loadusr</a></li><li class="toc-l1"><a href="#net">net</a></li><li class="toc-l1"><a href="#setp">setp</a></li><li class="toc-l1"><a href="#sets">sets</a></li><li class="toc-l1"><a href="#unlinkp">unlinkp</a></li></ul></nav>
+  <div class="content">
+
+<div class="img imgcaption"><span class="frame rfloat"> <img alt="" src="Images/PinsAndSignals.png" width="500px"/><br/><span class="caption"><strong><em>Pins &amp; Signals</em></strong></span></span></div>
+<p class="vspace"><strong>halmeter</strong> is a good way to observe the pins &amp; signals.
+</p>
+<h1 id="HAL-Commands">HAL Commands</h1>
+<p>See also, 
+</p><ul><li><a class="online" href="https://linuxcnc.org/docs/stable/html/hal/basic-hal.html" rel="noopener" target="_blank" title="Opens on the Internet">LinuxCNC HAL Basics Manual</a>, &amp; 
+</li><li><a class="online" href="https://linuxcnc.org/docs/stable/html/config/core-components.html" rel="noopener" target="_blank" title="Opens on the Internet">LinuxCNC Core Components Manual</a>.
+</li></ul><hr/>
+<h2 id="addf">addf</h2>
+<div class="indent">The addf command adds a function to a real-time thread. If the StepConf wizard was used to create the configuration, two threads have been created (“base-thread” and “servo-thread”).
+</div><div class="indent">addf adds function functname to thread threadname. Default is to add the function in the order they are in the file. If position is specified, adds the function to that spot in the thread. A negative position indicates the position with respect to the end of the thread. For example 1 is start of thread, -1 is the end of the thread, -3 is third from the end.
+</div><hr/>
+<h2 id="loadrt">loadrt</h2>
+<div class="indent">The command loadrt loads a real time HAL component. Real time component functions need to be added to a thread to be updated at the rate of the thread. You cannot load a non-realtime component into the realtime space.
+</div><h4>Syntax and Example</h4>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>loadrt &lt;component&gt; &lt;options&gt;<br/>loadrt mux4 count=1
+</p></td></tr></table>
+<div class="indent"><strong>loadrt</strong> components list:   <a class="online" href="https://linuxcnc.org/docs/html/hal/components.html" rel="noopener" target="_blank" title="Opens on the Internet">https://linuxcnc.org/docs/html/hal/components.html</a>
+</div><hr/>
+<h2 id="loadusr">loadusr</h2>
+<div class="indent">The command loadusr loads a non-realtime HAL component. Non-realtime programs are their own separate processes, which optionally talk to other HAL components via pins and parameters. You cannot load realtime components into non-realtime space.
+</div><hr/>
+<h2 id="net">net</h2>
+<div class="indent">The command net creates a connection between a signal and one or more pins. If the signal does not exist net creates the new signal. This replaces the need to use the command newsig. The optional direction arrows &lt;=, =&gt; and &lt;=&gt; make it easier to follow the logic when reading a net command line and are not used by the net command. The direction arrows must be separated by a space from the pin names.
+</div><h4>Syntax and Example</h4>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>net signal-name pin-name &lt;optional arrow&gt; &lt;optional second pin-name&gt;<br/>net home-x joint.0.home-sw-in &lt;= parport.0.pin-11-in
+</p></td></tr></table>
+<div class="indent">In the above example home-x is the signal name, joint.0.home-sw-in is a Direction IN pin, &lt;= is the optional direction arrow, and parport.0.pin-11-in is a Direction OUT pin. This may seem confusing but the in and out labels for a parallel port pin indicates the physical way the pin works not how it is handled in HAL.
+</div><div class="indent">A pin can be connected to a signal if it obeys the following rules
+<ul><li>An IN pin can always be connected to a signal.
+</li><li>An IO pin can be connected unless there’s an OUT pin on the signal.
+</li><li>An OUT pin can be connected only if there are no other OUT or IO pins on the signal.
+</li></ul></div><div class="indent">The same signal-name can be used in multiple net commands to connect additional pins, as long as the rules above are obeyed.
+</div><hr/>
+<h2 id="setp">setp</h2>
+<div class="indent">The command setp sets the value of a pin or parameter. The valid values will depend on the type of the pin or parameter. It is an error if the data types do not match.
+</div><div class="indent">Some components have parameters that need to be set before use. Parameters can be set before use or while running as needed. You cannot use setp on a pin that is connected to a signal.
+</div><h4>Syntax and Example</h4>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>setp &lt;pin/parameter-name&gt; &lt;value&gt;<br/>setp parport.0.pin-08-out TRUE
+</p></td></tr></table>
+<hr/>
+<h2 id="sets">sets</h2>
+<div class="indent">The command sets sets the value of a signal.
+</div><h4>Syntax and Example</h4>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sets &lt;signal-name&gt; &lt;value&gt;<br/>net mysignal and2.0.in0 pyvcp.my-led<br/>sets mysignal 1
+</p></td></tr></table>
+<div class="indent">It is an error if:
+<ul><li>The signal-name does not exist
+</li><li>If the signal already has a writer
+</li><li>If value is not the correct type for the signal
+</li></ul></div><hr/>
+<h2 id="unlinkp">unlinkp</h2>
+<div class="indent">The command unlinkp unlinks a pin from the connected signal. If no signal was connected to the pin prior running the command, nothing happens. The unlinkp command is useful for troubleshooting.
+</div><h4>Syntax and Example</h4>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>unlinkp &lt;pin-name&gt;<br/>unlinkp parport.0.pin-02-out
+</p></td></tr></table>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="GladeVCP.html"><span>Previous</span>Glade Virtual Control Panel</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="PIDTuning.html"><span>Next</span>Panel Accessories - Limit Switches, E-Stop Button, Signal Tower</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launching Rosetta – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Launching Rosetta</span></p>
+  <h1>Launching Rosetta</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#The-sequence">The sequence</a></li><li class="toc-l0"><a href="#Key-rules">Key rules</a></li><li class="toc-l0"><a href="#Which-card-address-is-used">Which card address is used</a></li><li class="toc-l0"><a href="#Roles-channels-and-joints">Roles, channels, and joints</a></li></ul></nav>
+  <div class="content">
+
+<p>Understanding this sequence makes most field problems much easier to track down.
+</p>
+<h1 id="The-sequence">The sequence</h1>
+<ol><li>The desktop icon (and the Applications menu entry) runs <strong>Rosetta_Launch.sh</strong>.
+</li><li>Rosetta_Launch.sh runs <strong>Rosetta_Setup/Rosetta_Generate_Local_Ini.py</strong>.  It first checks the gcode folder for reserved file names (starting with Rosetta, or M100 - M199) and stops if it finds one (see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>).  It then reads this machine's settings from /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong> and writes these generated files next to their templates:
+<ul><li><strong>Rosetta.local.ini</strong> - a copy of Rosetta.ini with the axis/channel assignment, jog speeds, measurement system, and backlash applied, and with its HALFILE / POSTGUI_HALFILE lines pointing at the files below;
+</li><li><strong>Rosetta.local.hal</strong> - a copy of Rosetta.hal with the Mesa card line rewritten (the base card at 10.10.10.10 alone, or both cards - 10.10.10.10 and 10.10.10.11 - when <strong>Expansion Box - Connected</strong> is ticked, plus the second card's read/write and watchdog lines), each role's block moved to its assigned channel, card and joint number, unassigned roles left out, and the limit jacks, E-stop button and signal tower wiring and the lost-card E-stop added (see <a href="PanelAccessories.html">Panel Accessories</a> and <a href="Mesa7i92.html">Mesa 7i92</a>);
+</li><li><strong>Rosetta_Display/Rosetta_PostGUI_v1.local.hal</strong> - a copy of Rosetta_PostGUI_v1.hal, plus the lines for the done/pause beeps and the fault siren;
+</li><li><strong>Rosetta_Display/Rosetta_Splash.local.ngc</strong> - the “Rosetta / ROSETTA” drawing shown in the preview at start-up (preview only - Run skips it).
+</li></ul></li><li>It then starts <strong>linuxcnc Rosetta.local.ini</strong>.
+</li><li>While LinuxCNC loads, <strong>Rosetta_Settings_Restore.py</strong> applies the saved scale, PID and velocity values to the HAL pins.
+</li><li>At shutdown, <strong>Rosetta_Shutdown.hal</strong> runs <strong>Rosetta_Scale_Persist.py</strong>, which saves the live values back to RosettaSet_v1.ini.
+</li></ol><h1 id="Key-rules">Key rules</h1>
+<ul><li><span style="color: red;"><strong>Never edit the .local files</strong></span> - they are regenerated at every launch.  Change RosettaSet_v1.ini (through the Settings program) or the templates instead.
+</li><li>Everything that Rosetta.local.ini sets (axis assignment, units, jog speeds) takes effect only at the next launch.
+</li><li>The Settings program only runs while LinuxCNC is not running.
+</li><li>The generator prints what it did - which cards it loads (and at which addresses), which role is on which channel, which limit jacks, E-stop and signal tower are wired.  Run it by hand to see that output:
+</li></ul>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cd /home/reuben/linuxcnc/configs/Rosetta <br class="clearboth"/>
+python3 Rosetta_Setup/Rosetta_Generate_Local_Ini.py
+</p></td></tr></table>
+<p class="vspace">If it reports a problem, it refuses to write the .local.hal files and Rosetta_Launch.sh stops, so LinuxCNC never starts with a half-built configuration.  For example, it refuses to start with <strong>Expansion Box - Connected</strong> ticked while the Raspberry Pi's wired connection is still on the old 192.168.1.x network (see <a href="Mesa7i92.html">Mesa 7i92</a>).
+</p>
+<h1 id="Which-card-address-is-used">Which card address is used</h1>
+<ul><li>The base card is loaded at <strong>10.10.10.10</strong>, and the expansion card at <strong>10.10.10.11</strong>.
+</li><li>A machine not yet moved to the 10.10.10.x network (Raspberry Pi wired at 192.168.1.120) is loaded at the card's factory address, <strong>192.168.1.121</strong>, so an update can arrive before or after the network is moved with Rosetta_Change_Network.sh.
+</li></ul><h1 id="Roles-channels-and-joints">Roles, channels, and joints</h1>
+<p>See <a href="AxisMapping.html">Axis Mapping</a>.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="HALPrograms.html"><span>Previous</span>HAL Support Programs</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="Licensing.html"><span>Next</span>Licensing &amp; End User Customization</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

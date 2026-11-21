@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hardware Build - With the Rosetta PCB – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Hardware Build - With the Rosetta PCB</span></p>
+  <h1>Hardware Build - With the Rosetta PCB</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Network-Connections">Network Connections</a></li><li class="toc-l0"><a href="#One-board-two-boxes">One board, two boxes</a></li><li class="toc-l1"><a href="#Assembling-the-PCB">Assembling the PCB</a></li><li class="toc-l0"><a href="#Base-Box">Base Box</a></li><li class="toc-l1"><a href="#Mounting-the-PCB">Mounting the PCB</a></li><li class="toc-l1"><a href="#Mesa-card-to-PCB">Mesa card to PCB</a></li><li class="toc-l1"><a href="#PCB-to-the-DM542T-drivers">PCB to the DM542T drivers</a></li><li class="toc-l1"><a href="#Limit-jacks-E-stop-button-and-signal-tower">Limit jacks, E-stop button and signal tower</a></li><li class="toc-l0"><a href="#Expansion-Box">Expansion Box</a></li><li class="toc-l1"><a href="#Mounting-the-PCB_">Mounting the PCB</a></li><li class="toc-l1"><a href="#Mesa-card-to-PCB_">Mesa card to PCB</a></li><li class="toc-l1"><a href="#PCB-to-the-DM542T-drivers_">PCB to the DM542T drivers</a></li><li class="toc-l1"><a href="#Limit-jacks">Limit jacks</a></li><li class="toc-l0"><a href="#Which-pin-does-what">Which pin does what</a></li></ul></nav>
+  <div class="content">
+
+<p><span style="color: navy;"><strong>Building a Rosetta:</strong></span> <a href="HardwareParts.html">1. Parts</a> · <a href="HardwareBuildCommonSteps.html">2. Common build steps</a> · <a class="selflink" href="HardwareBuildWithRosettaPCB.html">3a. With the Rosetta PCB</a> · <a href="HardwareBuildWithoutPCB.html">3b. Without the PCB</a> · <a href="InstallationAndSetupForDebian13Trixie.html">4. Software</a>
+</p><hr/>
+<p>This page is for building the boxes <strong>with</strong> the Rosetta circuit board.  The board connects the Mesa 7i92TH card to the DM542T drivers, the limit jacks, the E-stop button and the signal tower, and has the signal tower's relays built in.
+</p>
+<p class="vspace"><span style="color: red;"><strong>This page is an outline.</strong></span>  It will be completed when the PCB design is final.
+</p>
+<p class="vspace"><strong>Before starting:</strong>
+</p><ul><li>Get the parts marked <strong>Both</strong> and <strong>Rosetta PCB</strong> on <a href="HardwareParts.html">Hardware Parts</a>.
+</li><li>Do the <a href="HardwareBuildCommonSteps.html">common build steps</a> (DM542T switches, Mesa jumpers, network and power).
+</li></ul>
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Network-Connections">Network Connections</h1>
+<div class="img imgonly"><span class="rfloat"> <img alt="" src="Images/REB_Hardware_Network.png" width="450px"/></span></div>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="One-board-two-boxes">One board, two boxes</h1>
+<p>Both boxes use the <strong>same PCB</strong>.  The expansion box's board has fewer parts fitted:
+</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Part of the PCB</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Base box</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Expansion box</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Driver connections
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 6 (channels 00 - 05)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 4 (channels 06 - 09)
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Limit jack connections
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 3 (Limit Jacks 1 - 3)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 3 (Limit Jacks 4 - 6)
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> E-stop button connection
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Fitted
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Not fitted
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Signal tower relays
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Fitted
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Not fitted
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Mesa card headers used
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P1 and P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2 only
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Other parts
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> <span style="color: red;"><strong>To be completed</strong></span>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> <span style="color: red;"><strong>To be completed</strong></span>
+</td></tr></table>
+<h2 id="Assembling-the-PCB">Assembling the PCB</h2>
+<p><span style="color: red;"><strong>To be completed</strong></span> - which parts are fitted for each box, and in what order.
+</p>
+<hr/>
+<h1 id="Base-Box">Base Box</h1>
+<h2 id="Mounting-the-PCB">Mounting the PCB</h2>
+<p><span style="color: red;"><strong>To be completed</strong></span>
+</p>
+<h2 id="Mesa-card-to-PCB">Mesa card to PCB</h2>
+<p>Two IDC26 ribbon cables (part 1401), from the card's <strong>P2</strong> and <strong>P1</strong> headers to the PCB.  <span style="color: red;"><strong>To be completed</strong></span> - which PCB connector each goes to, and the red stripe (pin 1) orientation.
+</p>
+<h2 id="PCB-to-the-DM542T-drivers">PCB to the DM542T drivers</h2>
+<p>Two IDC6 ribbon cables for each driver (part 1402).  <span style="color: red;"><strong>To be completed</strong></span> - which PCB connector is which channel, and how each cable connects at the driver.
+</p>
+<h2 id="Limit-jacks-E-stop-button-and-signal-tower">Limit jacks, E-stop button and signal tower</h2>
+<p><span style="color: red;"><strong>To be completed</strong></span> - where the jacks connect to the PCB.  The signal tower's relays are on the PCB, so the tower's jack connects to it directly; see <a href="SignalTowerRelays.html">Signal Tower Relays</a> for what the relays switch.
+</p>
+<hr/>
+<h1 id="Expansion-Box">Expansion Box</h1>
+<h2 id="Mounting-the-PCB_">Mounting the PCB</h2>
+<p><span style="color: red;"><strong>To be completed</strong></span>
+</p>
+<h2 id="Mesa-card-to-PCB_">Mesa card to PCB</h2>
+<p>One IDC26 ribbon cable, from the expansion card's <strong>P2</strong> header to the PCB (its P1 isn't used).  <span style="color: red;"><strong>To be completed</strong></span> - which PCB connector, and the red stripe orientation.
+</p>
+<h2 id="PCB-to-the-DM542T-drivers_">PCB to the DM542T drivers</h2>
+<p>Two IDC6 ribbon cables for each of the 4 drivers (part 2402).  <span style="color: red;"><strong>To be completed</strong></span>
+</p>
+<h2 id="Limit-jacks">Limit jacks</h2>
+<p><span style="color: red;"><strong>To be completed</strong></span>
+</p>
+<hr/>
+<h1 id="Which-pin-does-what">Which pin does what</h1>
+<p>The PCB carries each signal to the same Mesa card pin as a breakout-board build, so the software doesn't need to know which build a machine is.  The full map is on <a href="MesaBoardPinToAxisMapping.html">Mesa 7i92TH Pin Mapping</a>.
+</p>
+<hr/>
+<p><strong>Next:</strong> <a href="InstallationAndSetupForDebian13Trixie.html">Software Installation and Setup</a>
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="HardwareBuildCommonSteps.html"><span>Previous</span>Hardware Build - Common Steps</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="HardwareBuildWithoutPCB.html"><span>Next</span>Hardware Build - Without the Rosetta PCB</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

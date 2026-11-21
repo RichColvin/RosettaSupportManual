@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hardware Build - Without the Rosetta PCB – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Hardware Build - Without the Rosetta PCB</span></p>
+  <h1>Hardware Build - Without the Rosetta PCB</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Power-Connections">Power Connections</a></li><li class="toc-l0"><a href="#Network-Connections">Network Connections</a></li><li class="toc-l0"><a href="#Base-Box">Base Box</a></li><li class="toc-l1"><a href="#Stepper-motor-drivers-channels-00-05">Stepper motor drivers (channels 00 - 05)</a></li><li class="toc-l1"><a href="#Limit-jacks-E-stop-button-and-signal-tower">Limit jacks, E-stop button and signal tower</a></li><li class="toc-l1"><a href="#Other-terminals">Other terminals</a></li><li class="toc-l0"><a href="#Expansion-Box">Expansion Box</a></li><li class="toc-l1"><a href="#Stepper-motor-drivers-channels-06-09">Stepper motor drivers (channels 06 - 09)</a></li><li class="toc-l1"><a href="#Limit-jacks">Limit jacks</a></li><li class="toc-l1"><a href="#Other-terminals_">Other terminals</a></li><li class="toc-l0"><a href="#Connecting-a-DM542T-driver">Connecting a DM542T driver</a></li><li class="toc-l0"><a href="#Limit-switches-and-E-stop-button">Limit switches and E-stop button</a></li><li class="toc-l0"><a href="#Signal-tower">Signal tower</a></li></ul></nav>
+  <div class="content">
+
+<p><span style="color: navy;"><strong>Building a Rosetta:</strong></span> <a href="HardwareParts.html">1. Parts</a> · <a href="HardwareBuildCommonSteps.html">2. Common build steps</a> · <a href="HardwareBuildWithRosettaPCB.html">3a. With the Rosetta PCB</a> · <a class="selflink" href="HardwareBuildWithoutPCB.html">3b. Without the PCB</a> · <a href="InstallationAndSetupForDebian13Trixie.html">4. Software</a>
+</p><hr/>
+<p>This page is for building the boxes <strong>without</strong> the Rosetta circuit board.  Each Mesa 7i92TH card's 26-pin headers are brought out to <strong>IDC26 breakout boards</strong> (26 screw terminals on a DIN rail) with IDC26 ribbon cables, and everything else is wired to those terminals.
+</p>
+<p class="vspace">The software is exactly the same as for a machine built with the Rosetta PCB: it only knows the card's pins, so the wiring below must match it.
+</p>
+<p class="vspace"><strong>Before starting:</strong>
+</p><ul><li>Get the parts marked <strong>Both</strong> and <strong>Without PCB</strong> on <a href="HardwareParts.html">Hardware Parts</a>.
+</li><li>Do the <a href="HardwareBuildCommonSteps.html">common build steps</a> (DM542T switches, Mesa jumpers, network and power).
+</li></ul><p class="vspace"><span style="color: red;"><strong>Terminal numbers</strong></span> below are the card's <strong>26-pin header</strong> pin numbers, which match the breakout board's terminal numbers when the ribbon cable is fitted the right way round (the red stripe on pin 1 at both ends).  Mesa's pin file (7i92t_Rosetta.pin) numbers the same pins differently, as a 25-pin plug would - don't wire from it.  The full map is on <a href="MesaBoardPinToAxisMapping.html">Mesa 7i92TH Pin Mapping</a>.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Power-Connections">Power Connections</h1>
+<div class="img imgonly"><span class="rfloat"> <img alt="" src="Images/REB_Hardware_Power.png" width="600px"/></span></div>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Network-Connections">Network Connections</h1>
+<div class="img imgonly"><span class="rfloat"> <img alt="" src="Images/REB_Hardware_Network.png" width="450px"/></span></div>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Base-Box">Base Box</h1>
+<p>Two breakout boards: one on the card's <strong>P2</strong> header and one on <strong>P1</strong>.
+</p>
+<h2 id="Stepper-motor-drivers-channels-00-05">Stepper motor drivers (channels 00 - 05)</h2>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td rowspan="2" style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="90px"> <span style="color: white;"> <strong>Channel</strong></span>
+</td><td rowspan="2" style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="110px"> <span style="color: white;"> <strong>Breakout Board</strong></span>
+</td><td colspan="4" style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Breakout Board Terminal</strong></span>
+</td></tr><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Step</strong> <br class="clearboth"/> to PUL+</span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Dir</strong> <br class="clearboth"/> to DIR+</span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Enable</strong> <br class="clearboth"/> to ENA+</span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Common</strong> <br class="clearboth"/> to PUL- DIR- ENA-</span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>00</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 1
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 4
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>01</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 5
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 6
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 8
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>02</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 9
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 11
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 15
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>03</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 17
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 19
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 23
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>04</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P1
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 1
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 4
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>05</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P1
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 5
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 6
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 8
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10
+</td></tr></table>
+<h2 id="Limit-jacks-E-stop-button-and-signal-tower">Limit jacks, E-stop button and signal tower</h2>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Function</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="110px"> <span style="color: white;"> <strong>Breakout Board</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="110px"> <span style="color: white;"> <strong>Breakout Board Terminal</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Other wire to</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Limit Jack 1
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 3
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> GND terminal
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Limit Jack 2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 7
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> GND terminal
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Limit Jack 3
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 13
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> GND terminal
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> E-stop button
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P1
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 21
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> GND terminal
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Signal tower - Relay Module 1 (red light)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 25
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Relay Module 1 - IN
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Signal tower - Relay Module 2 (green light)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P1
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 25
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Relay Module 2 - IN
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Signal tower - Relay Module 3 (siren)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P1
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 13
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Relay Module 3 - IN
+</td></tr></table>
+<h2 id="Other-terminals">Other terminals</h2>
+<ul><li><strong>GND:</strong> P2 terminals 10, 12, 14, 16, 18, 20, 22, 24; P1 terminals 10, 12, 14, 16.
+</li><li><strong>5 V:</strong> P1 terminals 18, 20, 22, 24 (with the card's W3 jumper up).  <span style="color: red;">Never connect these to a GND terminal or to the 24 V supply.</span>  Whether they can power the three relay modules is <span style="color: red;"><strong>To be confirmed</strong></span>.
+</li><li><strong>Leave unconnected:</strong> P1 terminals 9, 11, 15, 17, 19, 23 (they drove channels 06 and 07 on the earlier 8-channel boxes) and terminal 26 on each header.
+</li><li><strong>Spare inputs:</strong> P2 terminal 21; P1 terminals 3, 7.
+</li></ul><hr/>
+<h1 id="Expansion-Box">Expansion Box</h1>
+<p>One breakout board, on the expansion card's <strong>P2</strong> header.  Its P1 header isn't used.
+</p>
+<h2 id="Stepper-motor-drivers-channels-06-09">Stepper motor drivers (channels 06 - 09)</h2>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td rowspan="2" style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="90px"> <span style="color: white;"> <strong>Channel</strong></span>
+</td><td rowspan="2" style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="110px"> <span style="color: white;"> <strong>Breakout Board</strong></span>
+</td><td colspan="4" style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Breakout Board Terminal</strong></span>
+</td></tr><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Step</strong> <br class="clearboth"/> to PUL+</span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Dir</strong> <br class="clearboth"/> to DIR+</span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Enable</strong> <br class="clearboth"/> to ENA+</span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Common</strong> <br class="clearboth"/> to PUL- DIR- ENA-</span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>06</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 1
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 4
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>07</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 5
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 6
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 8
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>08</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 9
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 11
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 15
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>09</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 17
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 19
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 23
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10
+</td></tr></table>
+<h2 id="Limit-jacks">Limit jacks</h2>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Function</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="110px"> <span style="color: white;"> <strong>Breakout Board</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="110px"> <span style="color: white;"> <strong>Breakout Board Terminal</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Other wire to</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Limit Jack 4
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 3
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> GND terminal
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Limit Jack 5
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 7
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> GND terminal
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Limit Jack 6
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> P2
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 13
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> GND terminal
+</td></tr></table>
+<h2 id="Other-terminals_">Other terminals</h2>
+<ul><li><strong>GND:</strong> P2 terminals 10, 12, 14, 16, 18, 20, 22, 24.
+</li><li><strong>Leave unconnected:</strong> terminal 25 and terminal 26.
+</li><li><strong>Spare input:</strong> terminal 21.
+</li></ul>
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Connecting-a-DM542T-driver">Connecting a DM542T driver</h1>
+<p>Each driver has three signal pairs.  Set its 5V/24V switch to <strong>5V</strong> first (see <a href="HardwareBuildCommonSteps.html">common steps</a>).
+</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="160px"> <span style="color: white;"> <strong>DM542T terminal</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Connect to</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>PUL+</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> the channel's <strong>Step</strong> terminal
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>DIR+</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> the channel's <strong>Dir</strong> terminal
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>ENA+</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> the channel's <strong>Enable</strong> terminal
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>PUL-</strong>, <strong>DIR-</strong>, <strong>ENA-</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> joined together, then to a <strong>GND</strong> terminal on the same breakout board - terminal 10 (the <strong>Common</strong> column above).  All the drivers on one breakout board can share that terminal.
+</td></tr></table>
+<p class="vspace"><span style="color: red;"><strong>On the P1 board, terminals 18, 20, 22 and 24 are 5 V, not GND</strong></span> - never connect the drivers' - terminals to them.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Limit-switches-and-E-stop-button">Limit switches and E-stop button</h1>
+<ul><li>Wire a <strong>normally closed</strong> switch between its terminal and a <strong>GND</strong> terminal.  The card's pull-up makes an open switch (tripped, broken or unplugged) read as tripped.  No other parts are needed.
+</li><li>Limit switch jacks are GX-12/2, the E-stop button jack is GX-16/2.  See the User Manual's  <a class="online" href="https://rosetta.colvintools.com/UserManual/index.php?n=Main.LimitSwitchCabling" rel="noopener" target="_blank" title="Opens on the Internet">Limit Switch Cabling</a> and <a class="online" href="https://rosetta.colvintools.com/UserManual/index.php?n=Main.E-StopCabling" rel="noopener" target="_blank" title="Opens on the Internet">E-Stop Button Cabling</a> (User Manual).
+</li></ul>
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Signal-tower">Signal tower</h1>
+<p>A breakout board has no relays, so three separate single-relay modules (part 1260) switch the tower: <strong>Relay Module 1</strong> the red light, <strong>Relay Module 2</strong> the green light and <strong>Relay Module 3</strong> the siren.
+</p>
+<div class="img imgcaption"> <img alt="" src="Images/SignalTowerRelays.png" width="700px"/><br/><span class="caption"><strong><em>Signal Tower Relay Connections</em></strong></span></div>
+<p class="vspace">Each module is wired the same way:
+</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="160px"> <span style="color: white;"> <strong>Relay module terminal</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Connect to</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>VCC</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> +5 VDC
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>IN</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> its breakout board terminal (table above): Relay Module 1 - P2 terminal 25; Relay Module 2 - P1 terminal 25; Relay Module 3 - P1 terminal 13
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>GND</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> a Mesa <strong>GND</strong> terminal on a breakout board - P1 terminal 12 (all three modules can share it)
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>COM</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> its lamp or the siren
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>NO</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> +24 VDC from the power supply (all three modules)
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>NC</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> not connected
+</td></tr></table>
+<ul><li><strong>Two separate grounds:</strong> the modules' 5 V side (VCC, IN, GND) uses the Mesa card's ground, as above.  The tower's 24 V side does not: the tower's common wire goes to the <strong>GND of the 24 VDC power supply</strong>, never to a breakout board terminal.
+</li><li>Each module must switch <strong>on when its input is pulled low</strong> (a "low-level trigger" module).  The card holds its pins high whenever LinuxCNC isn't running, so a high-level module would turn the tower on at start-up and after shut-down.
+</li><li>See also <a href="SignalTowerRelays.html">Signal Tower Relays</a>.
+</li></ul><hr/>
+<p><strong>Next:</strong> <a href="InstallationAndSetupForDebian13Trixie.html">Software Installation and Setup</a>
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="HardwareBuildWithRosettaPCB.html"><span>Previous</span>Hardware Build - With the Rosetta PCB</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="InstallationAndSetupForDebian13Trixie.html"><span>Next</span>Software Installation and Setup for Debian 13 Trixie</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

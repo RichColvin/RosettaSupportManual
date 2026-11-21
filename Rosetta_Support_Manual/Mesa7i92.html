@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesa 7i92 Ethernet Anything I/O Card – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Mesa 7i92 Ethernet Anything I/O Card</span></p>
+  <h1>Mesa 7i92 Ethernet Anything I/O Card</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Key-Notes">Key Notes</a></li><li class="toc-l0"><a href="#Setting-up-a-card">Setting up a card</a></li><li class="toc-l1"><a href="#To-load-the-configuration-onto-a-Mesa-card-by-hand">To load the configuration onto a Mesa card by hand</a></li><li class="toc-l1"><a href="#To-display-the-configuration-on-a-Mesa-card">To display the configuration on a Mesa card</a></li><li class="toc-l0"><a href="#How-LinuxCNC-loads-the-cards">How LinuxCNC loads the cards</a></li></ul></nav>
+  <div class="content">
+
+<h1 id="Key-Notes">Key Notes</h1>
+<p>This covers the 7i92TH and 7i92TM boards.
+</p>
+<p class="vspace">A Rosetta has one card in the base box and, optionally, a second card in the expansion box.  Both run the same firmware (7i92t_Rosetta.bin) and are set up the same way; they differ only in their address:
+</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Card</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Address</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>HAL name</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Step generators used</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Base card
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10.10.10.10
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> hm2_7i92.0
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 6 (channels 00 - 05)
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Expansion card
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10.10.10.11
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> hm2_7i92.1
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 4 (channels 06 - 09)
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Raspberry Pi (wired)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> 10.10.10.100
+</td><td style="padding: 4px; vertical-align: top;" valign="top">
+</td><td style="padding: 4px; vertical-align: top;" valign="top">
+</td></tr></table>
+<ul><li>A <strong>new</strong> card always answers at its factory address, <strong>192.168.1.121</strong> (W5 and W6 jumpers both down).  It answers at its stored address only after its W6 jumper is moved up (W5 stays down) - the setting the 7i92 manual calls EEPROM.  Jumpers are read only at power-up.
+</li><li>Because both new cards answer at the same factory address, only the card being set up may be connected to the switch.
+</li><li>The Raspberry Pi and the base card share one 5V supply.  Never switch the card on by itself while the Raspberry Pi is running - that restarts the Raspberry Pi without shutting it down.  Shut down and switch the whole machine off to move a jumper.
+</li><li>Recovery: putting a card's W5/W6 jumpers back down returns it to 192.168.1.121.
+</li></ul><h1 id="Setting-up-a-card">Setting up a card</h1>
+<p>Use <strong>Rosetta_Change_Network.sh</strong>, which asks before every change.  The full steps are in <a href="InstallationAndSetupForDebian13Trixie.html">Installation and Setup for Debian 13 Trixie</a> (Part 3), including how to do each step by hand.
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh <em>choice</em>
+</p></td></tr></table>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: calc(100% - 40px); margin-left: 20px;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Choice</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>What it does</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>base</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Set up the connected card as the base card (10.10.10.10).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>expansion</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Set up the connected card as the expansion card (10.10.10.11).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>pi</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Move the Raspberry Pi's wired connection to 10.10.10.100 (no gateway or DNS).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>back</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Put the Raspberry Pi's wired connection back on 192.168.1.120, to reach a card at its factory address.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>check</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Show the Raspberry Pi's wired address and which cards answer.
+</td></tr></table>
+<p>Add <strong>--dry-run</strong> to see the commands without running them.  The script stops if LinuxCNC is running.
+</p>
+<h2 id="To-load-the-configuration-onto-a-Mesa-card-by-hand">To load the configuration onto a Mesa card by hand</h2>
+<p>With only that card connected, at its factory address:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cd /usr/lib/firmware/hm2/hostmot2 <br class="clearboth"/>
+mesaflash --device 7i92t --addr 192.168.1.121 --write 7i92t_Rosetta.bin --reload
+</p></td></tr></table>
+<h2 id="To-display-the-configuration-on-a-Mesa-card">To display the configuration on a Mesa card</h2>
+<p>Use the card's address - 10.10.10.10 (base), 10.10.10.11 (expansion), or 192.168.1.121 for a card not yet set up:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>mesaflash --device 7i92t --addr 10.10.10.10 --readhmid <br class="clearboth"/>
+mesaflash --device 7i92t --addr 10.10.10.11 --readhmid
+</p></td></tr></table>
+<h1 id="How-LinuxCNC-loads-the-cards">How LinuxCNC loads the cards</h1>
+<ul><li>Both cards are loaded on <strong>one</strong> loadrt hm2_eth line (a realtime module can only be loaded once), e.g. board_ip="10.10.10.10,10.10.10.11" with one config= string for each card (6 and 4 step generators).  This gives hm2_7i92.0 and hm2_7i92.1, in that order.
+</li><li>Rosetta_Setup/Rosetta_Generate_Local_Ini.py writes that line at every launch: the base card alone, or both cards when <strong>Expansion Box - Connected</strong> is ticked in the Settings program.  It also adds the second card's read/write functions and its timer and watchdog settings.
+</li><li>While the Raspberry Pi's wired connection is still on 192.168.1.x (a machine not yet moved to 10.10.10.x), the generator loads the base card at 192.168.1.121 instead, and refuses to start with the expansion box ticked.
+</li><li>Servo-thread order (from Mesa): both cards' read-requests, then their reads, then everything else, with the cards' writes last.
+</li><li>If either card loses contact (cable pulled, card switched off), LinuxCNC goes into E-stop - see <a href="FieldTroubleshooting.html">Field Troubleshooting</a>.
+</li><li>With two cards the 1 ms servo thread is busier (worst about 0.55 ms measured on the prototype, jogging on both cards).  If LinuxCNC reports an unexpected realtime delay, see <a href="FieldTroubleshooting.html">Field Troubleshooting</a>.
+</li></ul><p class="vspace">See also, <a class="online" href="https://linuxcnc.org/docs/stable/html/drivers/hostmot2.html" rel="noopener" target="_blank" title="Opens on the Internet">https://linuxcnc.org/docs/stable/html/drivers/hostmot2.html</a>.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="MachineTracker.html"><span>Previous</span>Machine Tracker (Serial Numbers and Version Reports)</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="MesaBoardPinToAxisMapping.html"><span>Next</span>Mesa 7i92 Board Pin to Axis Mapping</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

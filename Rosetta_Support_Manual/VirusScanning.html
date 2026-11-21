@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Virus Scanning – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Virus Scanning</span></p>
+  <h1>Virus Scanning</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Key-Notes">Key Notes</a></li><li class="toc-l0"><a href="#Installation">Installation</a></li><li class="toc-l0"><a href="#Signature-Updates">Signature Updates</a></li><li class="toc-l0"><a href="#Scanning-a-USB-Stick">Scanning a USB Stick</a></li><li class="toc-l0"><a href="#Scheduling-the-Weekly-Scan">Scheduling the Weekly Scan</a></li><li class="toc-l1"><a href="#Machines-set-up-with-the-earlier-instructions">Machines set up with the earlier instructions</a></li><li class="toc-l0"><a href="#Checking-the-Results">Checking the Results</a></li><li class="toc-l0"><a href="#Scanning-the-Whole-System">Scanning the Whole System</a></li></ul></nav>
+  <div class="content">
+
+<h1 id="Key-Notes">Key Notes</h1>
+<p>Rosetta uses  <a class="online" href="https://www.clamav.net" rel="noopener" target="_blank" title="Opens on the Internet">ClamAV</a> (web site), the scanner most often recommended for a Raspberry Pi.  Files mostly arrive on a Rosetta from USB sticks (G-code, settings) and web downloads, so those are what the regular scan covers.
+</p>
+<ul><li>The installer (<a href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>) installs ClamAV and creates /home/reuben/ClamAv/SuspiciousFiles.
+</li><li>ClamAV keeps its virus signatures up to date <strong>by itself</strong> (below) - nothing needs scheduling for that.
+</li><li>A scan uses a lot of the Raspberry Pi's processor and memory (about 1 GB for the signatures).  <span style="color: red;">Never scan while a program is cutting</span> - the weekly scan below skips itself if LinuxCNC is running.
+</li></ul><hr/>
+<h1 id="Installation">Installation</h1>
+<p>Done by the installer.  By hand:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo apt install -y clamav <br class="clearboth"/>
+mkdir -p /home/reuben/ClamAv/SuspiciousFiles
+</p></td></tr></table>
+<p class="vspace">Installing <strong>clamav</strong> also installs <strong>clamav-freshclam</strong>, a background service that checks for new signatures several times a day.
+</p>
+<hr/>
+<h1 id="Signature-Updates">Signature Updates</h1>
+<p>Check that the update service is running, and when it last updated:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>systemctl status clamav-freshclam <br class="clearboth"/>
+sudo tail -n 20 /var/log/clamav/freshclam.log
+</p></td></tr></table>
+<p class="vspace"><span style="color: red;">Don't run <strong>sudo freshclam</strong> by hand</span> while the service is running - the two lock each other out and freshclam fails with “Failed to lock the log file”.  To force an update now:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo systemctl stop clamav-freshclam <br class="clearboth"/>
+sudo freshclam <br class="clearboth"/>
+sudo systemctl start clamav-freshclam
+</p></td></tr></table>
+<hr/>
+<h1 id="Scanning-a-USB-Stick">Scanning a USB Stick</h1>
+<p>Before copying files from a USB stick, insert it, wait for it to appear on the desktop, then:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>clamscan -r -i /media/reuben
+</p></td></tr></table>
+<p class="vspace"><strong>-i</strong> lists only infected files.  The last lines give a summary - “Infected files: 0” means nothing was found.
+</p>
+<hr/>
+<p><a id="Schedule"></a>
+</p><h1 id="Scheduling-the-Weekly-Scan">Scheduling the Weekly Scan</h1>
+<p>This scans the operator's files and any inserted USB stick each Monday at 03:00, at the lowest priority, and skips the scan if LinuxCNC is running.  Files found are moved to /home/reuben/ClamAv/SuspiciousFiles.
+</p>
+<p class="vspace">Open a terminal emulator, and enter this command (it edits <strong>root's</strong> schedule, so the scan doesn't need sudo):
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo crontab -e
+</p></td></tr></table>
+<p class="vspace">Choose option 1 if asked.  At the bottom of the file, add this line (it is a single line):
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>0 3 * * 1 pgrep -x linuxcncsvr &gt;/dev/null || nice -n 19 ionice -c3 clamscan -r -i --exclude-dir=/home/reuben/ClamAv --move=/home/reuben/ClamAv/SuspiciousFiles --log=/home/reuben/ClamAv/ScanLog.txt /home/reuben /media
+</p></td></tr></table>
+<p class="vspace">Press <strong>Ctrl-O</strong> then <strong>Enter</strong> to save, and <strong>Ctrl-X</strong> to exit.
+</p>
+<p class="vspace">The scan only runs if the machine is switched on at that time.
+</p>
+<h2 id="Machines-set-up-with-the-earlier-instructions">Machines set up with the earlier instructions</h2>
+<p>Earlier instructions scheduled ClamAV differently.  Remove those entries - they either fail or scan the whole system with --move, which could move a system file:
+</p><ol><li><strong>Applications &gt; Settings &gt; Session and Startup &gt; Application Autostart</strong>: select <strong>ClamAV</strong> (sudo nice -n 19 freshclam) and click <strong>Remove</strong>.
+</li><li>Run <strong>crontab -e</strong> (without sudo) and delete the two lines with <strong>freshclam</strong> and <strong>clamscan</strong> in them.
+</li><li>Then add the line above with <strong>sudo crontab -e</strong>.
+</li></ol><hr/>
+<h1 id="Checking-the-Results">Checking the Results</h1>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo tail -n 30 /home/reuben/ClamAv/ScanLog.txt <br class="clearboth"/>
+sudo grep FOUND /home/reuben/ClamAv/ScanLog.txt <br class="clearboth"/>
+ls -l /home/reuben/ClamAv/SuspiciousFiles
+</p></td></tr></table>
+<p class="vspace">Each run adds a section to ScanLog.txt ending with a summary.  Lines ending in <strong>FOUND</strong> name a file that was detected and moved.
+</p>
+<ul><li><strong>A file was moved:</strong> it is in /home/reuben/ClamAv/SuspiciousFiles.  If it is a file the customer recognises and trusts (e.g. their own G-code - a false alarm is possible), move it back with <strong>sudo mv</strong>.  Otherwise delete it, and check where it came from (usually a USB stick - scan that stick on another computer too).
+</li><li><strong>Nothing has run:</strong> check the cron line with <strong>sudo crontab -l</strong>, and that the machine was on and LinuxCNC closed on Monday at 03:00.
+</li></ul><hr/>
+<h1 id="Scanning-the-Whole-System">Scanning the Whole System</h1>
+<p>Only occasionally, with LinuxCNC closed - it takes hours.  This one <strong>only reports</strong> (no --move), because moving a system file because of a false alarm could stop the Raspberry Pi from starting:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo nice -n 19 ionice -c3 clamscan -r -i --exclude-dir="^/(proc|sys|dev|run)" --log=/home/reuben/ClamAv/FullScanLog.txt /
+</p></td></tr></table>
+<p class="vspace">Report anything it finds before deleting it.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="UpdatingRosetta.html"><span>Previous</span>Signal Tower Relays</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

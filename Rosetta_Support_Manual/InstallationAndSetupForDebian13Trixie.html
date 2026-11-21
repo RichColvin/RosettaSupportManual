@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Software Installation and Setup for Debian 13 Trixie – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Software Installation and Setup for Debian 13 Trixie</span></p>
+  <h1>Software Installation and Setup for Debian 13 Trixie</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Prerequisites">Prerequisites</a></li><li class="toc-l0"><a href="#Part-1-Build-the-Boot-Drive-for-LinuxCNC">Part 1 - Build the Boot Drive for LinuxCNC</a></li><li class="toc-l1"><a href="#1-1-Get-the-Raspberry-Pi-Imager">1.1 Get the Raspberry Pi Imager</a></li><li class="toc-l1"><a href="#1-2-Download-the-LinuxCNC-Image-File">1.2 Download the LinuxCNC Image File</a></li><li class="toc-l1"><a href="#1-3-Create-the-Boot-Disk-for-the-Raspberry-Pi">1.3 Create the Boot Disk for the Raspberry Pi</a></li><li class="toc-l0"><a href="#Part-2-Configure-Linux-on-the-Raspberry-Pi">Part 2 - Configure Linux on the Raspberry Pi</a></li><li class="toc-l1"><a href="#2-1-Start-the-Raspberry-Pi">2.1 Start the Raspberry Pi</a></li><li class="toc-l1"><a href="#2-2-Set-System-Defaults">2.2 Set System Defaults</a></li><li class="toc-l1"><a href="#2-3-Set-Wired-Network-Connection-Test-Network-Connections">2.3 Set Wired Network Connection &amp; Test Network Connections</a></li><li class="toc-l1"><a href="#2-4-Set-Rest-of-System-Options">2.4 Set Rest of System Options</a></li><li class="toc-l1"><a href="#2-5-Download-the-Files-Needed">2.5 Download the Files Needed</a></li><li class="toc-l1"><a href="#2-6-Clean-Up-the-Desktop">2.6 Clean Up the Desktop</a></li><li class="toc-l0"><a href="#Part-3-Setup-LinuxCNC">Part 3 - Setup LinuxCNC</a></li><li class="toc-l1"><a href="#3-1-Run-the-Automated-Install-Base-Box">3.1 Run the Automated Install (Base Box)</a></li><li class="toc-l2"><a href="#3-1-1-Move-the-Base-Card-s-Jumpers">3.1.1 Move the Base Card&#x27;s Jumpers</a></li><li class="toc-l1"><a href="#3-2-Add-the-Expansion-Box">3.2 Add the Expansion Box</a></li><li class="toc-l1"><a href="#3-3-If-a-Script-Fails-Doing-It-by-Hand">3.3 If a Script Fails - Doing It by Hand</a></li><li class="toc-l2"><a href="#3-3-1-Set-Up-a-Mesa-Card-by-Hand">3.3.1 Set Up a Mesa Card by Hand</a></li><li class="toc-l2"><a href="#3-3-2-Undo-Put-a-Card-or-the-Raspberry-Pi-Back">3.3.2 Undo: Put a Card or the Raspberry Pi Back</a></li><li class="toc-l2"><a href="#3-3-3-Automated-Install-Programs">3.3.3 Automated Install Programs</a></li><li class="toc-l1"><a href="#3-4-Schedule-the-Virus-Scan">3.4 Schedule the Virus Scan</a></li><li class="toc-l1"><a href="#3-5-Set-the-Wallpaper">3.5 Set the Wallpaper</a></li><li class="toc-l1"><a href="#3-6-Set-the-Icons-on-the-Desktop">3.6 Set the Icons on the Desktop</a></li><li class="toc-l2"><a href="#3-6-1-Rosetta">3.6.1 Rosetta</a></li><li class="toc-l2"><a href="#3-6-2-Rosetta-Settings">3.6.2 Rosetta Settings</a></li><li class="toc-l2"><a href="#3-6-3-Back-Up-to-USB">3.6.3 Back Up to USB</a></li><li class="toc-l2"><a href="#3-6-4-Update-Rosetta">3.6.4 Update Rosetta</a></li><li class="toc-l1"><a href="#3-7-Set-Rosetta-to-Auto-start-When-Starting-up-the-System">3.7 Set Rosetta to Auto-start When Starting up the System</a></li><li class="toc-l1"><a href="#3-8-Configure-the-Menus-Using-MenuLibre">3.8 Configure the Menus Using MenuLibre</a></li><li class="toc-l2"><a href="#3-8-1-Add-a-Rosetta-Menu">3.8.1 Add a Rosetta Menu</a></li><li class="toc-l2"><a href="#3-8-2-Add-the-Rosetta-Program">3.8.2 Add the Rosetta Program</a></li><li class="toc-l2"><a href="#3-8-3-Add-the-Rosetta-Settings-Configuration-Program">3.8.3 Add the Rosetta Settings Configuration Program</a></li><li class="toc-l2"><a href="#3-8-4-Add-the-Rosetta-Backup-Program">3.8.4 Add the Rosetta Backup Program</a></li><li class="toc-l2"><a href="#3-8-5-Add-the-Rosetta-Update-Program">3.8.5 Add the Rosetta Update Program</a></li><li class="toc-l2"><a href="#3-8-6-Hide-Some-Unnecessary-Programs-Program-Menus">3.8.6 Hide Some Unnecessary Programs &amp; Program Menus</a></li><li class="toc-l1"><a href="#3-9-Turn-off-Hidden-Files-in-Thunar">3.9 Turn off Hidden Files in Thunar</a></li><li class="toc-l1"><a href="#3-10-Reboot">3.10 Reboot</a></li><li class="toc-l0"><a href="#Part-4-Install-Development-System-Applications">Part 4 - Install Development System Applications</a></li><li class="toc-l1"><a href="#4-1-Glade">4.1 Glade</a></li><li class="toc-l1"><a href="#4-2-GIMP">4.2 GIMP</a></li><li class="toc-l0"><a href="#Part-5-Other-Notes">Part 5 - Other Notes</a></li><li class="toc-l1"><a href="#5-1-To-SSH-In">5.1 To SSH In</a></li><li class="toc-l1"><a href="#5-2-To-Unzip">5.2 To Unzip</a></li></ul></nav>
+  <div class="content">
+
+<p>This page covers installing and setting up the Rosetta software on the Raspberry Pi, and setting up the Mesa cards in the base box and the optional expansion box.  Build the hardware first - see <a href="HardwareBuild.html">Hardware Build</a>.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Prerequisites">Prerequisites</h1>
+<p>To get the software downloaded for installing and setting up Rosetta, you will need:
+</p><ol><li>Computer connected to the internet with Linux, macOS, or Windows.
+</li><li>microSD card reader/writer on that computer.
+</li><li>Authority on that computer to install Raspberry Pi Imager
+</li></ol><p class="vspace">You will also need:
+</p><ol><li>The Rosetta hardware, built as described in <a href="HardwareBuild.html">Hardware Build</a>, with each Mesa card's W5/W6 jumpers at the factory setting (both down).
+</li><li>A WiFi network with internet access.
+</li></ol>
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Part-1-Build-the-Boot-Drive-for-LinuxCNC">Part 1 - Build the Boot Drive for LinuxCNC</h1>
+<p>There are several distinct paths for setting up LinuxCNC on Rosetta. You may have access to a system that is already completely set up. Or you may install a pre-configured Rosetta installation onto an SD card. This document currently focus on the most bare option which begins with a standard LinuxCNC image and then customizes it for Rosetta. 
+</p>
+
+<h2 id="1-1-Get-the-Raspberry-Pi-Imager">1.1 Get the Raspberry Pi Imager</h2>
+<p>Download and install the latest Raspberry Pi Imager (version 2.0.1 or later).  This is available at 
+</p>
+<div class="indent"><a class="online" href="https://www.raspberrypi.com/software/" rel="noopener" target="_blank" title="Opens on the Internet">https://www.raspberrypi.com/software/</a>
+</div><p class="vspace">The Raspberry Pi Imager is used to create the boot disk for the Raspberry Pi using the image downloaded in the next step.
+</p>
+
+<h2 id="1-2-Download-the-LinuxCNC-Image-File">1.2 Download the LinuxCNC Image File</h2>
+<p>Download the latest file from <a class="online" href="http://linuxcnc.org/downloads" rel="noopener" target="_blank" title="Opens on the Internet">http://linuxcnc.org/downloads</a>.  
+</p>
+<p class="vspace"><span style="background-color: yellow; color: red;">Be sure to get the one for the Raspberry Pi 5.  It is probably not the 1st one on the list.</span>
+</p>
+<p class="vspace"><strong><ins>KEY NOTE</ins>:</strong>  When the system gets upgraded in a later step, it will upgrade the LinuxCNC to the latest version.
+</p>
+
+<h2 id="1-3-Create-the-Boot-Disk-for-the-Raspberry-Pi">1.3 Create the Boot Disk for the Raspberry Pi</h2>
+<p>Use the Raspberry Pi Imager downloaded onto the computer in step 1.1 above. 
+</p>
+<ol><li value="1"> Insert the microSD card into the computer, and ensure the computer sees it. The card will be completely overwritten. A 16G card is the smallest acceptable. Larger is desirable.
+</li><li value="2"> Start the <strong>Raspberry Pi Imager</strong>.  For the settings, use:
+</li></ol>
+<table style="width: calc(100% - 60px); border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Device</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> Raspberry Pi 5</span>
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> OS</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Use <span style="color: red;">custom</span> (the bottom selection).  Select the file you just downloaded in the prior step.
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Storage</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> This is for the microSD card you just added in step a, above.  
+<p><span style="background-color: yellow; color: red;">Be sure to not select your computer’s main hard drive.</span>
+</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Writing</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> This will show a summary.
+</td></tr></table>
+<ol><li value="3"> Click <strong>WRITE</strong>
+</li></ol><p class="vspace">An alternative is to use <a class="online" href="https://gitlab.com/bztsrc/usbimager" rel="noopener" target="_blank" title="Opens on the Internet">usbimager</a> to copy an existing SD card.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Part-2-Configure-Linux-on-the-Raspberry-Pi">Part 2 - Configure Linux on the Raspberry Pi</h1>
+<p><span style="color: blue;">A Word about Network Connections</span> <br class="clearboth"/>
+The Raspberry Pi has two network connections, and each has its own job:
+</p><ul><li><strong>WiFi</strong> is the Raspberry Pi's connection to the internet (for setup, updates and web pages).
+</li><li>The <strong>wired</strong> connection goes only to the Ethernet switch in the base box, which connects the Raspberry Pi to the Mesa cards.  It has no gateway and no internet, and nothing else is plugged into that switch.
+</li></ul><p class="vspace">A new Mesa card answers at its factory address, 192.168.1.121.  So during setup the Raspberry Pi's wired connection starts on 192.168.1.120 to reach it.  In Part 3, each card is given its permanent address, and the Raspberry Pi moves to 10.10.10.100:
+</p>
+
+<table style="border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td rowspan="2" style="width: 180px; background-color: #555555; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Part</strong></span>
+</td><td colspan="2" style="background-color: #555555; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>IP Address</strong></span>
+</td></tr><tr><td style="width: 120px; background-color: #555555; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Initial</strong></span>
+</td><td style="width: 120px; background-color: #555555; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Set To</strong></span>
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Raspberry Pi (wired)</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 192.168.1.120
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 10.10.10.100
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Base card</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 192.168.1.121
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 10.10.10.10
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Expansion card</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 192.168.1.121
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 10.10.10.11
+</td></tr></table>
+<h2 id="2-1-Start-the-Raspberry-Pi">2.1 Start the Raspberry Pi</h2>
+<p>Install the microSD card into the Raspberry Pi and start the Raspberry Pi.  When presented with the boot-up screen, continue.
+</p>
+<p class="vspace"><span style="color: red;"> Do not try to configure the WiFi by clicking on the icon at the top right of the screen.  That will mess up the startup process.</span>
+</p>
+<h2 id="2-2-Set-System-Defaults">2.2 Set System Defaults</h2>
+<p>Open a terminal emulator and enter this command:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo passwd rpi-first-boot-wizard
+</p></td></tr></table>
+<p class="vspace">Set the password to something simple like “reuben”.  You may not need this, but if the screen locks before everything is changed over to the new username, you may need this.
+</p>
+<p class="vspace">In the pop-up window which came at start-up, select the values as outlined below:
+</p>
+
+<table style="width: calc(100% - 60px); border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Country</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> United States</span>
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Language</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> American English</span>
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Timezone</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <em>(whatever you wish)</em>
+</td></tr><tr><td colspan="2" style="text-align: center; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; " valign="top"> <span class="pmL2">☑</span> Use English Language             <span class="pmL2">☑</span> Use US keyboard
+</td></tr></table>
+<p class="vspace">Click <strong>Next</strong>, and then enter this information.  
+</p>
+<p class="vspace"><span style="background-color: red; color: yellow;">  The username <strong>MUST</strong> be “<em>reuben</em>”!  </span>   The system is built around this.
+</p>
+
+<table style="width: calc(100% - 60px); border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Username</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> reuben</span>
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Password</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> reuben</span>
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Confirm Password</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> reuben</span>
+</td></tr></table>
+<p class="vspace">Click <strong>Next</strong>.  
+</p>
+<p class="vspace">Make no changes on that page.  Click <strong>Next</strong>.
+</p>
+<p class="vspace">Select the WiFi to use, and enter your WiFi password.  Click <strong>Next</strong>.
+</p>
+<p class="vspace">Click <strong>Next</strong> to take the option to update the software.
+</p>
+<p class="vspace">Click <strong>Launch</strong>.  The system will reboot at the end.
+</p>
+<h2 id="2-3-Set-Wired-Network-Connection-Test-Network-Connections">2.3 Set Wired Network Connection &amp; Test Network Connections</h2>
+<table style="width: 400px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 10px; margin-bottom: 12px; float: right; background-color: #b0c4de;"><tr><td style="text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> At this point, WiFi should be working.  It is best to open the web browser and bring up this page.  That way, you can copy the commands from the page, and paste them into a terminal emulator.  The web site is <a class="online" href="https://rosetta.colvintools.com/Support" rel="noopener" target="_blank" title="Opens on the Internet">https://rosetta.colvintools.com/Support</a>.
+</td></tr></table>
+<p>For this step, connect <strong>only the base box</strong>: the Raspberry Pi and the base card plugged into the switch, and the expansion box's Ethernet cable <strong>unplugged</strong>.
+</p>
+<p class="vspace">Open a terminal emulator, and enter this command (it is a single command line).
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>nmcli con add type ethernet con-name 'Wired Ethernet' ipv4.method manual ipv4.addresses 192.168.1.120/24
+</p></td></tr></table>
+<p class="vspace">The automated install in Part 3 deletes and re-creates this connection, so it does no harm if you run this more than once.
+</p>
+<p class="vspace">Test that everything works.
+</p>
+<p class="vspace"><span style="color: navy;"> 2.3.1 Test 1 <br class="clearboth"/></span>
+Open a web browser and ensure you can open some web page, e.g., Google.com.  This tests the WiFi connection.  If it doesn't work, check the WiFi.
+</p>
+<p class="vspace">Close the web browser.
+</p>
+<p class="vspace"><span style="color: navy;"> 2.3.2 Test 2 <br class="clearboth"/></span>
+Ping the base card at its factory address by entering this command.  Press <strong>Ctrl-C</strong> to stop it.
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>ping 192.168.1.121
+</p></td></tr></table>
+<p class="vspace">If there is no reply, check that the base box is switched on, the cables are plugged into the switch, and the card's W5/W6 jumpers are at the factory setting (both down).
+</p>
+<p class="vspace">Close the terminal emulator.
+</p>
+<h2 id="2-4-Set-Rest-of-System-Options">2.4 Set Rest of System Options</h2>
+<p>Open a terminal emulator, and enter this command:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo raspi-config
+</p></td></tr></table>
+<p class="vspace">Select
+</p><div class="indent"><strong>1 System Options</strong>
+<div class="indent"><strong>S4  Hostname</strong>
+<div class="indent">Enter <strong>rosetta</strong>
+</div></div><div class="indent"><strong>S6  Auto Login</strong>
+<div class="indent">Select <span style="color: red;"><strong>Yes</strong></span> for the question, “Would you like to automatically login to the console?”
+</div><div class="indent">Select <span style="color: red;"><strong>OK</strong></span>
+</div><div class="indent">Select <span style="color: red;"><strong>OK</strong></span> for the question, “Would you like to automatically login to the desktop?”
+</div><div class="indent">Select <span style="color: red;"><strong>OK</strong></span>
+</div></div></div><p class="vspace">Select
+</p>
+<div class="indent"><strong>2 Display Options</strong>
+<div class="indent"><strong>D2 Screen Blanking</strong>
+<div class="indent">Select <span style="color: red;"><strong>No</strong></span> for the question, “Would you like to enable screen blanking?”
+</div><div class="indent">Select <span style="color: red;"><strong>OK</strong></span>
+</div></div></div><p class="vspace">Select
+</p>
+<div class="indent"><strong>Finish</strong>
+</div><p class="vspace">For the question, “Would you like to reboot now?”, select <span style="color: red;"><strong>Yes</strong></span>.
+</p>
+<h2 id="2-5-Download-the-Files-Needed">2.5 Download the Files Needed</h2>
+<p>Open a terminal session, and enter these 5 commands (the git clone command is a single line):
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>mkdir linuxcnc <br class="clearboth"/>
+cd linuxcnc <br class="clearboth"/>
+mkdir configs <br class="clearboth"/>
+cd configs <br class="clearboth"/>
+git clone <a class="online" href="https://github.com/RichColvin/Rosetta" rel="noopener" target="_blank" title="Opens on the Internet">https://github.com/RichColvin/Rosetta</a>
+</p></td></tr></table>
+<p class="vspace">Once the files have been downloaded, they will be in 
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta
+</p></td></tr></table>
+<h2 id="2-6-Clean-Up-the-Desktop">2.6 Clean Up the Desktop</h2>
+<p>Right-click on the desktop.  Select <strong>Desktop Settings …</strong>
+</p><div class="indent">Select the <strong>Desktop Icons</strong> tab
+<div class="indent">Set the icon size to 100
+</div><div class="indent">Select font size, and set it to 18
+</div></div><div class="indent">Select the <strong>File/Launcher Icons</strong> tab
+<div class="indent">Deselect all the default icons except for <strong>Removable Disks and Drives</strong> (which implies that <strong>Devices</strong> should also be left selected).  This allows the user to insert a memory stick into the USB slot and see it shown on the desktop.
+</div></div>
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Part-3-Setup-LinuxCNC">Part 3 - Setup LinuxCNC</h1>
+<table border="0" style="float: right; width: 400px; margin-left: 20px;"><tr><td valign="top">
+<div class="img imgcaption"><img alt="" src="Images/7i92TH-W6.png"/><br/><span class="caption"><strong>W6 jumper location</strong></span></div>
+</td></tr></table>
+<p>The automated install sets up the <strong>base box</strong>.  If there is an expansion box, add it afterwards (<a href="#ExpansionBox">3.2</a>).  If a script fails, every step can also be done by hand (<a href="#ByHand">3.3</a>).
+</p>
+
+<table style="border-collapse: collapse; border: 0px solid darkgray; margin-bottom: 12px;"><tr><td style="text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin; background-color: yellow;" valign="top"> <span style="color: red;">The Raspberry Pi and the base card share one 5V power supply.  Never power the card on by itself while the Raspberry Pi is running - that restarts the Raspberry Pi without shutting it down.  When the jumpers are moved, shut down and switch off the whole machine.</span>
+</td></tr></table>
+<p class="vspace"><a id="AutoInstall"></a>
+</p><h2 id="3-1-Run-the-Automated-Install-Base-Box">3.1 Run the Automated Install (Base Box)</h2>
+<p>Ensure
+</p><ol><li>the Raspberry Pi and the base card are powered on, and both are plugged into the switch,
+</li><li>the expansion box (if any) is <strong>unplugged</strong> from the switch,
+</li><li>the base card's W5/W6 jumpers are at the factory setting (both down), and
+</li><li>WiFi is working (the install downloads programs from the internet).
+</li></ol><p class="vspace">Open a terminal emulator, and enter this command:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Install_Debian_13_Trixie.sh
+</p></td></tr></table>
+<p class="vspace">The install asks these questions while it sets up the base card:
+</p>
+
+<table style="width: calc(100% - 60px); border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 330px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> “Connect ONLY the card being set up…”</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Check that only the base card is connected, then press <strong>Enter</strong>.
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> “Write the Rosetta firmware to it (needed on a new card)?”</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <strong>y</strong> for a new card.  <strong>N</strong> if the card already has the Rosetta firmware.
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> “Store 10.10.10.10 as this card’s address?”</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <strong>y</strong>
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> “Move the Pi’s wired connection to 10.10.10.100 now?”</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <strong>y</strong>
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> “Delete them (the one in use is kept)?”</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Only asked if there are extra wired connections.  <strong>y</strong>
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> “Enter this system's serial number…”</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> The number on the machine's label, e.g. <strong>4</strong>.  Press <strong>Enter</strong> to skip - it is asked again at each update.
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> “Shut the Pi down now?” (at the end)</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <strong>y</strong>
+</td></tr></table>
+<p class="vspace">The rest of the install runs by itself.  It installs the programs listed in <a href="#ByHandInstall">3.3.3</a>, and adds the <strong>Rosetta</strong> and <strong>Gcode</strong> folder shortcuts (in the file manager's Places list, and as two Turk's head launchers on the bottom panel).
+</p>
+<h3 id="3-1-1-Move-the-Base-Card-s-Jumpers">3.1.1 Move the Base Card's Jumpers</h3>
+<p>At the end, the install shuts the Raspberry Pi down (if you answered <strong>y</strong>).  Then:
+</p><ol><li>Wait for the screen to go dark, then switch the machine off.
+</li><li>On the base card, move the <strong>W6 jumper up</strong> (W5 stays down).  This is the setting the 7i92 manual calls <strong>EEPROM</strong>: the card uses the address stored on it, 10.10.10.10.
+</li><li>Switch the machine on.
+</li><li>Once the Raspberry Pi has started, open a terminal emulator and enter:
+</li></ol>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh check
+</p></td></tr></table>
+<p class="vspace">It should say:
+</p>
+<div class="indent"><code>Pi's wired connection (eth0): 10.10.10.100/24</code> <br class="clearboth"/>
+</div><div class="indent"><code>Card at 10.10.10.10 answers.</code>
+</div><div class="indent">(It also says there is no card at 10.10.10.11.  That is expected until the expansion box is added.)
+</div><p class="vspace">If the card doesn't answer, see <a href="#ByHandCheck">3.3.1, Step 7</a>.
+</p>
+<p class="vspace"><a id="ExpansionBox"></a>
+</p><h2 id="3-2-Add-the-Expansion-Box">3.2 Add the Expansion Box</h2>
+<p><span style="background-color: yellow;">This step is only for a system with an expansion box.  If one is not installed, proceed to <a href="#Step_3.4">step 3.4</a>.</span>
+</p>
+<p class="vspace">The expansion card is set up the same way as the base card, but is given the address 10.10.10.11.  It also starts at the factory address 192.168.1.121, so the Raspberry Pi goes back to 192.168.1.120 while it is set up.  Only the card being set up may be connected.
+</p>
+<ol><li>Shut the Raspberry Pi down, and switch the machine off.
+</li><li>Unplug the <strong>base card's</strong> Ethernet cable from the switch.  Plug the expansion box's Ethernet cable into the switch.  The expansion card's W5/W6 jumpers must be at the factory setting (both down).
+</li><li>Switch the base box and the expansion box on.  Once the Raspberry Pi has started, open a terminal emulator.  Put the Raspberry Pi back on 192.168.1.120 (answer <strong>y</strong> to “Continue?”):
+</li></ol>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh back
+</p></td></tr></table>
+<ol><li value="4"> Set up the expansion card:
+</li></ol>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh expansion
+</p></td></tr></table>
+<div class="indent">Answer the questions as in <a href="#AutoInstall">3.1</a>.  The address it offers to store is <strong>10.10.10.11</strong>.  It then moves the Raspberry Pi to 10.10.10.100 and offers to shut it down - answer <strong>y</strong>.
+</div><ol><li value="5"> Wait for the screen to go dark, then switch the base box and the expansion box off.
+</li><li>On the expansion card, move the <strong>W6 jumper up</strong> (W5 stays down) - the <strong>EEPROM</strong> setting.
+</li><li>Plug the base card's Ethernet cable back into the switch.
+</li><li>Switch both boxes on.  Once the Raspberry Pi has started, enter:
+</li></ol>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh check
+</p></td></tr></table>
+<div class="indent">It should say both <code>Card at 10.10.10.10 answers.</code> and <code>Card at 10.10.10.11 answers.</code>
+</div><ol><li value="9"> Open the <strong>Rosetta Settings</strong> program.  On the <strong>Axis Selection</strong> tab, tick <strong>Expansion Box - Connected</strong>.  Channels 06 - 09 can now be assigned.  (The change takes effect the next time Rosetta starts.)
+</li></ol><p class="vspace"><a id="ByHand"></a>
+</p><h2 id="3-3-If-a-Script-Fails-Doing-It-by-Hand"><span style="color: #b22222;"> 3.3 If a Script Fails - Doing It by Hand</span></h2>
+<p>Use these steps if the automated install or the network script (<strong>Rosetta_Change_Network.sh</strong>) stops with an error.  Start at the step where it stopped.  Close Rosetta (LinuxCNC) first - the network steps can't be done while it is running.
+</p>
+<p class="vspace"><span style="background-color: yellow;">If no errors were encountered, proceed to <a href="#Step_3.4">step 3.4</a>.</span>
+</p>
+<h3 id="3-3-1-Set-Up-a-Mesa-Card-by-Hand"><span style="color: #b22222;"> 3.3.1 Set Up a Mesa Card by Hand</span></h3>
+<p>These are the commands Rosetta_Change_Network.sh runs.  Use <strong>10.10.10.10</strong> for the base card or <strong>10.10.10.11</strong> for the expansion card wherever the steps say <em>new address</em>.
+</p>
+<p class="vspace"><strong>Step 1 - Find the wired connection.</strong>  List the connections:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>nmcli -f NAME,UUID,DEVICE con show
+</p></td></tr></table>
+<div class="indent">There should be one connection called <strong>Wired Ethernet</strong>.  If there is none, create it:
+</div>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo nmcli con add type ethernet con-name 'Wired Ethernet' ipv4.method manual ipv4.addresses 192.168.1.120/24
+</p></td></tr></table>
+<div class="indent">If there is more than one, delete the extras (keep the one with <strong>eth0</strong> in the DEVICE column), using the UUID shown for each:
+</div>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo nmcli con delete &lt;UUID&gt;
+</p></td></tr></table>
+<p class="vspace"><strong>Step 2 - Put the Raspberry Pi on 192.168.1.120</strong> (to reach a card at its factory address):
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo nmcli con mod "Wired Ethernet" ipv4.method manual ipv4.addresses 192.168.1.120/24 ipv4.gateway "" ipv4.dns "" <br class="clearboth"/>
+sudo nmcli con up "Wired Ethernet"
+</p></td></tr></table>
+<p class="vspace"><strong>Step 3 - Check the card answers.</strong>  Connect only the card being set up, with its W5/W6 jumpers at the factory setting (both down), and switch it on.  Then:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>mesaflash --device 7i92t --addr 192.168.1.121 --readhmid
+</p></td></tr></table>
+<div class="indent">This lists the card's details.  If it says no board was found, check the cable, the card's power and its jumpers.
+</div><p class="vspace"><strong>Step 4 - Write the Rosetta firmware</strong> (a new card only):
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>mesaflash --device 7i92t --addr 192.168.1.121 --write /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/7i92t_Rosetta.bin --reload
+</p></td></tr></table>
+<p class="vspace"><strong>Step 5 - Store the card's new address:</strong>
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>mesaflash --device 7i92t --addr 192.168.1.121 --set ip=&lt;new address&gt;
+</p></td></tr></table>
+<div class="indent">For example, <code>--set ip=10.10.10.10</code> for the base card.  (The option is <code>--set ip=</code>, with a space.)
+</div><p class="vspace"><strong>Step 6 - Move the Raspberry Pi to 10.10.10.100:</strong>
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo nmcli con mod "Wired Ethernet" ipv4.method manual ipv4.addresses 10.10.10.100/24 ipv4.gateway "" ipv4.dns "" connection.autoconnect-priority 10 <br class="clearboth"/>
+sudo nmcli con up "Wired Ethernet"
+</p></td></tr></table>
+<p class="vspace"><strong>Step 7 - Shut down, move the jumper, and check.</strong>
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo poweroff
+</p></td></tr></table>
+<div class="indent">Switch the machine off, move the card's <strong>W6 jumper up</strong> (W5 stays down), reconnect any card you unplugged, and switch the machine on.  Then check each card:
+</div><p><a id="ByHandCheck"></a>
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>ip -4 addr show eth0 <br class="clearboth"/>
+mesaflash --device 7i92t --addr 10.10.10.10 --readhmid <br class="clearboth"/>
+mesaflash --device 7i92t --addr 10.10.10.11 --readhmid
+</p></td></tr></table>
+<div class="indent">The first command should show <code>inet 10.10.10.100/24</code>.  If it doesn't, repeat Step 6.  Each card that is set up and connected should list its details.
+</div><h3 id="3-3-2-Undo-Put-a-Card-or-the-Raspberry-Pi-Back"><span style="color: #b22222;"> 3.3.2 Undo: Put a Card or the Raspberry Pi Back</span></h3>
+<ul><li><strong>A card:</strong> switch the machine off, put the card's W5/W6 jumpers back to the factory setting (both down), and switch on.  It answers at 192.168.1.121 again.
+</li><li><strong>The Raspberry Pi:</strong> run <code>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh back</code>, or Step 2 above.
+</li></ul><p class="vspace"><a id="ByHandInstall"></a>
+</p><h3 id="3-3-3-Automated-Install-Programs"><span style="color: #b22222;"> 3.3.3 Automated Install Programs</span></h3>
+<p>These programs should have been installed by the Automated Install program, <em>Rosetta_Install_Debian_13_Trixie.sh</em>.  If they are not, the commands are below for installing them.
+</p>
+<p class="vspace"><span style="color: navy;"> <strong>Copy the Mesa card files into /usr/lib/firmware/hm2/hostmot2</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo mkdir -p /usr/lib/firmware/hm2/hostmot2 <br class="clearboth"/>
+cd /usr/lib/firmware/hm2/hostmot2 <br class="clearboth"/>
+sudo cp /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/7i92t_Rosetta.bin . <br class="clearboth"/>
+sudo cp /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/7i92t_Rosetta.pin . <br class="clearboth"/>
+sudo cp /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/PIN_Rosetta_34.vhd .
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Copy .axisrc into /home/reuben</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cd /home/reuben <br class="clearboth"/>
+cp /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/axisrc .axisrc
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Create the gcode library</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cd /home/reuben/linuxcnc/configs/Rosetta <br class="clearboth"/>
+mkdir gcode
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Copy the starting settings file into Documents</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cd /home/reuben/Documents <br class="clearboth"/>
+cp /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/RosettaSet_v1.ini .
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Install ClamAV</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cd /home/reuben <br class="clearboth"/>
+mkdir ClamAv <br class="clearboth"/>
+cd ClamAv <br class="clearboth"/>
+mkdir SuspiciousFiles <br class="clearboth"/>
+sudo apt install clamav
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Install menulibre</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo apt install menulibre
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Install galculator</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo apt install galculator
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Install xfce4-screenshooter</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo apt install xfce4-screenshooter
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Install Claude Code</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p># Install Node 20 if you don't have it (Node 18+ required) <br class="clearboth"/>
+curl -fsSL <a class="online" href="https://deb.nodesource.com/setup_20.x" rel="noopener" target="_blank" title="Opens on the Internet">https://deb.nodesource.com/setup_20.x</a> | sudo -E bash - <br class="clearboth"/>
+sudo apt install -y nodejs
+</p>
+<p class="vspace"># Set up a user-level npm prefix (avoids sudo/permission mess) <br class="clearboth"/>
+mkdir -p ~/.npm-global <br class="clearboth"/>
+npm config set prefix '~/.npm-global' <br class="clearboth"/>
+echo 'export PATH=~/.npm-global/bin:$PATH' &gt;&gt; ~/.bashrc <br class="clearboth"/>
+source ~/.bashrc
+</p>
+<p class="vspace"># Install Claude Code <br class="clearboth"/>
+npm install -g @anthropic-ai/claude-code
+</p>
+<p class="vspace">claude --version
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Install Chromium</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo apt update <br class="clearboth"/>
+sudo apt install chromium -y
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Add the folder shortcuts</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Shortcuts.sh
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Record the serial number</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Serial_Number.sh
+</p></td></tr></table>
+<p class="vspace"><a id="Step_3.4"></a>
+</p><h2 id="3-4-Schedule-the-Virus-Scan">3.4 Schedule the Virus Scan</h2>
+<p>ClamAV keeps its virus signatures up to date by itself.  Set up the weekly scan as described in <a href="VirusScanning.html#Schedule">Virus Scanning - Scheduling the Weekly Scan</a>.
+</p>
+<h2 id="3-5-Set-the-Wallpaper">3.5 Set the Wallpaper</h2>
+<p>Open the file manager. From the folder
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images
+</p></td></tr></table>
+<p class="vspace">right-click on
+</p>
+<div class="indent">RosettaWallpaper.png
+</div><p class="vspace">then select <strong>Set as wallpaper</strong>.
+</p>
+<h2 id="3-6-Set-the-Icons-on-the-Desktop">3.6 Set the Icons on the Desktop</h2>
+<div class="img imgonly"><span class="lfloat"> <img alt="" src="Images/Rosetta_7px.png" width="50px"/></span></div>
+<h3 id="3-6-1-Rosetta">3.6.1 Rosetta</h3>
+<p>Right-click on the desktop and select <strong>Create Launcher…</strong>.  For the entries, enter:
+</p>
+
+<table style="width: calc(100% - 60px); margin-right: 10px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Name</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Rosetta
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Comment</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Desktop launcher for Rosetta
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Command</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Launch.sh
+</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Working Directory</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Icon</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>Click the No icon button, then <br class="clearboth"/>
+Select icon from image files <br class="clearboth"/>
+Select /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images/Rosetta_Folder.png
+</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Options</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>☐ Use Startup notification <br class="clearboth"/>
+☐ Run in terminal
+</p></td></tr></table>
+<p class="vspace">Click <strong>Create</strong>.
+</p>
+<div class="img imgonly"><span class="lfloat"> <img alt="" src="Images/REB_SettingsGear.png" width="50px"/></span></div>
+<h3 id="3-6-2-Rosetta-Settings">3.6.2 Rosetta Settings</h3>
+<p>Right-click on the desktop and select <strong>Create Launcher…</strong>.  For the entries, enter:
+</p>
+
+<table style="width: calc(100% - 60px); margin-right: 10px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Name</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Rosetta Settings
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Comment</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Command</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Settings.sh
+</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Working Directory</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Icon</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>Click the No icon button, then <br class="clearboth"/>
+Select icon from image files <br class="clearboth"/>
+Select /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images/Rosetta_SettingsGear.png
+</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Options</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>☐ Use Startup notification <br class="clearboth"/>
+☐ Run in terminal
+</p></td></tr></table>
+<p class="vspace">Click <strong>Create</strong>.
+</p>
+<div class="img imgonly"><span class="lfloat"> <img alt="" src="Images/REB_Backup.png" width="50px"/></span></div>
+<h3 id="3-6-3-Back-Up-to-USB">3.6.3 Back Up to USB</h3>
+<p>Right-click on the desktop and select <strong>Create Launcher…</strong>.  For the entries, enter:
+</p>
+
+<table style="width: calc(100% - 60px); margin-right: 10px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Name</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Back Up to USB
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Comment</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Command</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Backup.sh
+</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Working Directory</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Icon</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>Click the No icon button, then <br class="clearboth"/>
+Select icon from image files <br class="clearboth"/>
+Select /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images/Rosetta_Backup.png
+</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Options</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>☐ Use Startup notification <br class="clearboth"/>
+☐ Run in terminal
+</p></td></tr></table>
+<p class="vspace">Click <strong>Create</strong>.
+</p>
+<div class="img imgonly"><span class="lfloat"> <img alt="" src="Images/REB_Update.png" width="50px"/></span></div>
+<h3 id="3-6-4-Update-Rosetta">3.6.4 Update Rosetta</h3>
+<p>Right-click on the desktop and select <strong>Create Launcher…</strong>.  For the entries, enter:
+</p>
+
+<table style="width: calc(100% - 60px); margin-right: 10px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Name</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Update Rosetta
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Comment</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Command</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Update.sh
+</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Working Directory</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Icon</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>Click the No icon button, then <br class="clearboth"/>
+Select icon from image files <br class="clearboth"/>
+Select /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images/Rosetta_Update.png
+</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Options</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>☐ Use Startup notification <br class="clearboth"/>
+✅ Run in terminal
+</p></td></tr></table>
+<p class="vspace">Click <strong>Create</strong>.
+</p>
+<p class="vspace">The resulting desktop should look like this.
+</p>
+
+<table style="width: calc(100% - 60px); margin-left: 30px; border-collapse: collapse; border: 0px solid darkgray;"><tr><td valign="top"> <img alt="" src="Images/Desktop.png"/>
+</td></tr></table>
+<h2 id="3-7-Set-Rosetta-to-Auto-start-When-Starting-up-the-System">3.7 Set Rosetta to Auto-start When Starting up the System</h2>
+<p><span style="background-color: yellow;">This is an optional step.</span>
+</p>
+<p class="vspace">Click on <strong>Applications</strong>, then <strong>Settings</strong>, and then <strong>Session and Startup</strong>.
+</p>
+<p class="vspace">Click on the <strong>Application Autostart</strong> tab.
+</p>
+<p class="vspace">Click <strong>+Add</strong>.
+</p>
+<p class="vspace">For the entries, enter:
+</p>
+
+<table style="width: calc(100% - 60px); margin-right: 10px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Name</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Rosetta
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Description</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Command</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Launch.sh
+</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Trigger</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> on login
+</td></tr></table>
+<p class="vspace">Click <strong>OK</strong>
+</p>
+<h2 id="3-8-Configure-the-Menus-Using-MenuLibre">3.8 Configure the Menus Using MenuLibre</h2>
+<p>MenuLibre is a graphical editor for your desktop's application menu — it lets you control what shows up when you click the "Applications" or "Start" menu, and how.
+</p>
+<p class="vspace">Open a terminal emulator, and enter this command (no sudo is required):
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>menulibre
+</p></td></tr></table>
+<h3 id="3-8-1-Add-a-Rosetta-Menu">3.8.1 Add a Rosetta Menu</h3>
+<ol><li>Click the large + on the upper left part of the screen.
+</li><li>Select <strong>Add Directory</strong>.
+</li><li>Change “New Directory” to “Rosetta”
+</li><li>Change “A small descriptive blurb about this directory” to “This is for the Rosetta programs.”
+</li><li>Click on the folder icon, and replace it with Rosetta_Folder.png from the directory, <em>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images/</em>.
+</li><li>Click on the save button (the one beside the large + on the upper left part of the screen).
+</li><li>Using the Up arrow at the bottom of the screen on the left, and move this menu to be above <strong>Terminal Emulator</strong>.
+</li></ol><h3 id="3-8-2-Add-the-Rosetta-Program">3.8.2 Add the Rosetta Program</h3>
+<ol><li>Click the large + on the upper left part of the screen.
+</li><li>Select <strong>Add Launcher</strong>.
+</li><li>Enter the values as outlined below.  The image file is Rosetta_Folder.png.
+</li></ol>
+<table border="1" style="width: calc(100% - 80px); margin-left: 60px;"><tr><td valign="top">
+<table><tr><td class="left"><span class="lfloat"> <img alt="" src="Images/Rosetta_7px.png" width="60px"/></span></td><td class="left"><strong><span class="pmL1">Rosetta</span></strong> <br class="clearboth"/> Start the Rosetta system</td></tr>
+</table>
+
+<table><tr><td class="left" colspan="2"><strong>Application Details</strong></td></tr>
+<tr><td class="left">Command</td><td class="left">bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Launch.sh</td></tr>
+<tr><td class="left">Working Directory</td><td class="left">/home/reuben/linuxcnc/configs/Rosetta</td></tr>
+<tr><td class="left" colspan="2"> </td></tr>
+<tr><td class="left" colspan="2"><strong>Options</strong></td></tr>
+<tr><td class="left">Run in terminal</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
+<tr><td class="left">Use startup notification    </td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
+<tr><td class="left">Hide from menus</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
+</table></td></tr></table>
+<ol><li value="4"> Click on the save button (the one beside the large + on the upper left part of the screen).
+</li></ol><h3 id="3-8-3-Add-the-Rosetta-Settings-Configuration-Program">3.8.3 Add the Rosetta Settings Configuration Program</h3>
+<ol><li>Click the large + on the upper left part of the screen.
+</li><li>Select <strong>Add Launcher</strong>.
+</li><li>Enter the values as outlined below.  The image file is Rosetta_SettingsGear.png.
+</li></ol>
+<table border="1" style="width: calc(100% - 80px); margin-left: 60px;"><tr><td valign="top">
+<table><tr><td class="left"><span class="lfloat"> <img alt="" src="Images/REB_SettingsGear.png" width="60px"/></span></td><td class="left"><strong><span class="pmL1">Rosetta Settings</span></strong> <br class="clearboth"/> Run this to configure the way Rosetta works</td></tr>
+</table>
+
+<table><tr><td class="left" colspan="2"><strong>Application Details</strong></td></tr>
+<tr><td class="left">Command</td><td class="left">bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Settings.sh</td></tr>
+<tr><td class="left">Working Directory</td><td class="left">/home/reuben/linuxcnc/configs/Rosetta</td></tr>
+<tr><td class="left" colspan="2"> </td></tr>
+<tr><td class="left" colspan="2"><strong>Options</strong></td></tr>
+<tr><td class="left">Run in terminal</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
+<tr><td class="left">Use startup notification    </td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
+<tr><td class="left">Hide from menus</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
+</table></td></tr></table>
+<ol><li value="4"> Click on the save button (the one beside the large + on the upper left part of the screen).
+</li></ol><h3 id="3-8-4-Add-the-Rosetta-Backup-Program">3.8.4 Add the Rosetta Backup Program</h3>
+<ol><li>Click the large + on the upper left part of the screen.
+</li><li>Select <strong>Add Launcher</strong>.
+</li><li>Enter the values as outlined below.  The image file is Rosetta_Backup.png.
+</li></ol>
+<table border="1" style="width: calc(100% - 80px); margin-left: 60px;"><tr><td valign="top">
+<table><tr><td class="left"><span class="lfloat"> <img alt="" src="Images/REB_Backup.png" width="60px"/></span></td><td class="left"><strong><span class="pmL1">Back Up to USB</span></strong> <br class="clearboth"/> Run this to backup the key Rosetta user files</td></tr>
+</table>
+
+<table><tr><td class="left" colspan="2"><strong>Application Details</strong></td></tr>
+<tr><td class="left">Command</td><td class="left">bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Backup.sh</td></tr>
+<tr><td class="left">Working Directory</td><td class="left">/home/reuben/linuxcnc/configs/Rosetta</td></tr>
+<tr><td class="left" colspan="2"> </td></tr>
+<tr><td class="left" colspan="2"><strong>Options</strong></td></tr>
+<tr><td class="left">Run in terminal</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
+<tr><td class="left">Use startup notification    </td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
+<tr><td class="left">Hide from menus</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
+</table></td></tr></table>
+<ol><li value="4"> Click on the save button (the one beside the large + on the upper left part of the screen).
+</li></ol><h3 id="3-8-5-Add-the-Rosetta-Update-Program">3.8.5 Add the Rosetta Update Program</h3>
+<ol><li>Click the large + on the upper left part of the screen.
+</li><li>Select <strong>Add Launcher</strong>.
+</li><li>Enter the values as outlined below.  The image file is Rosetta_Update.png.
+</li></ol>
+<table border="1" style="width: calc(100% - 80px); margin-left: 60px;"><tr><td valign="top">
+<table><tr><td class="left"><span class="lfloat"> <img alt="" src="Images/REB_Update.png" width="60px"/></span></td><td class="left"><strong><span class="pmL1">Update Rosetta</span></strong> <br class="clearboth"/> Run this when notified to do so</td></tr>
+</table>
+
+<table><tr><td class="left" colspan="2"><strong>Application Details</strong></td></tr>
+<tr><td class="left">Command</td><td class="left">bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Update.sh</td></tr>
+<tr><td class="left">Working Directory</td><td class="left">/home/reuben/linuxcnc/configs/Rosetta</td></tr>
+<tr><td class="left" colspan="2"> </td></tr>
+<tr><td class="left" colspan="2"><strong>Options</strong></td></tr>
+<tr><td class="left">Run in terminal</td><td class="left"> <img alt="" src="Images/Menulibre-on.png" width="50px"/></td></tr>
+<tr><td class="left">Use startup notification    </td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
+<tr><td class="left">Hide from menus</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
+</table></td></tr></table>
+<ol><li value="4"> Click on the save button (the one beside the large + on the upper left part of the screen).
+</li></ol><h3 id="3-8-6-Hide-Some-Unnecessary-Programs-Program-Menus">3.8.6 Hide Some Unnecessary Programs &amp; Program Menus</h3>
+<ol><li>For each of these applications, under Options, enable the option Hide from menus, saving each after the change
+<ol style="list-style: lower-alpha;"><li> Mail Reader
+</li><li> Games
+</li><li> Multimedia
+</li><li> Office
+</li><li> Science
+</li></ol></li><li>Click on the save button (the one beside the large + on the upper left part of the screen).
+</li></ol><p class="vspace">The resulting MenuLibre screen should look like the picture below:
+</p>
+
+<table border="0" style="width: 100%;"><tr><td style="text-align: center;" valign="top">
+<div class="img imgcaption"> <img alt="" src="Images/MenuLibre.png" width="500px"/><br/><span class="caption"><strong><em>MenuLibre Screen</em></strong></span></div>
+</td></tr></table>
+<p class="vspace">Which results in the Applications menu shown below.
+</p>
+
+<table border="0" style="width: 100%;"><tr><td style="text-align: center;" valign="top">
+<div class="img imgcaption"> <img alt="" src="Images/REB_Applications_Menu.png" width="150px"/><br/><span class="caption"><strong><em>Applications Menu</em></strong></span></div>
+</td></tr></table>
+<h2 id="3-9-Turn-off-Hidden-Files-in-Thunar">3.9 Turn off Hidden Files in Thunar</h2>
+<p>Open the File Manager (Thunar).  Click <strong>View</strong>, then unclick <strong>Show Hidden Files</strong>.
+</p>
+<h2 id="3-10-Reboot">3.10 Reboot</h2>
+<p>Everything should be good now.  Open a terminal emulator and enter this command:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo reboot
+</p></td></tr></table>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Part-4-Install-Development-System-Applications"><span style="color: #006400;"> Part 4 - Install Development System Applications</span></h1>
+<p>Install these applications on a development system.  They are not needed on production systems, but can be installed if desired.
+</p>
+<h2 id="4-1-Glade"><span style="color: #006400;"> 4.1 Glade</span></h2>
+<p>Glade is used to develop the display panels used with GladeVCP.
+</p>
+<p class="vspace">Open a terminal emulator, and enter these commands:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo apt install glade
+</p></td></tr></table>
+<h2 id="4-2-GIMP"><span style="color: #006400;"> 4.2 GIMP</span></h2>
+<p>The GNU Image Manipulation Program is useful for editing image files.
+</p>
+<p class="vspace">Open a terminal emulator, and enter these commands:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo apt install gimp
+</p></td></tr></table>
+
+<table border="0" width="100%"><tr><td valign="top">
+<hr/>
+</td></tr></table>
+<h1 id="Part-5-Other-Notes"><span style="color: #006400;"> Part 5 - Other Notes</span></h1>
+<h2 id="5-1-To-SSH-In"><span style="color: #006400;"> 5.1 To SSH In </span></h2>
+<p>To connect to the machine using SSH, use the command below, with the Raspberry Pi's <strong>WiFi</strong> address (the wired address, 10.10.10.100, can only be reached from the switch).  To find the WiFi address, enter <code>hostname -I</code> on the Raspberry Pi.
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>ssh reuben@&lt;WiFi address of the Pi&gt;
+</p></td></tr></table>
+<h2 id="5-2-To-Unzip"><span style="color: #006400;"> 5.2 To Unzip </span></h2>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>sudo apt update <br class="clearboth"/>
+sudo apt install file-roller
+</p></td></tr></table>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="HardwareBuildWithoutPCB.html"><span>Previous</span>Hardware Build - Without the Rosetta PCB</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="InstallationAndCheckoutList.html"><span>Next</span>Installation and Checkout List</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

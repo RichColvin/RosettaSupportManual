@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rosetta_Change_Network.sh - Mesa Card and Network Setup – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Rosetta_Change_Network.sh - Mesa Card and Network Setup</span></p>
+  <h1>Rosetta_Change_Network.sh - Mesa Card and Network Setup</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Purpose">Purpose</a></li><li class="toc-l0"><a href="#How-it-is-run">How it is run</a></li><li class="toc-l1"><a href="#Parameters">Parameters</a></li><li class="toc-l0"><a href="#Setting-up-a-card-base-or-expansion">Setting up a card (base or expansion)</a></li><li class="toc-l0"><a href="#Programs-it-calls">Programs it calls</a></li><li class="toc-l0"><a href="#Files-it-references">Files it references</a></li><li class="toc-l0"><a href="#What-it-changes">What it changes</a></li><li class="toc-l0"><a href="#Notes-for-support">Notes for support</a></li><li class="toc-l0"><a href="#Related-pages">Related pages</a></li></ul></nav>
+  <div class="content">
+
+<p><span style="color: navy;"><strong>Rosetta’s Key Programs:</strong></span> <a href="RosettaKeyPrograms.html">Overview</a> · <a href="RosettaLaunch.html">Rosetta_Launch.sh</a> · <a href="RosettaSettings.html">Rosetta_Settings.sh</a> · <a href="RosettaBackup.html">Rosetta_Backup.sh</a> · <a href="RosettaUpdate.html">Rosetta_Update.sh</a> · <a class="selflink" href="RosettaChangeNetwork.html">Rosetta_Change_Network.sh</a> · <a href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>
+</p><hr/>
+<h1 id="Purpose">Purpose</h1>
+<p>Rosetta_Change_Network.sh sets up the private wired network between the Raspberry Pi and the Mesa 7i92 card(s) for the two-box hardware:
+</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 60%;"><tr><td style="background-color: #00416a; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Device</strong></span>
+</td><td style="background-color: #00416a; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Address</strong></span>
+</td></tr><tr><td style="padding: 4px;" valign="top"> Base box Mesa card
+</td><td style="padding: 4px;" valign="top"> 10.10.10.10
+</td></tr><tr><td style="padding: 4px;" valign="top"> Expansion box Mesa card
+</td><td style="padding: 4px;" valign="top"> 10.10.10.11
+</td></tr><tr><td style="padding: 4px;" valign="top"> Raspberry Pi wired connection ("Wired Ethernet")
+</td><td style="padding: 4px;" valign="top"> 10.10.10.100 - no gateway or DNS (the Pi's internet stays on Wi-Fi)
+</td></tr></table>
+<p class="vspace">It can also write the Rosetta firmware to a new card, put the Raspberry Pi back on the old 192.168.1.120 address, and check which cards answer.  See <a href="Mesa7i92.html">Mesa 7i92</a> for the cards and their W5/W6 jumpers.
+</p>
+<h1 id="How-it-is-run">How it is run</h1>
+<p>From a terminal (there is no desktop icon).  Close LinuxCNC first - the script stops if it's running.
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh [choice] [--dry-run] [--no-shutdown]
+</p></td></tr></table>
+<p>With no choice it shows a menu.  It asks before every change and asks for the reuben password when it needs <em>sudo</em>.
+</p>
+<h2 id="Parameters">Parameters</h2>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="20%"> <span style="color: white;"> <strong>Parameter</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>What it does</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>base</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Sets up the connected card as the base card (10.10.10.10): checks it answers at its factory address, 192.168.1.121; offers to write the firmware; stores the new address on the card; moves the Pi to 10.10.10.100; then walks through shutting down and moving the card's jumpers.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>expansion</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The same for the expansion card (10.10.10.11).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>pi</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Moves only the Pi's wired connection to 10.10.10.100, then reports which cards answer.  Use it if the Pi restarted part way through, or when the cards are already set up.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>back</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Puts the Pi's wired connection back on 192.168.1.120 - to reach a card at its factory address, or to run software from before the two-box design.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>check</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Changes nothing.  Shows the Pi's wired address and which cards answer.  <strong>Start here for any card-connection problem.</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>--dry-run</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Shows every command without running any of them (cards are assumed to answer).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>--no-shutdown</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Used by the installer: stops once the address is stored and the Pi moved, without the shutdown and jumper steps (the installer gives those at its end).
+</td></tr></table>
+<p>Menu: 1 = base, 2 = expansion, 3 = pi, 4 = back, 5 = check.
+</p>
+<h1 id="Setting-up-a-card-base-or-expansion">Setting up a card (base or expansion)</h1>
+<ol><li>Run it with the Pi still on 192.168.1.x and <strong>only the card being set up</strong> connected - two cards at the factory address would clash.  W5/W6 at the factory setting, card powered on.
+</li><li>It checks the card answers at 192.168.1.121.  If not, it stops and changes nothing.
+</li><li>Write the firmware? - yes for a new card.
+</li><li>Store the new address on the card? - yes.
+</li><li>Move the Pi to 10.10.10.100? - yes.
+</li><li>Shut the Pi down?  - yes, then: switch the machine off, move the card's W5/W6 jumpers to the setting the 7i92 manual calls EEPROM, reconnect any card that was unplugged, and switch on.
+</li><li>Once the Pi has started, run <strong>Rosetta_Change_Network.sh check</strong> - the card should answer at its new address.
+</li></ol><p class="vspace">The whole machine is switched off for the jumper change because the Pi and card share one 5V supply: switching the card on while the Pi is running restarts the Pi without a proper shutdown.
+</p>
+<h1 id="Programs-it-calls">Programs it calls</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="35%"> <span style="color: white;"> <strong>Program</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>What for</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>mesaflash</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> --readhmid (does a card answer?), --write ... --reload (firmware), --set ip= (store the address)
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>nmcli</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Changing, starting and deleting the Pi's "Wired Ethernet" connection
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>ip</strong>, <strong>pgrep</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Reading the Pi's address; checking LinuxCNC isn't running
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>sudo poweroff</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Shutting down for the jumper change (only when you answer yes)
+</td></tr></table>
+<h1 id="Files-it-references">Files it references</h1>
+<ul><li>Rosetta_Setup/MesaCard/<strong>7i92t_Rosetta.bin</strong> - the firmware written to a new card
+</li></ul><h1 id="What-it-changes">What it changes</h1>
+<p>It creates no files.  It changes:
+</p><ul><li><strong>The Mesa card's stored address</strong> (in the card's EEPROM), and its firmware if asked.
+</li><li><strong>The Pi's "Wired Ethernet" network connection</strong> (stored by NetworkManager, so it survives a restart), with autoconnect priority 10 so the Pi uses that one.  If the Pi has spare connections with the same name (from running the installer more than once), it offers to delete them.
+</li></ul><h1 id="Notes-for-support">Notes for support</h1>
+<ul><li><strong>Undo a card:</strong> put its W5/W6 jumpers back to the factory setting and it answers at 192.168.1.121 again.  Undo the Pi with <strong>back</strong>.
+</li><li><strong>Which address the software uses:</strong> at each launch, Rosetta_Generate_Local_Ini.py uses 192.168.1.121 for the base card while the Pi is on 192.168.1.x, and 10.10.10.10 otherwise - so a machine works before and after the move.  <strong>Expansion Box - Connected</strong> needs the 10.10.10.x network; with it ticked on 192.168.1.x, Rosetta refuses to start and says why.
+</li><li><strong>"No card answered at 192.168.1.121"</strong>: check the cable, the card's power, that W5/W6 are at the factory setting, and that the Pi is on 192.168.1.x (<strong>check</strong>).
+</li><li><strong>"Changing the 'Wired Ethernet' connection failed"</strong>: list the connections with <strong>nmcli con show</strong>.
+</li><li>Try <strong>--dry-run</strong> first when unsure - it shows exactly what would be run.
+</li></ul><h1 id="Related-pages">Related pages</h1>
+<ul><li><a href="Mesa7i92.html">Mesa 7i92</a>
+</li><li><a href="HardwareBuild.html">Hardware Build</a>
+</li><li><a href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>
+</li><li><a href="UpdatingRosetta.html">Updating Rosetta</a> - going back to software from before the two-box design
+</li></ul>
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="RosettaBackup.html"><span>Previous</span>Rosetta_Backup.sh - Back Up to USB</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="RosettaInstall.html"><span>Next</span>Rosetta_Install_Debian_13_Trixie.sh - Installer</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

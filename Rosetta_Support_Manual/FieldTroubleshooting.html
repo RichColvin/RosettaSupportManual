@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field Troubleshooting – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Field Troubleshooting</span></p>
+  <h1>Field Troubleshooting</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#First-collect-this">First, collect this</a></li><li class="toc-l0"><a href="#LinuxCNC-won-t-start">LinuxCNC won&#x27;t start</a></li><li class="toc-l0"><a href="#Base-box-lost-contact-or-Expansion-box-lost-contact">&quot;Base box lost contact&quot; or &quot;Expansion box lost contact&quot;</a></li><li class="toc-l0"><a href="#Unexpected-realtime-delay">&quot;Unexpected realtime delay&quot;</a></li><li class="toc-l0"><a href="#An-axis-doesn-t-move">An axis doesn&#x27;t move</a></li><li class="toc-l0"><a href="#Limit-switch-E-stop-or-signal-tower-misbehaving">Limit switch, E-stop, or signal tower misbehaving</a></li><li class="toc-l0"><a href="#The-customer-s-tool-table-or-custom-HAL-changes-disappeared-after-an-update">The customer&#x27;s tool table or custom HAL changes disappeared after an update</a></li><li class="toc-l0"><a href="#Going-back-to-the-previous-version">Going back to the previous version</a></li></ul></nav>
+  <div class="content">
+
+<h1 id="First-collect-this">First, collect this</h1>
+<ol><li>The software version:
+</li></ol>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cd /home/reuben/linuxcnc/configs/Rosetta <br class="clearboth"/>
+git log -1 --oneline <br class="clearboth"/>
+git status
+</p></td></tr></table>
+<ol><li value="2"> The generator's output (what LinuxCNC will load):
+</li></ol>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cd /home/reuben/linuxcnc/configs/Rosetta <br class="clearboth"/>
+python3 Rosetta_Setup/Rosetta_Generate_Local_Ini.py
+</p></td></tr></table>
+<ol><li value="3"> The network check (which cards answer, and the Raspberry Pi's wired address):
+</li></ol>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh check
+</p></td></tr></table>
+<ol><li value="4"> A copy of /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>.
+</li><li value="5"> Whether the machine has an expansion box, and whether <strong>Expansion Box - Connected</strong> is ticked in the Settings program (Axis Selection tab).
+</li><li value="6"> If LinuxCNC starts: the HAL state, from a terminal while it is running:
+</li></ol>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>halcmd show all &gt; ~/all.txt
+</p></td></tr></table>
+<ol><li value="7"> Any error text from starting LinuxCNC in diagnostic mode (see <a href="Diagnostics.html">Diagnostics</a>).
+</li><li value="8"> The machine's serial number and version: the <strong>Rosetta O/S</strong> label on the side panel gives the version and date, and the serial number (if one was recorded) is in ~/.config/Rosetta/serial:
+</li></ol>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cat ~/.config/Rosetta/serial <br class="clearboth"/>
+tail -n 1 ~/.config/Rosetta/report_log.jsonl
+</p></td></tr></table>
+<div class="indent">The last line of report_log.jsonl is the most recent version report (sent at each update).
+</div><h1 id="LinuxCNC-won-t-start">LinuxCNC won't start</h1>
+<ul><li>Run the generator by hand (above).  If it reports a problem, it refuses to write the configuration.
+</li><li><strong>"Reserved file name found - startup stopped"</strong> - a file in the gcode folder starts with Rosetta or is named M100 - M199.  Rename it - see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>.
+</li><li>Check the Mesa cards are reachable: run the network check above, or <strong>ping 10.10.10.10</strong> (base card) and <strong>ping 10.10.10.11</strong> (expansion card), then read a card with <strong>mesaflash --device 7i92t --addr 10.10.10.10 --readhmid</strong> (see <a href="Mesa7i92.html">Mesa 7i92</a>).
+</li><li>The Raspberry Pi's wired address should be <strong>10.10.10.100</strong> (<strong>ip -4 addr show eth0</strong>).  If it isn't, run <strong>Rosetta_Change_Network.sh pi</strong>.
+</li><li>A machine not yet moved to the 10.10.10.x network (Raspberry Pi on 192.168.1.120, card at its factory 192.168.1.121) still runs the base box, but the generator refuses to start with <strong>Expansion Box - Connected</strong> ticked.  Move it with Rosetta_Change_Network.sh (see <a href="InstallationAndSetupForDebian13Trixie.html">Installation and Setup for Debian 13 Trixie</a>, Part 3), or untick the expansion box.
+</li><li><strong>Expansion Box - Connected</strong> is ticked but the expansion box is off or unplugged: switch it on and plug it into the switch in the base box, or untick it.
+</li><li>A card that doesn't answer at its 10.10.10.x address: check its cable to the switch, its power, and that its W6 jumper is up (W5 down).  Jumpers are read only at power-up.
+</li><li>Nothing else may be plugged into the switch in the base box - no router or other computers.
+</li><li>Look for hm2 / gpio / num_inms errors in the diagnostic output.
+</li><li>The Raspberry Pi restarted by itself when the machine (or a box) was switched on: the Pi and the base card share one 5V supply - always switch the whole machine off and on together.  Afterwards run <strong>Rosetta_Change_Network.sh check</strong>.
+</li></ul><h1 id="Base-box-lost-contact-or-Expansion-box-lost-contact">"Base box lost contact" or "Expansion box lost contact"</h1>
+<p>If either Mesa card stops answering while LinuxCNC runs (a network cable, the switch, or a box's power), LinuxCNC drops into E-stop, lights the signal tower's red light and sounds the fault siren (if used), and shows which box it was.  (If it was the <strong>base</strong> box, the tower stays dark - its outputs are on the base card.)  Check that box's network cable, the switch and its power, then press F1.  While in E-stop, Rosetta tries to reconnect the card every few seconds; F1 resets the E-stop once the card answers again.
+</p>
+<h1 id="Unexpected-realtime-delay">"Unexpected realtime delay"</h1>
+<p>LinuxCNC's 1 ms servo thread overran.  With two cards each cycle waits for both, so there is less spare time than with one.
+</p><ul><li>Close the web browser and other busy programs while Rosetta runs - a busy browser can take two of the Raspberry Pi's four cores.
+</li><li>Make sure nothing but the Raspberry Pi and the Mesa cards is on the switch.
+</li><li>Watch the servo thread's worst time with <strong>halcmd show thread</strong> (the <strong>servo-thread</strong> Max Time, in ns).  It should stay well under 1,000,000.
+</li><li>If it keeps happening, the next step is reserving a processor core for LinuxCNC (<strong>isolcpus</strong>) - ask for support.
+</li></ul><h1 id="An-axis-doesn-t-move">An axis doesn't move</h1>
+<ul><li>Is it assigned to a channel, and is the motor on the plug for that channel?  See <a href="AxisMapping.html">Axis Mapping</a> and the generator output.
+</li><li>Is that channel on the expansion box (06 - 09)?  Then <strong>Expansion Box - Connected</strong> must be ticked, or the role is left out.
+</li><li>On an earlier 8-channel box, channels 06 and 07 now belong to the expansion box; move a role on them to a base channel (00 - 05).
+</li><li>Is its <strong>ENA</strong> on (green) on the main panel, and the machine powered on (F2)?
+</li><li>Is the DM542T's 5V/24V switch set to <strong>5V</strong>?  At 24V (as new drivers come) the driver doesn't respond to the Mesa card.
+</li><li>Is its Scale plausible?  A value off by 1000x moves too little to see.
+</li></ul><h1 id="Limit-switch-E-stop-or-signal-tower-misbehaving">Limit switch, E-stop, or signal tower misbehaving</h1>
+<p>See <a href="PanelAccessories.html">Panel Accessories</a>.  Limit Jacks 4 - 6 (on the expansion box) only work while the expansion box is connected and ticked.
+</p>
+<h1 id="The-customer-s-tool-table-or-custom-HAL-changes-disappeared-after-an-update">The customer's tool table or custom HAL changes disappeared after an update</h1>
+<p><strong>Update Rosetta</strong> sets local changes to tracked files (such as Rosetta_Custom/Rosetta_Tool.tbl and Rosetta_Custom/Rosetta_Custom.hal) aside before pulling and puts them back afterwards.  If the update changed the same lines, or the machine was updated before 30 September 2026 (when the update didn't put them back), they are still in the stash - see <a href="UpdatingRosetta.html">Updating Rosetta</a>.
+</p>
+<h1 id="Going-back-to-the-previous-version">Going back to the previous version</h1>
+<p>See <a href="UpdatingRosetta.html">Updating Rosetta</a>.  A machine already moved to the 10.10.10.x network needs its network put back before it runs a version from before the two-box design.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="PanelAccessories.html"><span>Previous</span>Panel Accessories - Limit Switches, E-Stop Button, Signal Tower</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="FontsUsed.html"><span>Next</span>Fonts Used</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

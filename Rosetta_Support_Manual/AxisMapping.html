@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Axis Mapping (HAL to Hardware) – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Axis Mapping (HAL to Hardware)</span></p>
+  <h1>Axis Mapping (HAL to Hardware)</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Plugs-and-channels-fixed-wiring">Plugs and channels (fixed wiring)</a></li><li class="toc-l0"><a href="#Default-roles">Default roles</a></li><li class="toc-l0"><a href="#Earlier-8-channel-development-boxes">Earlier 8-channel (development) boxes</a></li><li class="toc-l0"><a href="#How-roles-become-LinuxCNC-joints">How roles become LinuxCNC joints</a></li></ul></nav>
+  <div class="content">
+
+<p>The Rosetta has up to 10 motor plugs: 6 on the <strong>base box</strong> (channels 00 - 05) and 4 on the optional <strong>expansion box</strong> (channels 06 - 09).  Each plug is wired to one <strong>channel</strong>, a step generator on that box's Mesa 7i92TH card.  The operator chooses which <strong>role</strong> each channel plays - any of the axes X, Z, U, V, W, A, B, C or the spindles Sp0, Sp1 - on the Axis Selection tab of the Settings program.  With both boxes there is one channel for each of the 10 roles.
+</p>
+<p class="vspace">Channels 06 - 09 are only used when <strong>Expansion Box - Connected</strong> is ticked on the Axis Selection tab (saved as <strong>expansion_box</strong> in RosettaSet_v1.ini).  Without it, those channels are greyed out and any role on them is left out of the configuration.
+</p>
+<h1 id="Plugs-and-channels-fixed-wiring">Plugs and channels (fixed wiring)</h1>
+<p>The plugs are laid out with the even numbers on the top row and the odd numbers on the bottom row, the same way they are shown on the Axis Selection tab and on the main panel's Axis Assignments tiles:
+</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Box</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Channels</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Mesa card</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Step generators</strong></span>
+</td></tr><tr><td rowspan="2" style="padding: 4px; vertical-align: top;" valign="top"> <strong>Base box</strong>
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> 00 / 02 / 04
+</td><td rowspan="2" style="padding: 4px; vertical-align: top;" valign="top"> hm2_7i92.0 (10.10.10.10)
+</td><td rowspan="2" style="padding: 4px; vertical-align: top;" valign="top"> Channels 00 - 05 = <strong>hm2_7i92.0.stepgen.00</strong> - <strong>.05</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> 01 / 03 / 05
+</td></tr><tr><td rowspan="2" style="padding: 4px; vertical-align: top;" valign="top"> <strong>Expansion box</strong>
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> 06 / 08
+</td><td rowspan="2" style="padding: 4px; vertical-align: top;" valign="top"> hm2_7i92.1 (10.10.10.11)
+</td><td rowspan="2" style="padding: 4px; vertical-align: top;" valign="top"> Channels 06 - 09 = <strong>hm2_7i92.1.stepgen.00</strong> - <strong>.03</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> 07 / 09
+</td></tr></table>
+<p class="vspace">Note that the expansion card numbers its step generators from 00 again: channel 06 is <strong>hm2_7i92.1.stepgen.00</strong>, not stepgen.06.  See <a href="MesaBoardPinToAxisMapping.html">Mesa 7i92 Pin Mapping</a> for the header pins.
+</p>
+<h1 id="Default-roles">Default roles</h1>
+<p>These are the roles a new system ships with (from Rosetta_Setup/RosettaSet_v1.ini):
+</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Channel</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>00</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>01</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>02</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>03</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>04</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>05</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>06</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>07</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>08</strong></span>
+</td><td style="background-color: #00416a; text-align: center; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>09</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Box</strong>
+</td><td colspan="6" style="padding: 4px; vertical-align: top; text-align: center; background-color: #a5dcff; " valign="top"> <strong>Base</strong>
+</td><td colspan="4" style="padding: 4px; vertical-align: top; text-align: center; background-color: #a5dcff; " valign="top"> <strong>Expansion</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Role</strong>
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> X
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Z
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> B
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> W
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Sp0
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Sp1
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> U
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> V
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> A
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> C
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Type</strong>
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Linear
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Linear
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Angular
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Linear
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Spindle
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Spindle
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Linear
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Linear
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Angular
+</td><td style="padding: 4px; vertical-align: top; text-align: center;" valign="top"> Angular
+</td></tr></table>
+<h1 id="Earlier-8-channel-development-boxes">Earlier 8-channel (development) boxes</h1>
+<p>An earlier 8-channel box is used as a base box: channels 00 - 05 work, and its other two plugs are not used.  On such a box, channels 06 and 07 now mean the expansion box's first two plugs, so a role saved on 06 or 07 (the old default was Sp0 and Sp1 there) is left out until it is moved to a base channel on the Axis Selection tab.  The rest of a saved assignment is kept as it was.
+</p>
+<h1 id="How-roles-become-LinuxCNC-joints">How roles become LinuxCNC joints</h1>
+<p>Joint numbers are <strong>not fixed</strong> - they are worked out at every launch by Rosetta_Setup/Rosetta_Generate_Local_Ini.py (see <a href="LaunchingRosetta.html">Launching Rosetta</a>):
+</p><ul><li>The axis letters in use are numbered 0, 1, 2 ... in the order <strong>X, Z, B, U, V, W, A, C</strong>, skipping any that aren't on a channel in use.  With the default roles and no expansion box that gives X=0, Z=1, B=2, W=3.  With the expansion box connected it gives X=0, Z=1, B=2, U=3, V=4, W=5, A=6, C=7.
+</li><li>A role is only "in use" if its channel is in use - so a role on channels 06 - 09 counts only when the expansion box is connected.
+</li><li>The spindles in use become LinuxCNC spindle 0 and 1, in the order Sp0, Sp1.
+</li><li>Every HAL net is named after the role, not the channel (<strong>pid.x</strong>, <strong>x-enable</strong>, ...), so it always means "whichever channel is X right now".  The generator points each role's HAL at its channel's card and step generator.
+</li><li>Type is fixed by the letter: X, Z, U, V, W are linear (inches or mm); A, B, C are angular (degrees).
+</li><li><strong>Y</strong> is not available, because Rosetta.ini sets LATHE = 1.
+</li><li><strong>Sp1</strong> can only be used when Sp0 is also used (its speed is a percentage of Sp0's).
+</li><li>The same role can't be on two channels; this is checked across all 10 channels, even when the expansion box isn't connected.
+</li></ul><p class="vspace">Step timing (DIRSETUP, DIRHOLD, STEPLEN, STEPSPACE) and the home sequence are in each axis's [AXIS_x] / [JOINT_n] section of Rosetta.ini.  Scale, Max Speed, Max Acceleration, backlash and the PID gains are this machine's own values, set in the Settings program and kept in /home/reuben/Documents/RosettaSet_v1.ini (Rosetta.ini's speed and acceleration figures are only the starting values for a new machine).
+</p>
+<p class="vspace">See also, <a href="MesaBoardPinToAxisMapping.html">Mesa 7i92 Pin Mapping</a> and <a href="HardwareBuild.html">Hardware Build</a>.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="3DPrintableFiles.html"><span>Previous</span>3D Printable Files</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="HardwareBuild.html"><span>Next</span>Hardware Build for the Rosetta</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

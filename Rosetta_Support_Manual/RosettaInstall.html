@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rosetta_Install_Debian_13_Trixie.sh - Installer – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Rosetta_Install_Debian_13_Trixie.sh - Installer</span></p>
+  <h1>Rosetta_Install_Debian_13_Trixie.sh - Installer</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Purpose">Purpose</a></li><li class="toc-l0"><a href="#How-it-is-run">How it is run</a></li><li class="toc-l1"><a href="#Parameters">Parameters</a></li><li class="toc-l0"><a href="#What-it-does">What it does</a></li><li class="toc-l0"><a href="#Programs-it-calls">Programs it calls</a></li><li class="toc-l0"><a href="#Files-it-references">Files it references</a></li><li class="toc-l0"><a href="#Files-and-folders-it-creates">Files and folders it creates</a></li><li class="toc-l0"><a href="#Notes-for-support">Notes for support</a></li><li class="toc-l0"><a href="#Related-pages">Related pages</a></li></ul></nav>
+  <div class="content">
+
+<p><span style="color: navy;"><strong>Rosetta’s Key Programs:</strong></span> <a href="RosettaKeyPrograms.html">Overview</a> · <a href="RosettaLaunch.html">Rosetta_Launch.sh</a> · <a href="RosettaSettings.html">Rosetta_Settings.sh</a> · <a href="RosettaBackup.html">Rosetta_Backup.sh</a> · <a href="RosettaUpdate.html">Rosetta_Update.sh</a> · <a href="RosettaChangeNetwork.html">Rosetta_Change_Network.sh</a> · <a class="selflink" href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>
+</p><hr/>
+<h1 id="Purpose">Purpose</h1>
+<p>Rosetta_Setup/Rosetta_Install_Debian_13_Trixie.sh finishes setting up a new Raspberry Pi for Rosetta: the wired network, the Mesa card, the key files and the extra programs.  It is one step of <a href="InstallationAndSetupForDebian13Trixie.html">Installation and Setup for Debian 13 Trixie</a>; it does <strong>not</strong> install LinuxCNC or download Rosetta - both must already be done.
+</p>
+<p class="vspace"><strong>REB_Install_Debian_12_Bookworm.sh</strong> is the older installer for Debian 12 (Bookworm) and isn't used for new machines.
+</p>
+<h1 id="How-it-is-run">How it is run</h1>
+<p>Once, on a new machine, from a terminal, as the reuben user (not with sudo - it asks for the password when needed):
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cd /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup <br class="clearboth"/>
+bash Rosetta_Install_Debian_13_Trixie.sh
+</p></td></tr></table>
+<p class="vspace">Before starting: the repository is at /home/reuben/linuxcnc/configs/Rosetta, LinuxCNC is installed, the Pi has internet on Wi-Fi, and the base box's Mesa card is connected and powered with W5/W6 at the factory setting.
+</p>
+<h2 id="Parameters">Parameters</h2>
+<p>None.
+</p>
+<h1 id="What-it-does">What it does</h1>
+<ol><li><strong>Wired network</strong> - deletes any existing "Wired Ethernet" connections and creates one at 192.168.1.120, no gateway or DNS.
+</li><li><strong>Mesa card</strong> - copies 7i92t_Rosetta.bin, 7i92t_Rosetta.pin and PIN_Rosetta_34.vhd to /usr/lib/firmware/hm2/hostmot2, then runs <strong>Rosetta_Change_Network.sh base --no-shutdown</strong> (firmware, address 10.10.10.10, Pi moved to 10.10.10.100).
+</li><li><strong>Key files</strong> - .axisrc, a copy of Rosetta_Update.sh, the gcode folder and the starting RosettaSet_v1.ini (see below).
+</li><li><strong>ClamAV</strong> (virus scanner), with /home/reuben/ClamAv/SuspiciousFiles.
+</li><li><strong>MenuLibre</strong> (menu editor - used to add the desktop and menu entries).
+</li><li><strong>galculator</strong> (calculator).
+</li><li><strong>xfce4-screenshooter</strong> (screenshots).
+</li><li><strong>Claude Code</strong> - Node.js 20 from NodeSource, then the Claude Code npm package into ~/.npm-global.
+</li><li><strong>Chromium</strong> (web browser, from Debian's own packages).
+</li><li><strong>Folder shortcuts</strong> - runs Rosetta_Setup/<strong>Rosetta_Add_Shortcuts.sh</strong>: "Rosetta" and "Gcode" in the file manager's Places list, and two Turk's head launchers for those folders on the bottom panel, next to the File Manager.
+</li><li><strong>Serial number</strong> - runs Rosetta_Setup/<strong>Rosetta_Set_Serial_Number.sh</strong>, which asks for this machine's serial number (e.g. 4).  Press Enter to skip; it is asked again at the next update.
+</li><li><strong>Last step</strong> - asks to shut down, then: switch off, move the card's W5/W6 jumpers to EEPROM, switch on, and run <strong>Rosetta_Change_Network.sh check</strong>.
+</li></ol><h1 id="Programs-it-calls">Programs it calls</h1>
+<p><strong>nmcli</strong>, <strong>Rosetta_Change_Network.sh</strong> (which uses <strong>mesaflash</strong>), <strong>cp</strong>, <strong>mkdir</strong>, <strong>sudo apt install</strong>, <strong>curl</strong> (NodeSource setup), <strong>npm</strong>, <strong>claude --version</strong>, Rosetta_Setup/<strong>Rosetta_Add_Shortcuts.sh</strong> (uses <strong>xfconf-query</strong>), Rosetta_Setup/<strong>Rosetta_Set_Serial_Number.sh</strong>, <strong>sudo poweroff</strong>.
+</p>
+<h1 id="Files-it-references">Files it references</h1>
+<ul><li>Rosetta_Setup/MesaCard/<strong>7i92t_Rosetta.bin</strong>, <strong>7i92t_Rosetta.pin</strong>, <strong>PIN_Rosetta_34.vhd</strong>
+</li><li>Rosetta_Setup/<strong>axisrc</strong>
+</li><li><strong>Rosetta_Update.sh</strong>
+</li><li>Rosetta_Setup/<strong>RosettaSet_v1.ini</strong> - the starting settings
+</li></ul><h1 id="Files-and-folders-it-creates">Files and folders it creates</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="45%"> <span style="color: white;"> <strong>File or folder</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Notes</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> "Wired Ethernet" network connection
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Moved to 10.10.10.100 by Rosetta_Change_Network.sh.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /usr/lib/firmware/hm2/hostmot2/<strong>7i92t_Rosetta.*</strong>, <strong>PIN_Rosetta_34.vhd</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Copies of the card firmware and pin files.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/<strong>.axisrc</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> AXIS window size and position.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/<strong>Rosetta_Update.sh</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> A copy.  Not used by the icons and never updated - ignore it.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta/<strong>gcode/</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The operator's G-code folder.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> This machine's settings, from the starting copy.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/<strong>ClamAv/SuspiciousFiles/</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Virus scan quarantine folder.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/<strong>.npm-global/</strong>, a PATH line added to <strong>.bashrc</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Claude Code.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/gtk-3.0/<strong>bookmarks</strong>, two launchers on the bottom panel, /home/reuben/.config/Rosetta/<strong>shortcuts-added</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The folder shortcuts.  The marker file stops them being added again - delete it, or run Rosetta_Add_Shortcuts.sh <strong>--force</strong>, to add them again.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>serial</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The serial number typed in (only if one was given).
+</td></tr></table>
+<h1 id="Notes-for-support">Notes for support</h1>
+<ul><li><strong>Settings file ownership on older machines:</strong> installers before 24 October 2026 copied RosettaSet_v1.ini (and the home-folder Rosetta_Update.sh) with sudo, so on a machine installed before then they may have belonged to root.  Rosetta now replaces the settings file each time it saves it, which gives it to reuben, so this normally fixes itself.  If a save still fails, check the owner and fix it with:
+</li></ul>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>ls -l /home/reuben/Documents/RosettaSet_v1.ini <br class="clearboth"/>
+sudo chown reuben:reuben /home/reuben/Documents/RosettaSet_v1.ini
+</p></td></tr></table>
+<ul><li><strong>Running it again</strong> is mostly safe: it replaces the "Wired Ethernet" connection (at 192.168.1.120 - run <strong>Rosetta_Change_Network.sh pi</strong> afterwards if the cards are already on 10.10.10.x), and <strong>overwrites RosettaSet_v1.ini with the starting settings</strong> - back it up first.  "File exists" messages for folders are harmless.
+</li><li><strong>A failed step</strong> stops the installer with "PROGRAM TERMINATED PREMATURELY".  Read the message above it, fix the cause, and run it again.
+</li><li><strong>Desktop and menu entries</strong> aren't made by the installer - add them with MenuLibre (each icon's Command is the full path of the Rosetta_x.sh script it starts).
+</li><li>The expansion box's card is set up separately, with <strong>Rosetta_Change_Network.sh expansion</strong>.
+</li><li><strong>Folder shortcuts or serial number missing:</strong> both steps are repeated by every update until they are done, so running <a href="RosettaUpdate.html">Update Rosetta</a> from the desktop fixes them.  The shortcuts need the desktop to be running (they can't be added over ssh).
+</li></ul><h1 id="Related-pages">Related pages</h1>
+<ul><li><a href="InstallationAndSetupForDebian13Trixie.html">Installation and Setup for Debian 13 Trixie</a>
+</li><li><a href="InstallationAndCheckoutList.html">Installation and Checkout List</a>
+</li><li><a href="RosettaChangeNetwork.html">Rosetta_Change_Network.sh</a>
+</li></ul>
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="RosettaChangeNetwork.html"><span>Previous</span>Rosetta_Change_Network.sh - Mesa Card and Network Setup</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="RosettaLaunch.html"><span>Next</span>Rosetta_Launch.sh - Start Rosetta</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

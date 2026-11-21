@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesa 7i92 Board Pin to Axis Mapping – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Mesa 7i92 Board Pin to Axis Mapping</span></p>
+  <h1>Mesa 7i92 Board Pin to Axis Mapping</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Base-Box">Base Box</a></li><li class="toc-l1"><a href="#Connector-P2">Connector P2</a></li><li class="toc-l1"><a href="#Connector-P1">Connector P1</a></li><li class="toc-l0"><a href="#Expansion-Box">Expansion Box</a></li><li class="toc-l1"><a href="#Connector-P2_">Connector P2</a></li><li class="toc-l1"><a href="#Connector-P1_">Connector P1</a></li><li class="toc-l0"><a href="#Notes">Notes</a></li></ul></nav>
+  <div class="content">
+
+<h1 id="Base-Box">Base Box</h1>
+<h2 id="Connector-P2">Connector P2</h2>
+<table border="1" cellpadding="3" cellspacing="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><th align="center" style="width: 30px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> HDR 26 Pin#</span>
+</th><th style="width: 30px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> I/O</span>
+</th><th style="width: 50px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Pri. func</span>
+</th><th style="width: 50px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Sec. func</span>
+</th><th style="width: 30px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Chan nel</span>
+</th><th style="width: 80px; width: 40px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Sec. Pin func</span>
+</th><th style="width: 40px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Sec. Pin Dir</span>
+</th><th style="width: 60px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Axis</span>
+</th><th style="width: 150px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Use</span>
+</th><th style="vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Comment</span>
+</th></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>1</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">0</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO17
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 00
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>2</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">1</span>
+</td><td valign="top"> IO18
+</td><td valign="top"> StepGen
+</td><td align="center" valign="top"> 00
+</td><td valign="top"> Dir/Table2
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 00
+</td><td valign="top"> Dir
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>3</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">2</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO19
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input0_EncA0
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Jack 1
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Switch (NC)
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.0.gpio.002.in <sup><a href="#Note_01">①</a></sup>
+</td></tr><tr><td align="center" valign="top"> <strong>4</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">3</span>
+</td><td valign="top"> IO20
+</td><td valign="top"> OutM
+</td><td align="center" valign="top"> 00
+</td><td valign="top"> Output0
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 00
+</td><td valign="top"> ENAble
+</td><td valign="top"> hm2_7i92.0.outm.00.out-00
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>5</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">4</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO21
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 01
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 01
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>6</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">5</span>
+</td><td valign="top"> IO22
+</td><td valign="top"> StepGen
+</td><td align="center" valign="top"> 01
+</td><td valign="top"> Dir/Table2
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 01
+</td><td valign="top"> Dir
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>7</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">6</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO23
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input1_EncB0
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Jack 2
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Switch (NC)
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.0.gpio.006.in <sup><a href="#Note_01">①</a></sup>
+</td></tr><tr><td align="center" valign="top"> <strong>8</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">7</span>
+</td><td valign="top"> IO24
+</td><td valign="top"> OutM
+</td><td align="center" valign="top"> 00
+</td><td valign="top"> Output1
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 01
+</td><td valign="top"> ENAble
+</td><td valign="top"> hm2_7i92.0.outm.00.out-01
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>9</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">8</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO25
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 02
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 02
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>10</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>11</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">9</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO26
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 02
+</td><td bgcolor="#e0f3ff" valign="top"> Dir/Table2
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 02
+</td><td bgcolor="#e0f3ff" valign="top"> Dir
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>12</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>13</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">10</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO27
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input2_EncA1
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Jack 3
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Switch (NC)
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.0.gpio.010.in <sup><a href="#Note_01">①</a></sup>
+</td></tr><tr><td align="center" valign="top"> <strong>14</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>15</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">11</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO28
+</td><td bgcolor="#e0f3ff" valign="top"> OutM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Output2
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 02
+</td><td bgcolor="#e0f3ff" valign="top"> ENAble
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.0.outm.00.out-02
+</td></tr><tr><td align="center" valign="top"> <strong>16</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>17</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">12</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO29
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 03
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 03
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>18</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W4 is DOWN = breakout power disabled (default) <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>19</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">13</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO30
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 03
+</td><td bgcolor="#e0f3ff" valign="top"> Dir/Table2
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 03
+</td><td bgcolor="#e0f3ff" valign="top"> Dir
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>20</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W4 is DOWN = breakout power disabled (default) <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>21</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">14</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO31
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input3_EncB1
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top"> Spare input
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>22</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W4 is DOWN = breakout power disabled (default) <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>23</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">15</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO32
+</td><td bgcolor="#e0f3ff" valign="top"> OutM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Output3
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 03
+</td><td bgcolor="#e0f3ff" valign="top"> ENAble
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.0.outm.00.out-03
+</td></tr><tr><td align="center" valign="top"> <strong>24</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W4 is DOWN = breakout power disabled (default) <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>25</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">16</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO33
+</td><td bgcolor="#e0f3ff" valign="top"> None
+</td><td align="center" bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top"> Signal Tower
+</td><td bgcolor="#e0f3ff" valign="top"> Red light relay (out)
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.0.gpio.016.out <sup><a href="#Note_04">④</a>, <a href="#Note_05">⑤</a></sup>
+</td></tr><tr><td align="center" valign="top"> <strong>26</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr></table>
+<h2 id="Connector-P1">Connector P1</h2>
+<table border="1" cellpadding="3" cellspacing="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><th align="center" style="width: 30px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> HDR 26 Pin#</span>
+</th><th style="width: 30px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> I/O</span>
+</th><th style="width: 50px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Pri. func</span>
+</th><th style="width: 50px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Sec. func</span>
+</th><th style="width: 30px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Chan nel</span>
+</th><th style="width: 80px; width: 40px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Sec. Pin func</span>
+</th><th style="width: 40px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Sec. Pin Dir</span>
+</th><th style="width: 60px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Axis</span>
+</th><th style="width: 150px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Use</span>
+</th><th style="vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Comment</span>
+</th></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>1</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">17</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO0
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 04
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 04
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>2</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">18</span>
+</td><td valign="top"> IO1
+</td><td valign="top"> StepGen
+</td><td align="center" valign="top"> 04
+</td><td valign="top"> Dir/Table2
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 04
+</td><td valign="top"> Dir
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>3</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">19</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO2
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input4_EncA2
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top"> Spare input
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>4</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">20</span>
+</td><td valign="top"> IO3
+</td><td valign="top"> OutM
+</td><td align="center" valign="top"> 00
+</td><td valign="top"> Output4
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 04
+</td><td valign="top"> ENAble
+</td><td valign="top"> hm2_7i92.0.outm.00.out-04
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>5</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">21</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO4
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 05
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 05
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>6</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">22</span>
+</td><td valign="top"> IO5
+</td><td valign="top"> StepGen
+</td><td align="center" valign="top"> 05
+</td><td valign="top"> Dir/Table2
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 05
+</td><td valign="top"> Dir
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>7</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">23</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO6
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input5_EncB2
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top"> Spare input
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>8</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">24</span>
+</td><td valign="top"> IO7
+</td><td valign="top"> OutM
+</td><td align="center" valign="top"> 00
+</td><td valign="top"> Output5
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 05
+</td><td valign="top"> ENAble
+</td><td valign="top"> hm2_7i92.0.outm.00.out-05
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>9</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">25</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO8
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 06
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> (unused)
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top"> <span style="color: #b22222;">Previously used for Chan 06 when an 8-channel system was used</span>
+</td></tr><tr><td align="center" valign="top"> <strong>10</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>11</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">26</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO9
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 06
+</td><td bgcolor="#e0f3ff" valign="top"> Dir/Table2
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> (unused)
+</td><td bgcolor="#e0f3ff" valign="top"> Dir
+</td><td bgcolor="#e0f3ff" valign="top"> <span style="color: #b22222;">Previously used for Chan 06 when an 8-channel system was used</span>
+</td></tr><tr><td align="center" valign="top"> <strong>12</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>13</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">27</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO10
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input6_EncA3
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top"> Signal Tower
+</td><td bgcolor="#e0f3ff" valign="top"> Buzzer relay (out)
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.0.gpio.027.out <sup><a href="#Note_04">④</a>, <a href="#Note_07">⑦</a></sup>
+</td></tr><tr><td align="center" valign="top"> <strong>14</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>15</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">28</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO11
+</td><td bgcolor="#e0f3ff" valign="top"> OutM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Output6
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> (unused)
+</td><td bgcolor="#e0f3ff" valign="top"> ENAble
+</td><td bgcolor="#e0f3ff" valign="top"> <span style="color: #b22222;">Previously used for Chan 06 when an 8-channel system was used</span> (hm2_7i92.0.outm.00.out-06)
+</td></tr><tr><td align="center" valign="top"> <strong>16</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>17</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">29</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO12
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 07
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> (unused)
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top"> <span style="color: #b22222;">Previously used for Chan 07 when an 8-channel system was used</span>
+</td></tr><tr><td align="center" valign="top"> <strong>18</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> 5V
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W3 is UP = breakout power enabled <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>19</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">30</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO13
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 07
+</td><td bgcolor="#e0f3ff" valign="top"> Dir/Table2
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> (unused)
+</td><td bgcolor="#e0f3ff" valign="top"> Dir
+</td><td bgcolor="#e0f3ff" valign="top"> <span style="color: #b22222;">Previously used for Chan 07 when an 8-channel system was used</span>
+</td></tr><tr><td align="center" valign="top"> <strong>20</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> 5V
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W3 is UP = breakout power enabled <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>21</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">31</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO14
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input7_EncB3
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top"> E-Stop Button
+</td><td bgcolor="#e0f3ff" valign="top"> E-Stop (NC)
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.0.gpio.031.in <sup><a href="#Note_02">②</a></sup>
+</td></tr><tr><td align="center" valign="top"> <strong>22</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> 5V
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W3 is UP = breakout power enabled <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>23</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">32</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO15
+</td><td bgcolor="#e0f3ff" valign="top"> OutM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Output7
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> (unused)
+</td><td bgcolor="#e0f3ff" valign="top"> ENAble
+</td><td bgcolor="#e0f3ff" valign="top"> <span style="color: #b22222;">Previously used for Chan 07 when an 8-channel system was used</span>	(hm2_7i92.0.outm.00.out-07)
+</td></tr><tr><td align="center" valign="top"> <strong>24</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> 5V
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W3 is UP = breakout power enabled <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>25</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">33</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO16
+</td><td bgcolor="#e0f3ff" valign="top"> None
+</td><td align="center" bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top"> Signal Tower
+</td><td bgcolor="#e0f3ff" valign="top"> Green light relay (out)
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.0.gpio.033.out <sup><a href="#Note_04">④</a>, <a href="#Note_06">⑥</a></sup>
+</td></tr><tr><td align="center" valign="top"> <strong>26</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr></table>
+<h1 id="Expansion-Box">Expansion Box</h1>
+<h2 id="Connector-P2_">Connector P2</h2>
+<table border="1" cellpadding="3" cellspacing="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><th align="center" style="width: 30px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> HDR 26 Pin#</span>
+</th><th style="width: 30px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> I/O</span>
+</th><th style="width: 50px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Pri. func</span>
+</th><th style="width: 50px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Sec. func</span>
+</th><th style="width: 30px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Chan nel</span>
+</th><th style="width: 80px; width: 40px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Sec. Pin func</span>
+</th><th style="width: 40px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Sec. Pin Dir</span>
+</th><th style="width: 60px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Axis</span>
+</th><th style="width: 150px; vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Use</span>
+</th><th style="vertical-align: bottom; background-color: #00416a;" valign="top"> <span style="color: white;"> Comment</span>
+</th></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>1</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">0</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO17
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 06
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>2</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">1</span>
+</td><td valign="top"> IO18
+</td><td valign="top"> StepGen
+</td><td align="center" valign="top"> 00
+</td><td valign="top"> Dir/Table2
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 06
+</td><td valign="top"> Dir
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>3</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">2</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO19
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input0_EncA0
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Jack 4
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Switch (NC)
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.1.gpio.002.in <sup><a href="#Note_01">①</a></sup>
+</td></tr><tr><td align="center" valign="top"> <strong>4</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">3</span>
+</td><td valign="top"> IO20
+</td><td valign="top"> OutM
+</td><td align="center" valign="top"> 00
+</td><td valign="top"> Output0
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 06
+</td><td valign="top"> ENAble
+</td><td valign="top"> hm2_7i92.1.outm.00.out-00
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>5</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">4</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO21
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 01
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 07
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>6</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">5</span>
+</td><td valign="top"> IO22
+</td><td valign="top"> StepGen
+</td><td align="center" valign="top"> 01
+</td><td valign="top"> Dir/Table2
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 07
+</td><td valign="top"> Dir
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>7</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">6</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO23
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input1_EncB0
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Jack 5
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Switch (NC)
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.1.gpio.006.in <sup><a href="#Note_01">①</a></sup>
+</td></tr><tr><td align="center" valign="top"> <strong>8</strong>
+</td><td align="center" valign="top"> <span style="color: gray;">7</span>
+</td><td valign="top"> IO24
+</td><td valign="top"> OutM
+</td><td align="center" valign="top"> 00
+</td><td valign="top"> Output1
+</td><td valign="top"> (Out)
+</td><td valign="top"> Chan 07
+</td><td valign="top"> ENAble
+</td><td valign="top"> hm2_7i92.1.outm.00.out-01
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>9</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">8</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO25
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 02
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 08
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>10</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>11</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">9</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO26
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 02
+</td><td bgcolor="#e0f3ff" valign="top"> Dir/Table2
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 08
+</td><td bgcolor="#e0f3ff" valign="top"> Dir
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>12</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>13</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">10</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO27
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input2_EncA1
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Jack 6
+</td><td bgcolor="#e0f3ff" valign="top"> Limit Switch (NC)
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.1.gpio.010.in <sup><a href="#Note_01">①</a></sup>
+</td></tr><tr><td align="center" valign="top"> <strong>14</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>15</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">11</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO28
+</td><td bgcolor="#e0f3ff" valign="top"> OutM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Output2
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 08
+</td><td bgcolor="#e0f3ff" valign="top"> ENAble
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.1.outm.00.out-02
+</td></tr><tr><td align="center" valign="top"> <strong>16</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>17</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">12</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO29
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 03
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Table1
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 09
+</td><td bgcolor="#e0f3ff" valign="top"> Step/Pulse
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>18</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W4 is DOWN = breakout power disabled (default) <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>19</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">13</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO30
+</td><td bgcolor="#e0f3ff" valign="top"> StepGen
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 03
+</td><td bgcolor="#e0f3ff" valign="top"> Dir/Table2
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 09
+</td><td bgcolor="#e0f3ff" valign="top"> Dir
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>20</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W4 is DOWN = breakout power disabled (default) <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>21</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">14</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO31
+</td><td bgcolor="#e0f3ff" valign="top"> InM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Input3_EncB1
+</td><td bgcolor="#e0f3ff" valign="top"> (In)
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top"> Spare input
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>22</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W4 is DOWN = breakout power disabled (default) <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>23</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">15</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO32
+</td><td bgcolor="#e0f3ff" valign="top"> OutM
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> 00
+</td><td bgcolor="#e0f3ff" valign="top"> Output3
+</td><td bgcolor="#e0f3ff" valign="top"> (Out)
+</td><td bgcolor="#e0f3ff" valign="top"> Chan 09
+</td><td bgcolor="#e0f3ff" valign="top"> ENAble
+</td><td bgcolor="#e0f3ff" valign="top"> hm2_7i92.1.outm.00.out-03
+</td></tr><tr><td align="center" valign="top"> <strong>24</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top"> GND
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top"> Jumper W4 is DOWN = breakout power disabled (default) <sup><a href="#Note_03">③</a></sup>
+</td></tr><tr><td align="center" bgcolor="#e0f3ff" valign="top"> <strong>25</strong>
+</td><td align="center" bgcolor="#e0f3ff" valign="top"> <span style="color: gray;">16</span>
+</td><td bgcolor="#e0f3ff" valign="top"> IO33
+</td><td bgcolor="#e0f3ff" valign="top"> None
+</td><td align="center" bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top"> (Unused)
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td><td bgcolor="#e0f3ff" valign="top">  
+</td></tr><tr><td align="center" valign="top"> <strong>26</strong>
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td align="center" valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td><td valign="top">  
+</td></tr></table>
+<h2 id="Connector-P1_">Connector P1</h2>
+<p>Connector P1 is not used for this design.
+</p>
+<hr/>
+<h1 id="Notes">Notes</h1>
+<ol><li> <a id="Note_01"></a><strong>Limit switches</strong>
+<ul><li>GX-12/2 plug
+</li><li>Normally Closed (NC) switches are recommended.
+</li><li>Limit Jacks 1 - 3 are on the base card; Limit Jacks 4 - 6 are on the expansion card and work only while <strong>Expansion Box - Connected</strong> is ticked.
+</li><li>When set to Normally Open (NO) in the Rosetta Settings program, LinuxCNC reads the card's inverted input for that pin (<code>.in_not</code> instead of <code>.in</code>), so no NOT function is needed.
+</li><li>See also, 
+<ul><li><a class="online" href="https://rosetta.colvintools.com/UserManual/index.php?n=Main.LimitSwitchCabling" rel="noopener" target="_blank" title="Opens on the Internet">Limit Switch Cabling</a>
+</li></ul></li></ul></li><li> <a id="Note_02"></a><strong>E-Stop Button</strong>
+<ul><li>GX-16/2 plug
+</li><li>E-stop button must be a Normally Closed (NC) switch
+</li><li>See also, 
+<ul><li><a class="online" href="https://rosetta.colvintools.com/UserManual/index.php?n=Main.E-StopCabling" rel="noopener" target="_blank" title="Opens on the Internet">E-stop Button Cabling</a>
+</li></ul></li></ul></li><li> <a id="Note_03"></a><strong>Breakout Power</strong>
+<ul><li>W3 switches the 5V breakout power on connector P1, and W4 on connector P2.  For more information, see <a class="online" href="https://rosetta.colvintools.com/Documents/7i92man.pdf" rel="noopener" target="_blank" title="Opens on the Internet">7I92 Ethernet Anything I/O Manual</a>, pg. 2
+</li></ul></li><li> <a id="Note_04"></a><strong>Signal Tower</strong>
+<ul><li>GX-12/4 plug
+</li><li>Active low from 7i92
+</li><li>See also, 
+<ul><li><a class="online" href="https://rosetta.colvintools.com/UserManual/index.php?n=Main.SignalTower" rel="noopener" target="_blank" title="Opens on the Internet">Signal Tower</a>
+</li><li><a class="online" href="https://rosetta.colvintools.com/UserManual/index.php?n=Main.SignalTowerCabling" rel="noopener" target="_blank" title="Opens on the Internet">Signal Tower Cabling</a>
+</li><li><a href="SignalTowerRelays.html">Signal Tower Relays</a>
+</li></ul></li></ul></li><li> <a id="Note_05"></a><strong>Signal Tower Red Light</strong>
+<ul><li>On after a following error, a limit trip, or a Mesa card losing contact; stays on until the machine is next switched on (F2).
+</li></ul></li><li> <a id="Note_06"></a><strong>Signal Tower Green Light</strong>
+<ul><li>On while a program or MDI command runs, and while a spindle is running or indexing.
+</li></ul></li><li> <a id="Note_07"></a><strong>Signal Tower Buzzer</strong>
+<ul><li>The 3-second fault siren (when red comes on), and the done / pause beeps - each can be set to the tower, the speaker, both, or off in the Settings program.
+</li></ul></li></ol>
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="Mesa7i92.html"><span>Previous</span>Mesa 7i92 Ethernet Anything I/O Card</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="RosettaKeyPrograms.html"><span>Next</span>Rosetta&#x27;s Key Programs</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

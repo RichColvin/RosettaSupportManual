@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rosetta_Backup.sh - Back Up to USB – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Rosetta_Backup.sh - Back Up to USB</span></p>
+  <h1>Rosetta_Backup.sh - Back Up to USB</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Purpose">Purpose</a></li><li class="toc-l0"><a href="#How-it-is-run">How it is run</a></li><li class="toc-l1"><a href="#Parameters">Parameters</a></li><li class="toc-l1"><a href="#Using-it">Using it</a></li><li class="toc-l0"><a href="#What-it-copies">What it copies</a></li><li class="toc-l0"><a href="#Files-it-creates">Files it creates</a></li><li class="toc-l0"><a href="#Restore-from-USB">Restore from USB</a></li><li class="toc-l0"><a href="#Programs-it-calls">Programs it calls</a></li><li class="toc-l0"><a href="#Notes-for-support">Notes for support</a></li></ul></nav>
+  <div class="content">
+
+<p><span style="color: navy;"><strong>Rosetta’s Key Programs:</strong></span> <a href="RosettaKeyPrograms.html">Overview</a> · <a href="RosettaLaunch.html">Rosetta_Launch.sh</a> · <a href="RosettaSettings.html">Rosetta_Settings.sh</a> · <a class="selflink" href="RosettaBackup.html">Rosetta_Backup.sh</a> · <a href="RosettaUpdate.html">Rosetta_Update.sh</a> · <a href="RosettaChangeNetwork.html">Rosetta_Change_Network.sh</a> · <a href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>
+</p><hr/>
+<h1 id="Purpose">Purpose</h1>
+<p>Rosetta_Backup.sh starts <strong>Back Up to USB</strong>, a small window that copies the operator's own files onto a USB memory stick: the settings, G-code programs, custom HAL file and tool table.  Everything else can be reinstalled from GitHub, so these are the files that matter if the Raspberry Pi's SD card fails.
+</p>
+<p class="vspace">The same program has a <strong>Restore from USB</strong> window, which copies a backup back onto the Raspberry Pi.  It is only started from Rosetta Settings' File menu - see <a href="#Restore">Restore from USB</a> below.
+</p>
+<h1 id="How-it-is-run">How it is run</h1>
+<ul><li>The <strong>Backup Rosetta</strong> desktop icon, and Applications &gt; Rosetta &gt; Backup Rosetta.
+</li><li>Rosetta Settings' <strong>File</strong> menu &gt; <strong>Back Up to USB...</strong>
+</li><li>From a terminal:
+</li></ul>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Backup.sh
+</p></td></tr></table>
+<h2 id="Parameters">Parameters</h2>
+<p>None.
+</p>
+<h2 id="Using-it">Using it</h2>
+<ol><li>Insert a USB stick.  It appears in the window within a couple of seconds (one opened before the stick goes in is fine).
+</li><li>Choose the stick if more than one is shown, and click <strong>Back Up</strong>.
+</li><li>Wait for <strong>Safe to remove</strong> before pulling the stick out.  The stick has been ejected: to use it again (another backup, a restore), pull it out and plug it back in.
+</li></ol><h1 id="What-it-copies">What it copies</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="50%"> <span style="color: white;"> <strong>From the Raspberry Pi</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>To the stick</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>*.ini</strong> (RosettaSet_v1.ini and saved or exported settings)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Documents/
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta/<strong>gcode/</strong> (all files and subfolders)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> gcode/
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> .../Rosetta/Rosetta_Custom/<strong>Rosetta_Custom.hal</strong> and <strong>Rosetta_Tool.tbl</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Custom/
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/linuxcnc/<strong>nc_files/</strong> (all files and subfolders; links to LinuxCNC's own examples are skipped)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> nc_files/
+</td></tr></table>
+<p>A folder missing on this machine is skipped and noted in the log.  The list is <strong>BACKUP_SOURCES</strong> at the top of Rosetta_Display/Rosetta_Backup.py.
+</p>
+<h1 id="Files-it-creates">Files it creates</h1>
+<p>On the stick, a new folder every time - an earlier backup is never overwritten:
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>Rosetta_Backup/YYYY-MM-DD_HHMM/ <br class="clearboth"/>
+Rosetta_Backup/YYYY-MM-DD_HHMM/backup_log.txt
+</p></td></tr></table>
+<p><strong>backup_log.txt</strong> lists every file copied and anything that failed.  Nothing is written on the Raspberry Pi itself.
+</p>
+<p class="vspace"><a id="Restore"></a>
+</p><h1 id="Restore-from-USB">Restore from USB</h1>
+<p>Started from Rosetta Settings' <strong>File</strong> menu &gt; <strong>Restore from USB...</strong> (window <strong>RestoreWindow</strong> in Rosetta_Display/Rosetta_Backup.py).
+</p>
+<ol><li>Choose the stick, then the backup - the dated folders under <strong>Rosetta_Backup/</strong> on the stick, newest first.  Older backups made before the renaming (in <strong>REB_Backup/</strong>) are listed too; their old names (REBset_v1.ini, REB_Custom/REB_Custom.hal, REB_Custom/REB_Tool.tbl) are restored under the new ones.
+</li><li>The window says how many files of each kind the backup holds, and, in red, any difference between the backup's machine setup and this one's - which role is on each channel, and whether the expansion box is connected.  This is a warning only.
+</li><li><strong>Restore</strong> asks for confirmation (Cancel is the default), then copies each file in the backup back to the folder it came from (the table above).
+</li><li>The stick is ejected, and Rosetta Settings closes without saving.
+</li></ol><p class="vspace">Rules:
+</p><ul><li>It refuses to start while LinuxCNC is running - LinuxCNC saves RosettaSet_v1.ini as it closes, which would undo the restore.
+</li><li>Every file it replaces is first copied to /home/reuben/Documents/<strong>Before_Restore/YYYY-MM-DD_HHMM/</strong>, laid out like a backup.  To undo a restore, copy those files back.
+</li><li>Files on the Raspberry Pi that aren't in the backup are left alone - nothing is deleted.
+</li><li>Each file is written beside the old one and then renamed over it, so a failed copy never leaves a half-written file.
+</li><li>Rosetta Settings closes afterwards so it can't save the values it had loaded over the restored settings file.  If it had unsaved tuning changes, it asks about them before the restore starts.
+</li></ul><h1 id="Programs-it-calls">Programs it calls</h1>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="35%"> <span style="color: white;"> <strong>Program</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>What for</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Display/<strong>Rosetta_Backup.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The program itself (Python 3, GTK 3).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>pgrep</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Checks whether LinuxCNC is running.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>udisksctl</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Unmounts and powers off the stick when the backup or restore is finished.
+</td></tr></table>
+<p>It finds the stick by reading /proc/mounts for the desktop's automount folders (/media/... or /run/media/...).
+</p>
+<h1 id="Notes-for-support">Notes for support</h1>
+<ul><li><strong>Stick not seen:</strong> it must be mounted by the desktop - check it opens in the file manager.  Only drives mounted under /media or /run/media count, so the SD card and network drives never appear.
+</li><li><strong>Back up with no program cutting.</strong> If LinuxCNC is running the window warns but still allows it: heavy USB copying can disturb the realtime motion timing.
+</li><li><strong>Restoring:</strong> use Restore from USB (above).  To bring back only the settings from a saved copy, Rosetta Settings' <strong>Load Settings</strong> also works.
+</li><li><strong>Stick missing after a backup or restore:</strong> it was ejected.  Pull it out and plug it back in.
+</li><li>The Raspberry Pi's whole SD card is <strong>not</strong> backed up - a failed card is replaced by reinstalling (<a href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>) and then copying these files back.
+</li><li>Not to be confused with an older Rosetta_Backup.sh (deleted 6 August 2026) that backed up a RoseEngineButlerLocal folder.
+</li></ul>
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="RosettaKeyPrograms.html"><span>Previous</span>Rosetta&#x27;s Key Programs</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="RosettaChangeNetwork.html"><span>Next</span>Rosetta_Change_Network.sh - Mesa Card and Network Setup</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

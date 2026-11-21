@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DM542T Digital Stepper Drive – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>DM542T Digital Stepper Drive</span></p>
+  <h1>DM542T Digital Stepper Drive</h1>
+  
+  <div class="content">
+
+<h1 id="Data-Needed-for-the-HAL-INI-Files">Data Needed for the HAL / INI Files</h1>
+<div class="img imgcaption"><span class="frame rfloat"> <img alt="" src="Images/DM542_Sequence_of_Control_Signals.png" width="600px"/><br/><span class="caption"><strong>Sequence chart of control signals</strong></span></span></div>
+<p class="vspace">Based on the chart to the right, the HAL configuration settings are:
+</p>
+<ul><li>These are 5 μs = 5,000 ns
+<ul><li>DIRHOLD                  = 5000
+</li><li>DIRSETUP                 = 5000
+</li></ul></li><li>These are 2.5 μs = 2,500 ns
+<ul><li>STEPLEN                  = 2500
+</li><li>STEPSPACE                = 2500
+</li></ul></li></ul><p class="vspace">These are the values in each [JOINT_n] / [SPINDLE_n] section of Rosetta.ini (DIRHOLD, DIRSETUP, STEPLEN, STEPSPACE).
+</p><hr/>
+<p><span style="color: red;"><strong>Note:</strong></span> Rosetta does not use a base thread - the Mesa 7i92 generates the step pulses in hardware, so the jitter and BASE_PERIOD calculation below is kept for reference only.  Rosetta.ini has no BASE_PERIOD for the same reason.
+</p>
+<p class="vspace">Max jitter was measured on the Raspberry Pi using the command,
+</p>
+<div class="indent">latency-test
+</div><p class="vspace">From that testing, the max jitter on the base thread was 16.4 μs.  (See also, <a class="online" href="https://linuxcnc.org/docs/stable/html/install/latency-test.html" rel="noopener" target="_blank" title="Opens on the Internet">https://linuxcnc.org/docs/stable/html/install/latency-test.html</a>.)
+</p>
+<p class="vspace">Using the data from above for the  Stepper Online DM542T Drivers
+</p><ul><li>Stability before stepping =  5.0 μs
+</li><li>Step length (2.5 μs x 2)  =  5.0 μs
+</li><li>Stability after stepping  =  5.0 μs
+</li><li>TOTAL = 15.0 μs
+</li></ul><p class="vspace">Thusly,
+</p>
+<ul><li>Base Period = 16.4 μs + 15.0 μs = 31.4 μs =  31,400 ns
+</li></ul><p class="vspace">The value it would give (not used in Rosetta.ini) is:
+</p><ul><li>BASE_PERIOD = 31400
+</li></ul><hr/>
+<p>The <a class="online" href="https://rosetta.colvintools.com/Support/Images/DM542T_V4.0.pdf" rel="noopener" target="_blank" title="Opens on the Internet">full user manual</a> is available.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="FileLocations.html"><span>Previous</span>File Locations</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="PanelAccessories.html"><span>Next</span>Panel Accessories - Limit Switches, E-Stop Button, Signal Tower</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

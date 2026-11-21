@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAL Support Programs – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>HAL Support Programs</span></p>
+  <h1>HAL Support Programs</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Key-Notes">Key Notes</a></li><li class="toc-l1"><a href="#halcmd">halcmd</a></li><li class="toc-l1"><a href="#halmeter">halmeter</a></li><li class="toc-l1"><a href="#halscope">halscope</a></li><li class="toc-l1"><a href="#halrun">halrun</a></li><li class="toc-l1"><a href="#halshow">halshow</a></li><li class="toc-l1"><a href="#halcmd-show-thread">halcmd show thread</a></li></ul></nav>
+  <div class="content">
+
+<h1 id="Key-Notes">Key Notes</h1>
+<h2 id="halcmd">halcmd</h2>
+<p>Some key commands to execute are:
+</p>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>halcmd show all &gt; all.txt
+</p></td></tr></table>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>halcmd show signal | grep spindle.1
+</p></td></tr></table>
+
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>halcmd -kf
+</p></td></tr></table>
+<p class="vspace">More detailed information can be found in the man(ual) page for halcmd.  Run man halcmd in a terminal window.
+</p>
+<h2 id="halmeter">halmeter</h2>
+<p>Used to show values of signals and pins.
+</p>
+<h2 id="halscope">halscope</h2>
+<p>Used to show values of signals and pins in an oscilloscope format.
+</p>
+<h2 id="halrun">halrun</h2>
+<p>Starts a HAL session without LinuxCNC (or runs a HAL file).  Not normally needed on Rosetta - use halcmd while LinuxCNC is running.
+</p>
+<h2 id="halshow">halshow</h2>
+<p>A window listing every pin, signal and parameter, with a watch list.  Start it from AXIS (Machine &gt; Show HAL Configuration) or with <strong>halshow</strong> in a terminal.
+</p>
+<h2 id="halcmd-show-thread">halcmd show thread</h2>
+<p>Shows each realtime thread's time.  The <strong>servo-thread</strong> Max Time (in ns) should stay well under 1,000,000 (1 ms) - see <a href="FieldTroubleshooting.html">Field Troubleshooting</a>.
+</p>
+
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="PIDTuning.html"><span>Previous</span>Panel Accessories - Limit Switches, E-Stop Button, Signal Tower</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="LaunchingRosetta.html"><span>Next</span>Launching Rosetta</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>

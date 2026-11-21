@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rosetta&#x27;s Key Programs – Rosetta Support Manual</title>
+<link rel="stylesheet" href="rosetta-docs.css">
+<script src="search-index.js" defer></script>
+<script src="rosetta-docs.js" defer></script>
+<link rel="icon" type="image/png" href="Images/RosettaLogo.png">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <img src="Images/RosettaLogo-White.png" alt="" width="44" height="44">
+    <span class="brand-lines"><span class="brand-text"><span class="brand-name">Rosetta</span> <span class="brand-section">Support Manual</span></span></span>
+  </a>
+  <nav class="site-nav" aria-label="Manuals">
+    <a href="index.html">Contents</a>
+    <a href="https://rosetta.colvintools.com/UserManual/">User Manual</a>
+  </nav>
+</header>
+<main class="page">
+  <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Rosetta&#x27;s Key Programs</span></p>
+  <h1>Rosetta&#x27;s Key Programs</h1>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Running-any-of-them-from-a-terminal">Running any of them from a terminal</a></li><li class="toc-l0"><a href="#Rules-they-share">Rules they share</a></li><li class="toc-l0"><a href="#Other-programs-support-may-meet">Other programs support may meet</a></li><li class="toc-l0"><a href="#Related-pages">Related pages</a></li></ul></nav>
+  <div class="content">
+
+<p><span style="color: navy;"><strong>Rosetta’s Key Programs:</strong></span> <a class="selflink" href="RosettaKeyPrograms.html">Overview</a> · <a href="RosettaLaunch.html">Rosetta_Launch.sh</a> · <a href="RosettaSettings.html">Rosetta_Settings.sh</a> · <a href="RosettaBackup.html">Rosetta_Backup.sh</a> · <a href="RosettaUpdate.html">Rosetta_Update.sh</a> · <a href="RosettaChangeNetwork.html">Rosetta_Change_Network.sh</a> · <a href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>
+</p><hr/>
+<p>The Rosetta_x.sh scripts are how the operator - and support - start every part of Rosetta.  Each one is short; most of them only start a Python program, which does the real work.  All of them live in /home/reuben/linuxcnc/configs/Rosetta (the installer is in its Rosetta_Setup folder).
+</p>
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="26%"> <span style="color: white;"> <strong>Script</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="22%"> <span style="color: white;"> <strong>Started from</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>What it does</strong></span>
+</td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="16%"> <span style="color: white;"> <strong>Main program</strong></span>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta icon
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Builds this machine's configuration, then starts LinuxCNC.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Generate_Local_Ini.py, linuxcnc
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <a href="RosettaSettings.html">Rosetta_Settings.sh</a>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta Settings icon
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Changes this machine's setup and tuning (LinuxCNC closed).  Its File menu also has Back Up to USB and Restore from USB.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Settings.py
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <a href="RosettaBackup.html">Rosetta_Backup.sh</a>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Backup Rosetta icon
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Copies settings, G-code, tool table and custom HAL to a USB stick.  (Restore from USB, which copies a backup back, is in Rosetta Settings' File menu.)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Backup.py
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <a href="RosettaUpdate.html">Rosetta_Update.sh</a>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Update Rosetta icon
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Latest files from GitHub, new settings, system updates.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> git, Rosetta_Update_Settings.py, apt
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <a href="RosettaChangeNetwork.html">Rosetta_Change_Network.sh</a>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Terminal (support)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Sets up the Mesa cards' addresses and the Pi's wired network; <strong>check</strong> shows which cards answer.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> mesaflash, nmcli
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <a href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Terminal, once (new machine)
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Network, Mesa card, key files, extra programs, folder shortcuts and serial number.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> nmcli, Rosetta_Change_Network.sh, apt
+</td></tr></table>
+<h1 id="Running-any-of-them-from-a-terminal">Running any of them from a terminal</h1>
+<p>The desktop icons hide everything the programs print.  When something doesn't work, run the same script in a terminal window and read the messages:
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>cd /home/reuben/linuxcnc/configs/Rosetta <br class="clearboth"/>
+./Rosetta_Launch.sh
+</p></td></tr></table>
+<p>"Permission denied" means the script isn't marked as runnable (a script can lose it when it is copied by hand): run it as <strong>bash ./Rosetta_Launch.sh</strong>, or restore the permission with <strong>chmod +x Rosetta_*.sh</strong>.
+</p>
+<h1 id="Rules-they-share">Rules they share</h1>
+<ul><li><strong>One at a time.</strong> Rosetta Settings, Restore from USB and the network script refuse to run while LinuxCNC is running; close LinuxCNC before an update too.
+</li><li><strong>Settings live in one file:</strong> /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>.  Rosetta Settings writes it, LinuxCNC saves live values into it at shutdown, the update adds new settings to it (and removes ones no longer used), Back Up to USB copies it, and Restore from USB puts a backed-up copy in its place.  Rosetta_Launch.sh only reads it.
+</li><li><strong>Changes apply at the next launch.</strong> Nothing changed in Rosetta Settings, by an update or by the network script reaches a running LinuxCNC.
+</li><li><strong>Don't edit the scripts.</strong> An update replaces them, and changes to them aren't supported.  Machine-specific HAL additions belong in Rosetta_Custom/Rosetta_Custom.hal, and AXIS window settings in /home/reuben/.axisrc.
+</li></ul><h1 id="Other-programs-support-may-meet">Other programs support may meet</h1>
+<p>These are started by the scripts above or by LinuxCNC, not by the operator:
+</p><ul><li>Rosetta_Setup/<strong>Rosetta_Generate_Local_Ini.py</strong> - builds Rosetta.local.ini and the .local HAL files at every launch (see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>).
+</li><li>Rosetta_Setup/<strong>Rosetta_Update_Settings.py</strong> - adds new settings, and removes ones no longer used, during an update (see <a href="RosettaUpdate.html">Rosetta_Update.sh</a>).
+</li><li>Rosetta_Setup/<strong>Rosetta_Renaming.py</strong> - at the end of every update, moves a machine still using the old Rose Engine Butler names over to the Rosetta names.  Does nothing on a machine already moved.
+</li><li>Rosetta_Display/<strong>Rosetta_main.py</strong> - the AXIS side panel (Indexing, Sync Move, Threading).
+</li><li>Rosetta_Display/<strong>Rosetta_Axis_Commands.py</strong> - extra AXIS commands, loaded by AXIS as it starts (Rosetta.ini's [DISPLAY]USER_COMMAND_FILE).  It runs /home/reuben/.axisrc, then adds the "not enabled" warning before Run (see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>).
+</li><li>Rosetta_Display/<strong>Rosetta_Settings_Restore.py</strong> - puts the saved scale, PID and limits onto the HAL pins as LinuxCNC starts.
+</li><li>Rosetta_Display/<strong>Rosetta_Scale_Persist.py</strong> - saves the live values to RosettaSet_v1.ini at shutdown (run by Rosetta_Shutdown.hal).
+</li><li>Rosetta_Display/<strong>rosetta_settings_io.py</strong> - shared code that reads and writes RosettaSet_v1.ini for all of the above.
+</li><li>Rosetta_Display/<strong>Rosetta_Backup.py</strong> - the Back Up to USB and Restore from USB windows (see <a href="RosettaBackup.html">Rosetta_Backup.sh</a>).
+</li><li>Rosetta_Display/<strong>Rosetta_Program_Estimate.py</strong> - started by the side panel when a G-code program starts, to work out the progress bar's percentages.
+</li><li>Rosetta_Setup/<strong>Rosetta_Add_Shortcuts.sh</strong> - adds the Rosetta and Gcode folder shortcuts, once (installer, then updates).
+</li><li>Rosetta_Setup/<strong>Rosetta_Set_Serial_Number.sh</strong> - asks for and records this machine's serial number in ~/.config/Rosetta/serial (installer, then updates until one is given).
+</li><li>Rosetta_Setup/<strong>Rosetta_Report_Version.py</strong> - sends the version report at every update (see <a href="RosettaUpdate.html">Rosetta_Update.sh</a>).
+</li><li><strong>Rosetta_Checkout.sh</strong> - bench checkout of a newly built system, with a test motor on every channel.  Run from a terminal by whoever builds the machine.
+</li></ul><h1 id="Related-pages">Related pages</h1>
+<ul><li><a href="LaunchingRosetta.html">Launching Rosetta</a>
+</li><li><a href="UpdatingRosetta.html">Updating Rosetta</a>
+</li><li><a href="FileLocations.html">Files &amp; Directories</a>
+</li></ul>
+<table border="0" width="100%"><tr><td valign="top">  
+</td></tr></table>
+
+
+
+
+
+
+  </div>
+<!--pager--><nav class="pager" aria-label="Previous and next page"><a class="pager-prev" href="MesaBoardPinToAxisMapping.html"><span>Previous</span>Mesa 7i92 Board Pin to Axis Mapping</a><a class="pager-contents" href="index.html"><span>Support Manual</span>Contents</a><a class="pager-next" href="RosettaBackup.html"><span>Next</span>Rosetta_Backup.sh - Back Up to USB</a></nav><!--/pager-->
+</main>
+<footer class="site-footer">
+  <p>Links marked <span class="online-eg">↗</span><span class="local-only"> and shown in brown</span> open on the Internet. Without a connection, use another computer or a phone.
+     The latest version of this manual is at <a class="online" href="https://rosetta.colvintools.com/Support/" target="_blank" rel="noopener">https://rosetta.colvintools.com/Support/</a>.</p>
+  <div class="footer-links">
+    <div><a class="online" href="https://rosetta.colvintools.com/Rosetta_Overview.html" target="_blank" rel="noopener">About the Rosetta System</a><br>
+      <a class="online" href="https://rosetta.colvintools.com/TermsofUse.html" target="_blank" rel="noopener">Terms of Use</a></div>
+    <div class="footer-contact">Questions or comments?<br>
+      <a href="mailto:ColvinTools@Gmail.com">ColvinTools@Gmail.com</a></div>
+  </div>
+  <p class="copyright">Copyright © 2026 Colvin Tools and Brainwave Embedded.</p>
+</footer>
+</body>
+</html>
