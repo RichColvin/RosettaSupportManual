@@ -56,10 +56,10 @@ bash Rosetta_Install_Debian_13_Trixie.sh
 </li><li><strong>Claude Code</strong> - Node.js 20 from NodeSource, then the Claude Code npm package into ~/.npm-global.
 </li><li><strong>Chromium</strong> (web browser, from Debian's own packages).
 </li><li><strong>Folder shortcuts</strong> - runs Rosetta_Setup/<strong>Rosetta_Add_Shortcuts.sh</strong>: "Rosetta" and "Gcode" in the file manager's Places list, and two Turk's head launchers for those folders on the bottom panel, next to the File Manager.
-</li><li><strong>Serial number</strong> - runs Rosetta_Setup/<strong>Rosetta_Set_Serial_Number.sh</strong>, which asks for this machine's serial number (e.g. 4).  Press Enter to skip; it is asked again at the next update.
+</li><li><strong>Serial number</strong> - runs Rosetta_Setup/<strong>Rosetta_Set_Serial_Number.sh</strong>, which asks for this machine's serial number (e.g. 4).  Press Enter to skip; it is asked again at the next update.  Then Rosetta_Setup/<strong>Rosetta_Set_Machine_Name.sh --install</strong> names the computer after it - <strong>rosetta-004</strong> - without asking, so an owner's machines never share a name on the network (with no serial number, after the end of the Pi's own hardware serial, e.g. rosetta-9e4ddaf).  It takes effect at the restart that ends the install.
 </li><li><strong>Last step</strong> - asks to shut down, then: switch off, move the card's W5/W6 jumpers to EEPROM, switch on, and run <strong>Rosetta_Change_Network.sh check</strong>.
 </li></ol><h1 id="Programs-it-calls">Programs it calls</h1>
-<p><strong>nmcli</strong>, <strong>Rosetta_Change_Network.sh</strong> (which uses <strong>mesaflash</strong>), <strong>cp</strong>, <strong>mkdir</strong>, <strong>sudo apt install</strong>, <strong>curl</strong> (NodeSource setup), <strong>npm</strong>, <strong>claude --version</strong>, Rosetta_Setup/<strong>Rosetta_Add_Shortcuts.sh</strong> (uses <strong>xfconf-query</strong>), Rosetta_Setup/<strong>Rosetta_Set_Serial_Number.sh</strong>, <strong>sudo poweroff</strong>.
+<p><strong>nmcli</strong>, <strong>Rosetta_Change_Network.sh</strong> (which uses <strong>mesaflash</strong>), <strong>cp</strong>, <strong>mkdir</strong>, <strong>sudo apt install</strong>, <strong>curl</strong> (NodeSource setup), <strong>npm</strong>, <strong>claude --version</strong>, Rosetta_Setup/<strong>Rosetta_Add_Shortcuts.sh</strong> (uses <strong>xfconf-query</strong>), Rosetta_Setup/<strong>Rosetta_Set_Serial_Number.sh</strong>, Rosetta_Setup/<strong>Rosetta_Set_Machine_Name.sh</strong>, <strong>sudo poweroff</strong>.
 </p>
 <h1 id="Files-it-references">Files it references</h1>
 <ul><li>Rosetta_Setup/MesaCard/<strong>7i92t_Rosetta.bin</strong>, <strong>7i92t_Rosetta.pin</strong>, <strong>PIN_Rosetta_34.vhd</strong>
@@ -89,6 +89,8 @@ bash Rosetta_Install_Debian_13_Trixie.sh
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> The folder shortcuts.  The marker file stops them being added again - delete it, or run Rosetta_Add_Shortcuts.sh <strong>--force</strong>, to add them again.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>serial</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> The serial number typed in (only if one was given).
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /etc/<strong>hostname</strong>, /etc/<strong>hosts</strong> (the 127.0.1.1 line), /etc/cloud/cloud.cfg.d/<strong>99_rosetta_hostname.cfg</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The computer's name, rosetta- and the serial number.  The cloud-init file stops Raspberry Pi OS setting the name back at boot.  Until the restart, /etc/hosts lists the old name too; the next update tidies it.
 </td></tr></table>
 <h1 id="Notes-for-support">Notes for support</h1>
 <ul><li><strong>Settings file ownership on older machines:</strong> installers before 24 October 2026 copied RosettaSet_v1.ini (and the home-folder Rosetta_Update.sh) with sudo, so on a machine installed before then they may have belonged to root.  Rosetta now replaces the settings file each time it saves it, which gives it to reuben, so this normally fixes itself.  If a save still fails, check the owner and fix it with:
@@ -101,6 +103,7 @@ sudo chown reuben:reuben /home/reuben/Documents/RosettaSet_v1.ini
 </li><li><strong>A failed step</strong> stops the installer with "PROGRAM TERMINATED PREMATURELY".  Read the message above it, fix the cause, and run it again.
 </li><li><strong>Desktop and menu entries</strong> aren't made by the installer - add them with MenuLibre (each icon's Command is the full path of the Rosetta_x.sh script it starts).
 </li><li>The expansion box's card is set up separately, with <strong>Rosetta_Change_Network.sh expansion</strong>.
+</li><li><strong>Computer name:</strong> if the serial number was skipped, the computer is named after the Pi's hardware serial; once a serial number is set, the next update offers to rename it rosetta- and that number.
 </li><li><strong>Folder shortcuts or serial number missing:</strong> both steps are repeated by every update until they are done, so running <a href="RosettaUpdate.html">Update Rosetta</a> from the desktop fixes them.  The shortcuts need the desktop to be running (they can't be added over ssh).
 </li></ul><h1 id="Related-pages">Related pages</h1>
 <ul><li><a href="InstallationAndSetupForDebian13Trixie.html">Installation and Setup for Debian 13 Trixie</a>

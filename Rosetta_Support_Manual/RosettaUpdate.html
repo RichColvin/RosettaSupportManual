@@ -50,11 +50,14 @@
 </li><li><strong>git pull</strong> - gets the latest version of the branch the machine is on (normally main).  If this fails, it puts the local changes back and stops.
 </li><li><strong>git stash pop</strong> - puts the local changes back.  If the update changed the same lines, it leaves the files exactly as pulled, keeps the local changes in the stash, and prints a warning.
 </li><li><strong>Rosetta_Setup/Rosetta_Update_Settings.py</strong> - adds any new settings to this machine's settings file.  A problem here is reported but the update carries on.  It then:
-<ul><li>runs the <strong>one-time steps</strong> for machines built before they were added to the installer - Rosetta_Add_Shortcuts.sh (folder shortcuts) and Rosetta_Set_Serial_Number.sh (asks for the serial number if none is recorded).  Each does nothing once it has been done.
+<ul><li>runs the <strong>one-time steps</strong> for machines built before they were added to the installer - Rosetta_Add_Shortcuts.sh (folder shortcuts), Rosetta_Set_Serial_Number.sh (asks for the serial number if none is recorded) and <strong>Rosetta_Set_Machine_Name.sh</strong> (asks once whether to name the computer after the serial number, e.g. <strong>rosetta-003</strong> - see below), among others.  Each does nothing once it has been done.
 </li><li>sends a <strong>version report</strong> (see below).
 </li><li>At the end, <strong>Rosetta_Setup/Rosetta_Renaming.py</strong> moves a machine still using the old Rose Engine Butler names over to the Rosetta names (it does nothing on a machine already moved).
 </li></ul></li><li><strong>Refreshes the EtherLab package signing key</strong> - only if that package source is set up; a failure only warns.
 </li><li><strong>sudo apt update</strong> and <strong>sudo apt upgrade -y</strong> - stops with an error if either fails.
+</li><li><strong>Packages kept back</strong> (since 22 November 2026) - <strong>apt upgrade</strong> never installs or removes a package, so it keeps back an upgrade that needs a new one (e.g. the camera software moving from libcamera0.7 to 0.8).  The update checks what <strong>apt-get full-upgrade</strong> would do and runs it only if everything it would remove is an automatically installed library (<strong>lib...</strong>) and none is LinuxCNC's; otherwise it lists them and leaves them.
+</li><li><strong>Packages no longer needed</strong> (since 22 November 2026) - first marks the running kernel's <strong>linux-image-</strong> and <strong>linux-headers-</strong> packages as installed in their own right (Rosetta boots <strong>kernel8_rt.img</strong>, copied by hand, whose drivers come from that package), then runs <strong>apt-get autoremove -y</strong> only if nothing on its list carries the running kernel's version or is LinuxCNC's or mesaflash; otherwise it lists them and leaves them.  Old standard kernels are the usual thing removed.
+</li><li><strong>A message box</strong> at the end (since 22 November 2026, Rosetta_Display/<strong>Rosetta_Update_Done.py</strong>): the version now installed and the one before, how many system packages changed, whether to restart (the kernel, Pi firmware or a core library changed, or the computer's new name is waiting), and anything the update couldn't do.  If the update stops part way it says so - the terminal window closes at once, so this is where the error shows.
 </li></ol><h1 id="Programs-it-calls">Programs it calls</h1>
 <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="35%"> <span style="color: white;"> <strong>Program</strong></span>
 </td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>What for</strong></span>
@@ -62,12 +65,14 @@
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Getting the latest files from GitHub, keeping local edits.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Setup/<strong>Rosetta_Update_Settings.py</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Adds new settings to RosettaSet_v1.ini; uses Rosetta_Display/<strong>rosetta_settings_io.py</strong>.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Setup/<strong>Rosetta_Add_Shortcuts.sh</strong>, <strong>Rosetta_Set_Serial_Number.sh</strong>, <strong>Rosetta_Report_Version.py</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Setup/<strong>Rosetta_Add_Shortcuts.sh</strong>, <strong>Rosetta_Set_Serial_Number.sh</strong>, <strong>Rosetta_Set_Machine_Name.sh</strong>, <strong>Rosetta_Report_Version.py</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> The one-time steps and the version report, run by Rosetta_Update_Settings.py.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>curl</strong>, <strong>gpg</strong>, <strong>cmp</strong>, <strong>sudo install</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Fetching, checking and installing the EtherLab signing key.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>sudo apt update</strong>, <strong>sudo apt upgrade -y</strong>
-</td><td style="padding: 4px; vertical-align: top;" valign="top"> Updating Debian, LinuxCNC, ClamAV and the other packages.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>sudo apt update</strong>, <strong>sudo apt upgrade -y</strong>, <strong>apt-get full-upgrade -y</strong>, <strong>apt-get autoremove -y</strong>, <strong>apt-mark</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Updating Debian, LinuxCNC, ClamAV and the other packages; packages kept back; removing packages no longer needed.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Display/<strong>Rosetta_Update_Done.py</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The message box at the end.
 </td></tr></table>
 <h1 id="Files-it-reads">Files it reads</h1>
 <ul><li>The whole repository at /home/reuben/linuxcnc/configs/Rosetta (through git)
@@ -91,6 +96,8 @@
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> One line added for every version report, whether or not it could be sent.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>serial</strong>, the folder shortcuts
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Only the first time, on a machine that doesn't have them yet.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /etc/<strong>hostname</strong>, /etc/<strong>hosts</strong>, /etc/cloud/cloud.cfg.d/<strong>99_rosetta_hostname.cfg</strong>, /home/reuben/.config/Rosetta/<strong>machine-name-offered</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Only if the operator agrees to the new computer name (see the note below).  The last file records the name offered, so a "no" isn't asked again unless the serial number changes.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> System packages
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Updated by apt.
 </td></tr></table>
@@ -101,7 +108,12 @@
 </li><li><strong>"settings file could not be checked"</strong> - RosettaSet_v1.ini couldn't be read.  It is left as it was; check it isn't empty or hand-edited, and that reuben owns it (<strong>ls -l ~/Documents/RosettaSet_v1.ini</strong>).
 </li><li><strong>EtherLab key warnings</strong> are harmless - nothing Rosetta uses comes from that source.
 </li><li><strong>Version report.</strong> Every update sends this machine's Raspberry Pi hardware serial number, its serial number (if one was recorded), the Rosetta version and date shown on the panel, and the time, to <strong><a class="online" href="https://rosetta.colvintools.com/Support/reb_report.php" rel="noopener" target="_blank" title="Opens on the Internet">https://rosetta.colvintools.com/Support/reb_report.php</a></strong>.  Nothing else is sent.  It is logged first in ~/.config/Rosetta/report_log.jsonl; if there's no internet it prints a warning and the update carries on (that report isn't sent later).
-</li><li><strong>It asks for a serial number</strong> at every update until one is given (press Enter to skip).  To set it later, run <strong>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Serial_Number.sh</strong>.
+</li><li><strong>Computer name</strong> (since 22 November 2026): an owner with more than one Rosetta needs them named differently - two computers with the same name both answer to <strong>name.local</strong>, one quietly becomes <strong>name-2</strong>, and remote desktop or SSH can reach the wrong one.  The update offers once to rename the computer <strong>rosetta-</strong> plus its serial number (S/N Rosetta003 gives <strong>rosetta-003</strong>, S/N 4 gives <strong>rosetta-004</strong>); the new name takes effect at the next restart.  Anything that connects to it by name must use the new name afterwards.  To be asked again after saying no:
+</li></ul>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Machine_Name.sh --force
+</p></td></tr></table>
+<ul><li><strong>It asks for a serial number</strong> at every update until one is given (press Enter to skip).  To set it later, run <strong>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Serial_Number.sh</strong>.
 </li><li><strong>Run it twice</strong> after a big change: the first run may update Rosetta_Update.sh or Rosetta_Update_Settings.py themselves, and the second run uses the new versions.
 </li><li>Once the update has run, start Rosetta normally - the new files take effect at the next launch.
 </li><li>The installer also puts a copy of this script at /home/reuben/<strong>Rosetta_Update.sh</strong>.  Nothing uses it - the desktop icon and menu entry run the one in the Rosetta folder - and updates never refresh it, so don't run it.
