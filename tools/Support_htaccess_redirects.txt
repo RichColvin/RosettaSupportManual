@@ -1,0 +1,38 @@
+# The redirect lines for the website's /Support/.htaccess
+# (rosetta.colvintools.com, GoDaddy), added 22 November 2026 when the
+# Support Manual moved from the PmWiki site in /Support/ to the HTML
+# pages in /Rosetta_Support_Manual/.
+#
+# /Support/ itself stays: it holds reb_report.php and reb_report_view.php
+# (every Rosetta's update reports its version there - never move or
+# delete them) and their data. These lines only send the manual's old
+# addresses to the new pages; they don't touch reb_report*.php.
+#
+# Paste them at the END of /Support/.htaccess, below the lines already
+# there (the password and blocking lines must stay as they are).
+
+# --- Support Manual moved to /Rosetta_Support_Manual/ ---------------
+RewriteEngine On
+
+# Pages renamed in the Rose Engine Butler -> Rosetta renaming
+RewriteCond %{QUERY_STRING} (?:^|&)n=Main[./]REBBackup(?:&|$) [NC]
+RewriteRule ^(index\.php|pmwiki\.php)?$ /Rosetta_Support_Manual/RosettaBackup.html [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} (?:^|&)n=Main[./]REBLaunch(?:&|$) [NC]
+RewriteRule ^(index\.php|pmwiki\.php)?$ /Rosetta_Support_Manual/RosettaLaunch.html [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} (?:^|&)n=Main[./]UpdatingRoseEngineButler(?:&|$) [NC]
+RewriteRule ^(index\.php|pmwiki\.php)?$ /Rosetta_Support_Manual/UpdatingRosetta.html [R=301,L,QSD]
+
+# index.php?n=Main.SomePage -> SomePage.html, if that page exists
+RewriteCond %{QUERY_STRING} (?:^|&)n=Main[./]([A-Za-z0-9-]+)
+RewriteRule ^(index\.php|pmwiki\.php)?$ - [E=SM_PAGE:%1]
+RewriteCond %{ENV:SM_PAGE} .
+RewriteCond %{DOCUMENT_ROOT}/Rosetta_Support_Manual/%{ENV:SM_PAGE}.html -f
+RewriteRule ^(index\.php|pmwiki\.php)?$ /Rosetta_Support_Manual/%{ENV:SM_PAGE}.html [R=301,L,QSD]
+
+# Anything else of the old wiki's (HomePage, pages that no longer
+# exist, the bare folder) -> the contents page
+RewriteRule ^(index\.php|pmwiki\.php)?$ /Rosetta_Support_Manual/ [R=301,L,QSD]
+
+# Files that moved with the manual
+RewriteRule ^(Images|3DPrint)/(.+)$ /Rosetta_Support_Manual/$1/$2 [R=301,L]
+# ---------------------------------------------------------------------

@@ -3,7 +3,7 @@
 The Support Manual for the Rosetta system: more technical topics (hardware build,
 installation, HAL files, Mesa card, diagnostics, …). It is not the starting place
 for the general user — that is the
-[User Manual](https://rosetta.colvintools.com/UserManual/).
+[User Manual](https://rosetta.colvintools.com/Rosetta_User_Manual/).
 
 This manual is for the website only; unlike the User Manual and Gcode Library
 (which live in the [Rosetta](https://github.com/RichColvin/Rosetta) repo and are
@@ -42,3 +42,9 @@ Converted on 21 November 2026 from the PmWiki Support Manual at
 Rosetta renaming (`REBBackup`, `REBLaunch`, `UpdatingRoseEngineButler`, …), which no
 current page linked to, were left out. Pictures were re-compressed (about 5.1 MB →
 3.1 MB) only where the result is visually the same.
+
+Published 22 November 2026 at https://rosetta.colvintools.com/Rosetta_Support_Manual/
+(uploaded by hand through cPanel's File Manager). The old `/Support/` folder now holds
+only the version-report scripts (`reb_report.php`, `reb_report_view.php`) and their
+data - never empty it - plus an `.htaccess` whose redirects send the old PmWiki
+addresses here; those lines are kept in `tools/Support_htaccess_redirects.txt`.
