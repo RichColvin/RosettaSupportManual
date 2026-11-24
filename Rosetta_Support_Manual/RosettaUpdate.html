@@ -34,7 +34,7 @@
 <p class="vspace"><a href="UpdatingRosetta.html">Updating Rosetta</a> covers local changes, branches and going back to an earlier version; this page covers the program itself.
 </p>
 <h1 id="How-it-is-run">How it is run</h1>
-<ul><li>The <strong>Update Rosetta</strong> desktop icon, and Applications &gt; Rosetta &gt; Update Rosetta.  It runs in a terminal window.
+<ul><li>Applications &gt; Rosetta &gt; <strong>Update Rosetta</strong>.  It runs in a terminal window.  (Machines built before 17 November 2026 also had a desktop icon; the first update after that took it off.)
 </li><li>From a terminal:
 </li></ul>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
@@ -116,7 +116,7 @@
 <ul><li><strong>It asks for a serial number</strong> at every update until one is given (press Enter to skip).  To set it later, run <strong>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Serial_Number.sh</strong>.
 </li><li><strong>Run it twice</strong> after a big change: the first run may update Rosetta_Update.sh or Rosetta_Update_Settings.py themselves, and the second run uses the new versions.
 </li><li>Once the update has run, start Rosetta normally - the new files take effect at the next launch.
-</li><li>The installer also puts a copy of this script at /home/reuben/<strong>Rosetta_Update.sh</strong>.  Nothing uses it - the desktop icon and menu entry run the one in the Rosetta folder - and updates never refresh it, so don't run it.
+</li><li>The installer also puts a copy of this script at /home/reuben/<strong>Rosetta_Update.sh</strong>.  Nothing uses it - the menu entry runs the one in the Rosetta folder - and updates never refresh it, so don't run it.
 </li></ul>
 <table border="0" width="100%"><tr><td valign="top">  
 </td></tr></table>

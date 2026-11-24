@@ -23,7 +23,7 @@
 <main class="page">
   <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>Software Installation and Setup for Debian 13 Trixie</span></p>
   <h1>Software Installation and Setup for Debian 13 Trixie</h1>
-  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Prerequisites">Prerequisites</a></li><li class="toc-l0"><a href="#Part-1-Build-the-Boot-Drive-for-LinuxCNC">Part 1 - Build the Boot Drive for LinuxCNC</a></li><li class="toc-l1"><a href="#1-1-Get-the-Raspberry-Pi-Imager">1.1 Get the Raspberry Pi Imager</a></li><li class="toc-l1"><a href="#1-2-Download-the-LinuxCNC-Image-File">1.2 Download the LinuxCNC Image File</a></li><li class="toc-l1"><a href="#1-3-Create-the-Boot-Disk-for-the-Raspberry-Pi">1.3 Create the Boot Disk for the Raspberry Pi</a></li><li class="toc-l0"><a href="#Part-2-Configure-Linux-on-the-Raspberry-Pi">Part 2 - Configure Linux on the Raspberry Pi</a></li><li class="toc-l1"><a href="#2-1-Start-the-Raspberry-Pi">2.1 Start the Raspberry Pi</a></li><li class="toc-l1"><a href="#2-2-Set-System-Defaults">2.2 Set System Defaults</a></li><li class="toc-l1"><a href="#2-3-Set-Wired-Network-Connection-Test-Network-Connections">2.3 Set Wired Network Connection &amp; Test Network Connections</a></li><li class="toc-l1"><a href="#2-4-Set-Rest-of-System-Options">2.4 Set Rest of System Options</a></li><li class="toc-l1"><a href="#2-5-Download-the-Files-Needed">2.5 Download the Files Needed</a></li><li class="toc-l1"><a href="#2-6-Clean-Up-the-Desktop">2.6 Clean Up the Desktop</a></li><li class="toc-l0"><a href="#Part-3-Setup-LinuxCNC">Part 3 - Setup LinuxCNC</a></li><li class="toc-l1"><a href="#3-1-Run-the-Automated-Install-Base-Box">3.1 Run the Automated Install (Base Box)</a></li><li class="toc-l2"><a href="#3-1-1-Move-the-Base-Card-s-Jumpers">3.1.1 Move the Base Card&#x27;s Jumpers</a></li><li class="toc-l1"><a href="#3-2-Add-the-Expansion-Box">3.2 Add the Expansion Box</a></li><li class="toc-l1"><a href="#3-3-If-a-Script-Fails-Doing-It-by-Hand">3.3 If a Script Fails - Doing It by Hand</a></li><li class="toc-l2"><a href="#3-3-1-Set-Up-a-Mesa-Card-by-Hand">3.3.1 Set Up a Mesa Card by Hand</a></li><li class="toc-l2"><a href="#3-3-2-Undo-Put-a-Card-or-the-Raspberry-Pi-Back">3.3.2 Undo: Put a Card or the Raspberry Pi Back</a></li><li class="toc-l2"><a href="#3-3-3-Automated-Install-Programs">3.3.3 Automated Install Programs</a></li><li class="toc-l1"><a href="#3-4-Schedule-the-Virus-Scan">3.4 Schedule the Virus Scan</a></li><li class="toc-l1"><a href="#3-5-Set-the-Wallpaper">3.5 Set the Wallpaper</a></li><li class="toc-l1"><a href="#3-6-Set-the-Icons-on-the-Desktop">3.6 Set the Icons on the Desktop</a></li><li class="toc-l2"><a href="#3-6-1-Rosetta">3.6.1 Rosetta</a></li><li class="toc-l2"><a href="#3-6-2-Rosetta-Settings">3.6.2 Rosetta Settings</a></li><li class="toc-l2"><a href="#3-6-3-Back-Up-to-USB">3.6.3 Back Up to USB</a></li><li class="toc-l2"><a href="#3-6-4-Update-Rosetta">3.6.4 Update Rosetta</a></li><li class="toc-l1"><a href="#3-7-Set-Rosetta-to-Auto-start-When-Starting-up-the-System">3.7 Set Rosetta to Auto-start When Starting up the System</a></li><li class="toc-l1"><a href="#3-8-Configure-the-Menus-Using-MenuLibre">3.8 Configure the Menus Using MenuLibre</a></li><li class="toc-l2"><a href="#3-8-1-Add-a-Rosetta-Menu">3.8.1 Add a Rosetta Menu</a></li><li class="toc-l2"><a href="#3-8-2-Add-the-Rosetta-Program">3.8.2 Add the Rosetta Program</a></li><li class="toc-l2"><a href="#3-8-3-Add-the-Rosetta-Settings-Configuration-Program">3.8.3 Add the Rosetta Settings Configuration Program</a></li><li class="toc-l2"><a href="#3-8-4-Add-the-Rosetta-Backup-Program">3.8.4 Add the Rosetta Backup Program</a></li><li class="toc-l2"><a href="#3-8-5-Add-the-Rosetta-Update-Program">3.8.5 Add the Rosetta Update Program</a></li><li class="toc-l2"><a href="#3-8-6-Hide-Some-Unnecessary-Programs-Program-Menus">3.8.6 Hide Some Unnecessary Programs &amp; Program Menus</a></li><li class="toc-l1"><a href="#3-9-Turn-off-Hidden-Files-in-Thunar">3.9 Turn off Hidden Files in Thunar</a></li><li class="toc-l1"><a href="#3-10-Reboot">3.10 Reboot</a></li><li class="toc-l0"><a href="#Part-4-Install-Development-System-Applications">Part 4 - Install Development System Applications</a></li><li class="toc-l1"><a href="#4-1-Glade">4.1 Glade</a></li><li class="toc-l1"><a href="#4-2-GIMP">4.2 GIMP</a></li><li class="toc-l0"><a href="#Part-5-Other-Notes">Part 5 - Other Notes</a></li><li class="toc-l1"><a href="#5-1-To-SSH-In">5.1 To SSH In</a></li><li class="toc-l1"><a href="#5-2-To-Unzip">5.2 To Unzip</a></li></ul></nav>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Prerequisites">Prerequisites</a></li><li class="toc-l0"><a href="#Part-1-Build-the-Boot-Drive-for-LinuxCNC">Part 1 - Build the Boot Drive for LinuxCNC</a></li><li class="toc-l1"><a href="#1-1-Get-the-Raspberry-Pi-Imager">1.1 Get the Raspberry Pi Imager</a></li><li class="toc-l1"><a href="#1-2-Download-the-LinuxCNC-Image-File">1.2 Download the LinuxCNC Image File</a></li><li class="toc-l1"><a href="#1-3-Create-the-Boot-Disk-for-the-Raspberry-Pi">1.3 Create the Boot Disk for the Raspberry Pi</a></li><li class="toc-l0"><a href="#Part-2-Configure-Linux-on-the-Raspberry-Pi">Part 2 - Configure Linux on the Raspberry Pi</a></li><li class="toc-l1"><a href="#2-1-Start-the-Raspberry-Pi">2.1 Start the Raspberry Pi</a></li><li class="toc-l1"><a href="#2-2-Set-System-Defaults">2.2 Set System Defaults</a></li><li class="toc-l1"><a href="#2-3-Set-Wired-Network-Connection-Test-Network-Connections">2.3 Set Wired Network Connection &amp; Test Network Connections</a></li><li class="toc-l1"><a href="#2-4-Set-Rest-of-System-Options">2.4 Set Rest of System Options</a></li><li class="toc-l1"><a href="#2-5-Download-the-Files-Needed">2.5 Download the Files Needed</a></li><li class="toc-l1"><a href="#2-6-Clean-Up-the-Desktop">2.6 Clean Up the Desktop</a></li><li class="toc-l0"><a href="#Part-3-Setup-LinuxCNC">Part 3 - Setup LinuxCNC</a></li><li class="toc-l1"><a href="#3-1-Run-the-Automated-Install-Base-Box">3.1 Run the Automated Install (Base Box)</a></li><li class="toc-l2"><a href="#3-1-1-Move-the-Base-Card-s-Jumpers">3.1.1 Move the Base Card&#x27;s Jumpers</a></li><li class="toc-l1"><a href="#3-2-Add-the-Expansion-Box">3.2 Add the Expansion Box</a></li><li class="toc-l1"><a href="#3-3-If-a-Script-Fails-Doing-It-by-Hand">3.3 If a Script Fails - Doing It by Hand</a></li><li class="toc-l2"><a href="#3-3-1-Set-Up-a-Mesa-Card-by-Hand">3.3.1 Set Up a Mesa Card by Hand</a></li><li class="toc-l2"><a href="#3-3-2-Undo-Put-a-Card-or-the-Raspberry-Pi-Back">3.3.2 Undo: Put a Card or the Raspberry Pi Back</a></li><li class="toc-l2"><a href="#3-3-3-Automated-Install-Programs">3.3.3 Automated Install Programs</a></li><li class="toc-l1"><a href="#3-4-Schedule-the-Virus-Scan">3.4 Schedule the Virus Scan</a></li><li class="toc-l1"><a href="#3-5-Set-the-Wallpaper">3.5 Set the Wallpaper</a></li><li class="toc-l1"><a href="#3-6-Desktop-Icons-and-Applications-Menu">3.6 Desktop Icons and Applications Menu</a></li><li class="toc-l1"><a href="#3-7-Set-Rosetta-to-Auto-start-When-Starting-up-the-System">3.7 Set Rosetta to Auto-start When Starting up the System</a></li><li class="toc-l1"><a href="#3-8-Turn-off-Hidden-Files-in-Thunar">3.8 Turn off Hidden Files in Thunar</a></li><li class="toc-l1"><a href="#3-9-Reboot">3.9 Reboot</a></li><li class="toc-l0"><a href="#Part-4-Install-Development-System-Applications">Part 4 - Install Development System Applications</a></li><li class="toc-l1"><a href="#4-1-Glade">4.1 Glade</a></li><li class="toc-l1"><a href="#4-2-GIMP">4.2 GIMP</a></li><li class="toc-l0"><a href="#Part-5-Other-Notes">Part 5 - Other Notes</a></li><li class="toc-l1"><a href="#5-1-To-SSH-In">5.1 To SSH In</a></li><li class="toc-l1"><a href="#5-2-To-Unzip">5.2 To Unzip</a></li></ul></nav>
   <div class="content">
 
 <p>This page covers installing and setting up the Rosetta software on the Raspberry Pi, and setting up the Mesa cards in the base box and the optional expansion box.  Build the hardware first - see <a href="HardwareBuild.html">Hardware Build</a>.
@@ -282,7 +282,12 @@ git clone <a class="online" href="https://github.com/RichColvin/Rosetta" rel="no
 </td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> “Shut the Pi down now?” (at the end)</span>
 </td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <strong>y</strong>
 </td></tr></table>
-<p class="vspace">The rest of the install runs by itself.  It installs the programs listed in <a href="#ByHandInstall">3.3.3</a>, and adds the <strong>Rosetta</strong> and <strong>Gcode</strong> folder shortcuts (in the file manager's Places list, and as two Turk's head launchers on the bottom panel).
+<p class="vspace">The rest of the install runs by itself.  It installs the programs listed in <a href="#ByHandInstall">3.3.3</a> and sets up the desktop and menus (see <a href="#3-6-Desktop-Icons-and-Applications-Menu">3.6</a>):
+</p><ul><li>the <strong>Rosetta</strong> and <strong>Gcode</strong> folder shortcuts, in the file manager's Places list and as two Turk's head launchers on the bottom panel,
+</li><li>the <strong>Rosetta</strong> menu under Applications,
+</li><li>the <strong>Rosetta</strong>, <strong>Rosetta Settings</strong>, <strong>Rosetta User Manual</strong> and <strong>Rosetta Gcode Library</strong> icons on the desktop, and
+</li><li><strong>Shut Down</strong>, at the bottom of the Applications menu and on the bottom panel.
+</li></ul><p class="vspace">Last, it <strong>checks the install</strong>.  Each check is listed as <strong>OK</strong>, <strong>WARN</strong> (works, but worth a look - e.g. no serial number) or <strong>FAIL</strong>.  The list is also saved in <em>/home/reuben/Documents/Rosetta_Install_Check.txt</em>.  The base card can't answer yet (its jumper is moved next), so that is only a WARN for now.  If anything says FAIL, see <a href="#3-3-If-a-Script-Fails-Doing-It-by-Hand">3.3</a>.
 </p>
 <h3 id="3-1-1-Move-the-Base-Card-s-Jumpers">3.1.1 Move the Base Card's Jumpers</h3>
 <p>At the end, the install shuts the Raspberry Pi down (if you answered <strong>y</strong>).  Then:
@@ -292,14 +297,14 @@ git clone <a class="online" href="https://github.com/RichColvin/Rosetta" rel="no
 </li><li>Once the Raspberry Pi has started, open a terminal emulator and enter:
 </li></ol>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh check
+<p>python3 /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Install_Check.py
 </p></td></tr></table>
-<p class="vspace">It should say:
+<p class="vspace">This is the full check of the install.  It should say
 </p>
-<div class="indent"><code>Pi's wired connection (eth0): 10.10.10.100/24</code> <br class="clearboth"/>
-</div><div class="indent"><code>Card at 10.10.10.10 answers.</code>
-</div><div class="indent">(It also says there is no card at 10.10.10.11.  That is expected until the expansion box is added.)
-</div><p class="vspace">If the card doesn't answer, see <a href="#ByHandCheck">3.3.1, Step 7</a>.
+<div class="indent"><code>OK    Base card answers at 10.10.10.10</code>
+</div><p class="vspace">and end with <code>0 failed (FAIL)</code>.  Each FAIL line says what is wrong.  The list is saved in <em>/home/reuben/Documents/Rosetta_Install_Check.txt</em> - send it to support if you need help.
+</p>
+<p class="vspace">If the card doesn't answer, see <a href="#ByHandCheck">3.3.1, Step 7</a>.  For anything else that failed, see <a href="#3-3-If-a-Script-Fails-Doing-It-by-Hand">3.3</a>.
 </p>
 <p class="vspace"><a id="ExpansionBox"></a>
 </p><h2 id="3-2-Add-the-Expansion-Box">3.2 Add the Expansion Box</h2>
@@ -502,6 +507,38 @@ sudo apt install chromium -y
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
 <p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Machine_Name.sh --install
 </p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Set up the Rosetta menu and desktop icons</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Menu_And_Desktop.sh --force
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Add the Rosette Designer to the Rosetta menu</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Rosette_Designer.sh --force
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Add Shut Down to the menu and the bottom panel</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Shut_Down.sh --force
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Add the Geometric Chuck Designer to the Rosetta menu</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_GeoChuck_Designer.sh --force
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Add the User Manual and Gcode Library icons</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Manuals.sh --force
+</p></td></tr></table>
+<p class="vspace"><span style="color: navy;"> <strong>Check the install</strong></span>
+</p>
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>python3 /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Install_Check.py
+</p></td></tr></table>
+<p class="vspace">The menu and desktop steps must be run from a terminal emulator on the Raspberry Pi's own screen, not over SSH - they can't mark the desktop icons as trusted without it.  Run them in the order above: the Rosetta menu first, since the next three add to it.
+</p>
 <p class="vspace"><a id="Step_3.4"></a>
 </p><h2 id="3-4-Schedule-the-Virus-Scan">3.4 Schedule the Virus Scan</h2>
 <p>ClamAV keeps its virus signatures up to date by itself.  Set up the weekly scan as described in <a href="VirusScanning.html#Schedule">Virus Scanning - Scheduling the Weekly Scan</a>.
@@ -518,116 +555,24 @@ sudo apt install chromium -y
 <div class="indent">RosettaWallpaper.png
 </div><p class="vspace">then select <strong>Set as wallpaper</strong>.
 </p>
-<h2 id="3-6-Set-the-Icons-on-the-Desktop">3.6 Set the Icons on the Desktop</h2>
-<div class="img imgonly"><span class="lfloat"> <img alt="" src="Images/Rosetta_7px.png" width="50px"/></span></div>
-<h3 id="3-6-1-Rosetta">3.6.1 Rosetta</h3>
-<p>Right-click on the desktop and select <strong>Create Launcher…</strong>.  For the entries, enter:
+<h2 id="3-6-Desktop-Icons-and-Applications-Menu">3.6 Desktop Icons and Applications Menu</h2>
+<p>The automated install does this - nothing to do by hand.  (Until November 2026 it was done here with <strong>Create Launcher</strong> and MenuLibre.)  The install sets up:
 </p>
-
-<table style="width: calc(100% - 60px); margin-right: 10px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Name</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Rosetta
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Comment</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Desktop launcher for Rosetta
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Command</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Launch.sh
-</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Working Directory</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Icon</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>Click the No icon button, then <br class="clearboth"/>
-Select icon from image files <br class="clearboth"/>
-Select /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images/Rosetta_Folder.png
-</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Options</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>☐ Use Startup notification <br class="clearboth"/>
-☐ Run in terminal
-</p></td></tr></table>
-<p class="vspace">Click <strong>Create</strong>.
-</p>
-<div class="img imgonly"><span class="lfloat"> <img alt="" src="Images/REB_SettingsGear.png" width="50px"/></span></div>
-<h3 id="3-6-2-Rosetta-Settings">3.6.2 Rosetta Settings</h3>
-<p>Right-click on the desktop and select <strong>Create Launcher…</strong>.  For the entries, enter:
-</p>
-
-<table style="width: calc(100% - 60px); margin-right: 10px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Name</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Rosetta Settings
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Comment</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Command</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Settings.sh
-</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Working Directory</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Icon</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>Click the No icon button, then <br class="clearboth"/>
-Select icon from image files <br class="clearboth"/>
-Select /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images/Rosetta_SettingsGear.png
-</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Options</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>☐ Use Startup notification <br class="clearboth"/>
-☐ Run in terminal
-</p></td></tr></table>
-<p class="vspace">Click <strong>Create</strong>.
-</p>
-<div class="img imgonly"><span class="lfloat"> <img alt="" src="Images/REB_Backup.png" width="50px"/></span></div>
-<h3 id="3-6-3-Back-Up-to-USB">3.6.3 Back Up to USB</h3>
-<p>Right-click on the desktop and select <strong>Create Launcher…</strong>.  For the entries, enter:
-</p>
-
-<table style="width: calc(100% - 60px); margin-right: 10px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Name</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Back Up to USB
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Comment</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Command</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Backup.sh
-</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Working Directory</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Icon</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>Click the No icon button, then <br class="clearboth"/>
-Select icon from image files <br class="clearboth"/>
-Select /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images/Rosetta_Backup.png
-</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Options</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>☐ Use Startup notification <br class="clearboth"/>
-☐ Run in terminal
-</p></td></tr></table>
-<p class="vspace">Click <strong>Create</strong>.
-</p>
-<div class="img imgonly"><span class="lfloat"> <img alt="" src="Images/REB_Update.png" width="50px"/></span></div>
-<h3 id="3-6-4-Update-Rosetta">3.6.4 Update Rosetta</h3>
-<p>Right-click on the desktop and select <strong>Create Launcher…</strong>.  For the entries, enter:
-</p>
-
-<table style="width: calc(100% - 60px); margin-right: 10px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Name</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Update Rosetta
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Comment</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Command</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Update.sh
-</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Working Directory</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Icon</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>Click the No icon button, then <br class="clearboth"/>
-Select icon from image files <br class="clearboth"/>
-Select /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images/Rosetta_Update.png
-</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Options</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>☐ Use Startup notification <br class="clearboth"/>
-✅ Run in terminal
-</p></td></tr></table>
-<p class="vspace">Click <strong>Create</strong>.
-</p>
-<p class="vspace">The resulting desktop should look like this.
-</p>
-
-<table style="width: calc(100% - 60px); margin-left: 30px; border-collapse: collapse; border: 0px solid darkgray;"><tr><td valign="top"> <img alt="" src="Images/Desktop.png"/>
+<table style="width: calc(100% - 60px); margin-right: 10px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 160px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Desktop</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <strong>Rosetta</strong>, <strong>Rosetta Settings</strong>, <strong>Rosetta User Manual</strong> and <strong>Rosetta Gcode Library</strong> - ready to use, with no &ldquo;Untrusted application launcher&rdquo; question the first time.
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Applications &gt; Rosetta</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Rosetta, Rosetta Settings, Back Up to USB, Update Rosetta (runs in a terminal window), Rosette Designer, Geometric Chuck Designer, Rosetta User Manual and Rosetta Gcode Library.  The Rosetta menu sits above <strong>Terminal Emulator</strong>.
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Applications menu</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <strong>Shut Down</strong> at the bottom.  Mail Reader, Games, Multimedia, Office and Science are hidden.
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Bottom panel</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> The <strong>Rosetta</strong> and <strong>Gcode</strong> folders and <strong>Shut Down</strong>, after the File Manager.
+</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> File manager</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <strong>Rosetta</strong> and <strong>Gcode</strong> in the Places list.
 </td></tr></table>
+<p class="vspace">The install check (<a href="#3-1-1-Move-the-Base-Card-s-Jumpers">3.1.1</a>) confirms each of these is there and opens what it should.  If one failed, run its step again from <a href="#ByHandInstall">3.3.3</a>.  Anything not finished is also tried again at each update.
+</p>
+<p class="vspace">MenuLibre is still installed, for anyone who wants to change the menus further.
+</p>
 <h2 id="3-7-Set-Rosetta-to-Auto-start-When-Starting-up-the-System">3.7 Set Rosetta to Auto-start When Starting up the System</h2>
 <p><span style="background-color: yellow;">This is an optional step.</span>
 </p>
@@ -652,123 +597,10 @@ Select /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images/Rosetta_Update
 </td></tr></table>
 <p class="vspace">Click <strong>OK</strong>
 </p>
-<h2 id="3-8-Configure-the-Menus-Using-MenuLibre">3.8 Configure the Menus Using MenuLibre</h2>
-<p>MenuLibre is a graphical editor for your desktop's application menu — it lets you control what shows up when you click the "Applications" or "Start" menu, and how.
-</p>
-<p class="vspace">Open a terminal emulator, and enter this command (no sudo is required):
-</p>
-
-<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>menulibre
-</p></td></tr></table>
-<h3 id="3-8-1-Add-a-Rosetta-Menu">3.8.1 Add a Rosetta Menu</h3>
-<ol><li>Click the large + on the upper left part of the screen.
-</li><li>Select <strong>Add Directory</strong>.
-</li><li>Change “New Directory” to “Rosetta”
-</li><li>Change “A small descriptive blurb about this directory” to “This is for the Rosetta programs.”
-</li><li>Click on the folder icon, and replace it with Rosetta_Folder.png from the directory, <em>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images/</em>.
-</li><li>Click on the save button (the one beside the large + on the upper left part of the screen).
-</li><li>Using the Up arrow at the bottom of the screen on the left, and move this menu to be above <strong>Terminal Emulator</strong>.
-</li></ol><h3 id="3-8-2-Add-the-Rosetta-Program">3.8.2 Add the Rosetta Program</h3>
-<ol><li>Click the large + on the upper left part of the screen.
-</li><li>Select <strong>Add Launcher</strong>.
-</li><li>Enter the values as outlined below.  The image file is Rosetta_Folder.png.
-</li></ol>
-<table border="1" style="width: calc(100% - 80px); margin-left: 60px;"><tr><td valign="top">
-<table><tr><td class="left"><span class="lfloat"> <img alt="" src="Images/Rosetta_7px.png" width="60px"/></span></td><td class="left"><strong><span class="pmL1">Rosetta</span></strong> <br class="clearboth"/> Start the Rosetta system</td></tr>
-</table>
-
-<table><tr><td class="left" colspan="2"><strong>Application Details</strong></td></tr>
-<tr><td class="left">Command</td><td class="left">bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Launch.sh</td></tr>
-<tr><td class="left">Working Directory</td><td class="left">/home/reuben/linuxcnc/configs/Rosetta</td></tr>
-<tr><td class="left" colspan="2"> </td></tr>
-<tr><td class="left" colspan="2"><strong>Options</strong></td></tr>
-<tr><td class="left">Run in terminal</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
-<tr><td class="left">Use startup notification    </td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
-<tr><td class="left">Hide from menus</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
-</table></td></tr></table>
-<ol><li value="4"> Click on the save button (the one beside the large + on the upper left part of the screen).
-</li></ol><h3 id="3-8-3-Add-the-Rosetta-Settings-Configuration-Program">3.8.3 Add the Rosetta Settings Configuration Program</h3>
-<ol><li>Click the large + on the upper left part of the screen.
-</li><li>Select <strong>Add Launcher</strong>.
-</li><li>Enter the values as outlined below.  The image file is Rosetta_SettingsGear.png.
-</li></ol>
-<table border="1" style="width: calc(100% - 80px); margin-left: 60px;"><tr><td valign="top">
-<table><tr><td class="left"><span class="lfloat"> <img alt="" src="Images/REB_SettingsGear.png" width="60px"/></span></td><td class="left"><strong><span class="pmL1">Rosetta Settings</span></strong> <br class="clearboth"/> Run this to configure the way Rosetta works</td></tr>
-</table>
-
-<table><tr><td class="left" colspan="2"><strong>Application Details</strong></td></tr>
-<tr><td class="left">Command</td><td class="left">bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Settings.sh</td></tr>
-<tr><td class="left">Working Directory</td><td class="left">/home/reuben/linuxcnc/configs/Rosetta</td></tr>
-<tr><td class="left" colspan="2"> </td></tr>
-<tr><td class="left" colspan="2"><strong>Options</strong></td></tr>
-<tr><td class="left">Run in terminal</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
-<tr><td class="left">Use startup notification    </td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
-<tr><td class="left">Hide from menus</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
-</table></td></tr></table>
-<ol><li value="4"> Click on the save button (the one beside the large + on the upper left part of the screen).
-</li></ol><h3 id="3-8-4-Add-the-Rosetta-Backup-Program">3.8.4 Add the Rosetta Backup Program</h3>
-<ol><li>Click the large + on the upper left part of the screen.
-</li><li>Select <strong>Add Launcher</strong>.
-</li><li>Enter the values as outlined below.  The image file is Rosetta_Backup.png.
-</li></ol>
-<table border="1" style="width: calc(100% - 80px); margin-left: 60px;"><tr><td valign="top">
-<table><tr><td class="left"><span class="lfloat"> <img alt="" src="Images/REB_Backup.png" width="60px"/></span></td><td class="left"><strong><span class="pmL1">Back Up to USB</span></strong> <br class="clearboth"/> Run this to backup the key Rosetta user files</td></tr>
-</table>
-
-<table><tr><td class="left" colspan="2"><strong>Application Details</strong></td></tr>
-<tr><td class="left">Command</td><td class="left">bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Backup.sh</td></tr>
-<tr><td class="left">Working Directory</td><td class="left">/home/reuben/linuxcnc/configs/Rosetta</td></tr>
-<tr><td class="left" colspan="2"> </td></tr>
-<tr><td class="left" colspan="2"><strong>Options</strong></td></tr>
-<tr><td class="left">Run in terminal</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
-<tr><td class="left">Use startup notification    </td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
-<tr><td class="left">Hide from menus</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
-</table></td></tr></table>
-<ol><li value="4"> Click on the save button (the one beside the large + on the upper left part of the screen).
-</li></ol><h3 id="3-8-5-Add-the-Rosetta-Update-Program">3.8.5 Add the Rosetta Update Program</h3>
-<ol><li>Click the large + on the upper left part of the screen.
-</li><li>Select <strong>Add Launcher</strong>.
-</li><li>Enter the values as outlined below.  The image file is Rosetta_Update.png.
-</li></ol>
-<table border="1" style="width: calc(100% - 80px); margin-left: 60px;"><tr><td valign="top">
-<table><tr><td class="left"><span class="lfloat"> <img alt="" src="Images/REB_Update.png" width="60px"/></span></td><td class="left"><strong><span class="pmL1">Update Rosetta</span></strong> <br class="clearboth"/> Run this when notified to do so</td></tr>
-</table>
-
-<table><tr><td class="left" colspan="2"><strong>Application Details</strong></td></tr>
-<tr><td class="left">Command</td><td class="left">bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Update.sh</td></tr>
-<tr><td class="left">Working Directory</td><td class="left">/home/reuben/linuxcnc/configs/Rosetta</td></tr>
-<tr><td class="left" colspan="2"> </td></tr>
-<tr><td class="left" colspan="2"><strong>Options</strong></td></tr>
-<tr><td class="left">Run in terminal</td><td class="left"> <img alt="" src="Images/Menulibre-on.png" width="50px"/></td></tr>
-<tr><td class="left">Use startup notification    </td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
-<tr><td class="left">Hide from menus</td><td class="left"> <img alt="" src="Images/Menulibre-off.png" width="50px"/></td></tr>
-</table></td></tr></table>
-<ol><li value="4"> Click on the save button (the one beside the large + on the upper left part of the screen).
-</li></ol><h3 id="3-8-6-Hide-Some-Unnecessary-Programs-Program-Menus">3.8.6 Hide Some Unnecessary Programs &amp; Program Menus</h3>
-<ol><li>For each of these applications, under Options, enable the option Hide from menus, saving each after the change
-<ol style="list-style: lower-alpha;"><li> Mail Reader
-</li><li> Games
-</li><li> Multimedia
-</li><li> Office
-</li><li> Science
-</li></ol></li><li>Click on the save button (the one beside the large + on the upper left part of the screen).
-</li></ol><p class="vspace">The resulting MenuLibre screen should look like the picture below:
-</p>
-
-<table border="0" style="width: 100%;"><tr><td style="text-align: center;" valign="top">
-<div class="img imgcaption"> <img alt="" src="Images/MenuLibre.png" width="500px"/><br/><span class="caption"><strong><em>MenuLibre Screen</em></strong></span></div>
-</td></tr></table>
-<p class="vspace">Which results in the Applications menu shown below.
-</p>
-
-<table border="0" style="width: 100%;"><tr><td style="text-align: center;" valign="top">
-<div class="img imgcaption"> <img alt="" src="Images/REB_Applications_Menu.png" width="150px"/><br/><span class="caption"><strong><em>Applications Menu</em></strong></span></div>
-</td></tr></table>
-<h2 id="3-9-Turn-off-Hidden-Files-in-Thunar">3.9 Turn off Hidden Files in Thunar</h2>
+<h2 id="3-8-Turn-off-Hidden-Files-in-Thunar">3.8 Turn off Hidden Files in Thunar</h2>
 <p>Open the File Manager (Thunar).  Click <strong>View</strong>, then unclick <strong>Show Hidden Files</strong>.
 </p>
-<h2 id="3-10-Reboot">3.10 Reboot</h2>
+<h2 id="3-9-Reboot">3.9 Reboot</h2>
 <p>Everything should be good now.  Open a terminal emulator and enter this command:
 </p>
 
