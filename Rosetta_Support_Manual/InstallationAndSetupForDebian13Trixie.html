@@ -98,7 +98,7 @@ The Raspberry Pi has two network connections, and each has its own job:
 <table style="border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td rowspan="2" style="width: 180px; background-color: #555555; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Part</strong></span>
 </td><td colspan="2" style="background-color: #555555; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>IP Address</strong></span>
 </td></tr><tr><td style="width: 120px; background-color: #555555; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Initial</strong></span>
-</td><td style="width: 120px; background-color: #555555; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Set To</strong></span>
+</td><td style="width: 120px; background-color: #555555; text-align: center; vertical-align: bottom; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> <strong>Set To</strong> (later)</span>
 </td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Raspberry Pi (wired)</span>
 </td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 192.168.1.120
 </td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> 10.10.10.100
@@ -224,7 +224,7 @@ Ping the base card at its factory address by entering this command.  Press <stro
 cd linuxcnc <br class="clearboth"/>
 mkdir configs <br class="clearboth"/>
 cd configs <br class="clearboth"/>
-git clone <a class="online" href="https://github.com/RichColvin/Rosetta" rel="noopener" target="_blank" title="Opens on the Internet">https://github.com/RichColvin/Rosetta</a>
+git clone https://github.com/RichColvin/Rosetta
 </p></td></tr></table>
 <p class="vspace">Once the files have been downloaded, they will be in 
 </p>
@@ -473,7 +473,7 @@ sudo apt install clamav
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
 <p># Install Node 20 if you don't have it (Node 18+ required) <br class="clearboth"/>
-curl -fsSL <a class="online" href="https://deb.nodesource.com/setup_20.x" rel="noopener" target="_blank" title="Opens on the Internet">https://deb.nodesource.com/setup_20.x</a> | sudo -E bash - <br class="clearboth"/>
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - <br class="clearboth"/>
 sudo apt install -y nodejs
 </p>
 <p class="vspace"># Set up a user-level npm prefix (avoids sudo/permission mess) <br class="clearboth"/>
