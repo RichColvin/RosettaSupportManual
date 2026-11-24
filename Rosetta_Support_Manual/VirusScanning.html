@@ -85,8 +85,9 @@ sudo systemctl start clamav-freshclam
 </p>
 
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>0 3 * * 1 pgrep -x linuxcncsvr &gt;/dev/null || nice -n 19 ionice -c3 clamscan -r -i --exclude-dir=~/ClamAv --move=~/ClamAv/SuspiciousFiles --log=~/ClamAv/ScanLog.txt ~ /media
+<p>0 3 * * 1 pgrep -x linuxcncsvr &gt;/dev/null || nice -n 19 ionice -c3 clamscan -r -i --exclude-dir=/home/rosetta/ClamAv --move=/home/rosetta/ClamAv/SuspiciousFiles --log=/home/rosetta/ClamAv/ScanLog.txt /home/rosetta /media
 </p></td></tr></table>
+<p class="note"><strong>Note:</strong> this line needs the full path, not ~: it runs in root's schedule, where ~ would mean root's own home folder (/root).  On a machine built before November 2026, write /home/reuben in place of /home/rosetta (four times).</p>
 <p class="vspace">Press <strong>Ctrl-O</strong> then <strong>Enter</strong> to save, and <strong>Ctrl-X</strong> to exit.
 </p>
 <p class="vspace">The scan only runs if the machine is switched on at that time.
