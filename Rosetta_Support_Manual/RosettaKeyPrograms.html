@@ -28,7 +28,7 @@
 
 <p><span style="color: navy;"><strong>Rosetta’s Key Programs:</strong></span> <a class="selflink" href="RosettaKeyPrograms.html">Overview</a> · <a href="RosettaLaunch.html">Rosetta_Launch.sh</a> · <a href="RosettaSettings.html">Rosetta_Settings.sh</a> · <a href="RosettaBackup.html">Rosetta_Backup.sh</a> · <a href="RosettaUpdate.html">Rosetta_Update.sh</a> · <a href="RosettaChangeNetwork.html">Rosetta_Change_Network.sh</a> · <a href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>
 </p><hr/>
-<p>The Rosetta_x.sh scripts are how the operator - and support - start every part of Rosetta.  Each one is short; most of them only start a Python program, which does the real work.  All of them live in /home/reuben/linuxcnc/configs/Rosetta (the installer is in its Rosetta_Setup folder).
+<p>The Rosetta_x.sh scripts are how the operator - and support - start every part of Rosetta.  Each one is short; most of them only start a Python program, which does the real work.  All of them live in ~/linuxcnc/configs/Rosetta (the installer is in its Rosetta_Setup folder).
 </p>
 
 <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="26%"> <span style="color: white;"> <strong>Script</strong></span>
@@ -64,23 +64,23 @@
 <p>The desktop icons hide everything the programs print.  When something doesn't work, run the same script in a terminal window and read the messages:
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>cd /home/reuben/linuxcnc/configs/Rosetta <br class="clearboth"/>
+<p>cd ~/linuxcnc/configs/Rosetta <br class="clearboth"/>
 ./Rosetta_Launch.sh
 </p></td></tr></table>
 <p>"Permission denied" means the script isn't marked as runnable (a script can lose it when it is copied by hand): run it as <strong>bash ./Rosetta_Launch.sh</strong>, or restore the permission with <strong>chmod +x Rosetta_*.sh</strong>.
 </p>
 <h1 id="Rules-they-share">Rules they share</h1>
 <ul><li><strong>One at a time.</strong> Rosetta Settings, Restore from USB and the network script refuse to run while LinuxCNC is running; close LinuxCNC before an update too.
-</li><li><strong>Settings live in one file:</strong> /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>.  Rosetta Settings writes it, LinuxCNC saves live values into it at shutdown, the update adds new settings to it (and removes ones no longer used), Back Up to USB copies it, and Restore from USB puts a backed-up copy in its place.  Rosetta_Launch.sh only reads it.
+</li><li><strong>Settings live in one file:</strong> ~/Documents/<strong>RosettaSet_v1.ini</strong>.  Rosetta Settings writes it, LinuxCNC saves live values into it at shutdown, the update adds new settings to it (and removes ones no longer used), Back Up to USB copies it, and Restore from USB puts a backed-up copy in its place.  Rosetta_Launch.sh only reads it.
 </li><li><strong>Changes apply at the next launch.</strong> Nothing changed in Rosetta Settings, by an update or by the network script reaches a running LinuxCNC.
-</li><li><strong>Don't edit the scripts.</strong> An update replaces them, and changes to them aren't supported.  Machine-specific HAL additions belong in Rosetta_Custom/Rosetta_Custom.hal, and AXIS window settings in /home/reuben/.axisrc.
+</li><li><strong>Don't edit the scripts.</strong> An update replaces them, and changes to them aren't supported.  Machine-specific HAL additions belong in Rosetta_Custom/Rosetta_Custom.hal, and AXIS window settings in ~/.axisrc.
 </li></ul><h1 id="Other-programs-support-may-meet">Other programs support may meet</h1>
 <p>These are started by the scripts above or by LinuxCNC, not by the operator:
 </p><ul><li>Rosetta_Setup/<strong>Rosetta_Generate_Local_Ini.py</strong> - builds Rosetta.local.ini and the .local HAL files at every launch (see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>).
 </li><li>Rosetta_Setup/<strong>Rosetta_Update_Settings.py</strong> - adds new settings, and removes ones no longer used, during an update (see <a href="RosettaUpdate.html">Rosetta_Update.sh</a>).
 </li><li>Rosetta_Setup/<strong>Rosetta_Renaming.py</strong> - at the end of every update, moves a machine still using the old Rose Engine Butler names over to the Rosetta names.  Does nothing on a machine already moved.
 </li><li>Rosetta_Display/<strong>Rosetta_main.py</strong> - the AXIS side panel (Indexing, Sync Move, Threading).
-</li><li>Rosetta_Display/<strong>Rosetta_Axis_Commands.py</strong> - extra AXIS commands, loaded by AXIS as it starts (Rosetta.ini's [DISPLAY]USER_COMMAND_FILE).  It runs /home/reuben/.axisrc, then adds the "not enabled" warning before Run (see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>).
+</li><li>Rosetta_Display/<strong>Rosetta_Axis_Commands.py</strong> - extra AXIS commands, loaded by AXIS as it starts (Rosetta.ini's [DISPLAY]USER_COMMAND_FILE).  It runs ~/.axisrc, then adds the "not enabled" warning before Run (see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>).
 </li><li>Rosetta_Display/<strong>Rosetta_Settings_Restore.py</strong> - puts the saved scale, PID and limits onto the HAL pins as LinuxCNC starts.
 </li><li>Rosetta_Display/<strong>Rosetta_Scale_Persist.py</strong> - saves the live values to RosettaSet_v1.ini at shutdown (run by Rosetta_Shutdown.hal).
 </li><li>Rosetta_Display/<strong>rosetta_settings_io.py</strong> - shared code that reads and writes RosettaSet_v1.ini for all of the above.

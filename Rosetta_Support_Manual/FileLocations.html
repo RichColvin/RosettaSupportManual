@@ -23,44 +23,45 @@
 <main class="page">
   <p class="crumbs"><a href="index.html">Support Manual</a> <span aria-hidden="true">›</span> <span>File Locations</span></p>
   <h1>File Locations</h1>
-  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Per-machine-files-not-in-the-repository">Per-machine files (not in the repository)</a></li><li class="toc-l0"><a href="#home-reuben-linuxcnc-configs-Rosetta">/home/reuben/linuxcnc/configs/Rosetta</a></li><li class="toc-l0"><a href="#Rosetta-Custom">Rosetta_Custom/</a></li><li class="toc-l0"><a href="#Rosetta-Display">Rosetta_Display/</a></li><li class="toc-l0"><a href="#Rosetta-Setup">Rosetta_Setup/</a></li><li class="toc-l0"><a href="#Rosetta-Subroutines">Rosetta_Subroutines/</a></li><li class="toc-l0"><a href="#Other-files-in-the-top-folder">Other files in the top folder</a></li><li class="toc-l0"><a href="#docs">docs/</a></li></ul></nav>
+  <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Per-machine-files-not-in-the-repository">Per-machine files (not in the repository)</a></li><li class="toc-l0"><a href="#home-linuxcnc-configs-Rosetta">~/linuxcnc/configs/Rosetta</a></li><li class="toc-l0"><a href="#Rosetta-Custom">Rosetta_Custom/</a></li><li class="toc-l0"><a href="#Rosetta-Display">Rosetta_Display/</a></li><li class="toc-l0"><a href="#Rosetta-Setup">Rosetta_Setup/</a></li><li class="toc-l0"><a href="#Rosetta-Subroutines">Rosetta_Subroutines/</a></li><li class="toc-l0"><a href="#Other-files-in-the-top-folder">Other files in the top folder</a></li><li class="toc-l0"><a href="#docs">docs/</a></li></ul></nav>
   <div class="content">
+<p class="note"><strong>Note:</strong> ~ means the Rosetta login's home folder - /home/rosetta, or /home/reuben on machines built before November 2026.  Commands written with ~ work on both.</p>
 
 <p>All Rosetta files are kept in the Git repository on  <a class="online" href="https://github.com/RichColvin/Rosetta" rel="noopener" target="_blank" title="Opens on the Internet">GitHub</a> (web site), and installed at
 </p>
-<div class="indent">/home/reuben/linuxcnc/configs/Rosetta
-</div><p class="vspace"><strong>Update Rosetta</strong> (<strong>Rosetta_Update.sh</strong>) pulls the latest versions of these files from GitHub - see <a href="UpdatingRosetta.html">Updating Rosetta</a>.  The only per-machine settings file lives outside the repository, in /home/reuben/Documents.
+<div class="indent">~/linuxcnc/configs/Rosetta
+</div><p class="vspace"><strong>Update Rosetta</strong> (<strong>Rosetta_Update.sh</strong>) pulls the latest versions of these files from GitHub - see <a href="UpdatingRosetta.html">Updating Rosetta</a>.  The only per-machine settings file lives outside the repository, in ~/Documents.
 </p>
 <hr/>
 <h1 id="Per-machine-files-not-in-the-repository">Per-machine files (not in the repository)</h1>
 <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="45%"> <span style="color: white;"> <strong>File</strong></span>
 </td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/Documents/<strong>RosettaSet_v1.ini</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> This machine's settings: axis/channel assignments (channels 00 - 09), whether the expansion box is connected, scale, Max Speed, Max Acceleration, stepgen limits, PID gains and PID Max Output, backlash, jog speeds, measurement system, device names, limit jacks and switch type, E-stop button, signal tower, sounds, and the main panel's remembered values.  Written by the Settings program, by Rosetta_Scale_Persist.py at LinuxCNC shutdown, and (new settings only) by an update.  JSON with comment lines, despite the .ini name - don't edit it by hand.  <strong>Back this up</strong>.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>*.ini</strong> (other than RosettaSet_v1.ini)
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/Documents/<strong>*.ini</strong> (other than RosettaSet_v1.ini)
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Copies made with Save All Settings As..., and Save Subset exports.  Back Up to USB copies them too.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>RosettaSet_v1.ini.bak-</strong><em>date-time</em>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/Documents/<strong>RosettaSet_v1.ini.bak-</strong><em>date-time</em>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> The settings file as it was before an update added new settings.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/<strong>.axisrc</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/<strong>.axisrc</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> AXIS window size/position; copied from Rosetta_Setup/axisrc at install.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/ClamAv/
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/ClamAv/
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Virus scan log and quarantined files.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>serial</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/.config/Rosetta/<strong>serial</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> This machine's serial number, if one was given (Rosetta_Set_Serial_Number.sh).
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>report_log.jsonl</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/.config/Rosetta/<strong>report_log.jsonl</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> A copy of every version report sent by an update (see <a href="RosettaUpdate.html">Rosetta_Update.sh</a>).
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>shortcuts-added</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/.config/Rosetta/<strong>shortcuts-added</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Marker: the folder shortcuts have been added (Rosetta_Add_Shortcuts.sh).
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/<strong>Rosetta_Update.sh</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/<strong>Rosetta_Update.sh</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> An old copy left by the installer.  Not used - ignore it.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta/<strong>Rosetta.local.ini</strong>, <strong>Rosetta.local.hal</strong>, Rosetta_Display/<strong>Rosetta_PostGUI_v1.local.hal</strong>, Rosetta_Display/<strong>Rosetta_Splash.local.ngc</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/linuxcnc/configs/Rosetta/<strong>Rosetta.local.ini</strong>, <strong>Rosetta.local.hal</strong>, Rosetta_Display/<strong>Rosetta_PostGUI_v1.local.hal</strong>, Rosetta_Display/<strong>Rosetta_Splash.local.ngc</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Generated at every launch from Rosetta.ini / Rosetta.hal / Rosetta_PostGUI_v1.hal and RosettaSet_v1.ini - these are what LinuxCNC actually loads.  <span style="color: red;">Never edit them</span> - they are overwritten at the next start.  See <a href="LaunchingRosetta.html">Launching Rosetta</a>.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta/<strong>gcode/</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/linuxcnc/configs/Rosetta/<strong>gcode/</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Operator's G-code programs (not in the repository).  AXIS's Open dialog starts here.  No file here may start with <strong>Rosetta</strong> or be named <strong>M100</strong> - <strong>M199</strong> - startup stops if one does (see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>).
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta/<strong>sim.var</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/linuxcnc/configs/Rosetta/<strong>sim.var</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> LinuxCNC's parameter file (written while it runs).
 </td></tr></table>
-<h1 id="home-reuben-linuxcnc-configs-Rosetta">/home/reuben/linuxcnc/configs/Rosetta</h1>
+<h1 id="home-linuxcnc-configs-Rosetta">~/linuxcnc/configs/Rosetta</h1>
 <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="30%"> <span style="color: white;"> <strong>File</strong></span>
 </td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
 </td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="8%"> <span style="color: white;"> <strong>Edit?</strong></span>
@@ -156,9 +157,9 @@
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>REB_Install_Debian_12_Bookworm.sh</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> The old installer for Debian 12 (Bookworm).  No longer maintained - not used for new machines.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>RosettaSet_v1.ini</strong>
-</td><td style="padding: 4px; vertical-align: top;" valign="top"> Starting settings copied to /home/reuben/Documents at install.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Starting settings copied to ~/Documents at install.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>axisrc</strong>
-</td><td style="padding: 4px; vertical-align: top;" valign="top"> Copied to /home/reuben/.axisrc at install.
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> Copied to ~/.axisrc at install.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> MesaCard/
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> 7i92 firmware (7i92t_Rosetta.bin, used on both the base and expansion cards), pin file, and VHDL source (PIN_Rosetta_34.vhd).
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Images/

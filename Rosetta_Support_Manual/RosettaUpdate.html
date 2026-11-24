@@ -38,9 +38,9 @@
 </li><li>From a terminal:
 </li></ul>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Update.sh
+<p>bash ~/linuxcnc/configs/Rosetta/Rosetta_Update.sh
 </p></td></tr></table>
-<p>Close LinuxCNC and Rosetta Settings first.  It asks for the reuben password (for <em>sudo</em>).  It needs the internet (Wi-Fi).  Machines installed from the instructions get the files over HTTPS and need no GitHub login; a machine whose repository was switched to SSH (<strong>git remote -v</strong> shows git@github.com) also needs the reuben user's SSH key registered with GitHub.
+<p>Close LinuxCNC and Rosetta Settings first.  It asks for the Rosetta login's password (for <em>sudo</em>).  It needs the internet (Wi-Fi).  Machines installed from the instructions get the files over HTTPS and need no GitHub login; a machine whose repository was switched to SSH (<strong>git remote -v</strong> shows git@github.com) also needs the Rosetta login's SSH key registered with GitHub.
 </p>
 <h2 id="Parameters">Parameters</h2>
 <p>None.
@@ -75,48 +75,48 @@
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> The message box at the end.
 </td></tr></table>
 <h1 id="Files-it-reads">Files it reads</h1>
-<ul><li>The whole repository at /home/reuben/linuxcnc/configs/Rosetta (through git)
+<ul><li>The whole repository at ~/linuxcnc/configs/Rosetta (through git)
 </li><li>Rosetta_Setup/<strong>RosettaSet_v1.ini</strong> - the shipped starting settings, with every setting
-</li><li>/home/reuben/Documents/<strong>RosettaSet_v1.ini</strong> - this machine's settings
+</li><li>~/Documents/<strong>RosettaSet_v1.ini</strong> - this machine's settings
 </li><li>/etc/apt/sources.list.d/<strong>ethercat.sources</strong> - the EtherLab package source, if present
 </li></ul><h1 id="Files-it-creates-or-changes">Files it creates or changes</h1>
 <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="35%"> <span style="color: white;"> <strong>File</strong></span>
 </td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Change</strong></span>
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> The repository files
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Replaced with the latest versions.  Local edits are kept in a stash named <strong>Rosetta_Update <em>date time</em></strong> when they can't be put back.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/Documents/<strong>RosettaSet_v1.ini</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> New settings added with their starting values; Max Speed / Max Acceleration / PID Max Output filled in from this machine's own values if missing.  Existing values are never changed, except: <br class="clearboth"/>- a stepgen speed or acceleration limit is raised if it is now below the axis's Max Speed / Max Acceleration; <br class="clearboth"/>- a spindle still on the old indexing PID (exactly P 2, I 1, D 1.2) gets I 0 and D 0 (since 08 November 2026 - the old values overshot and crept back); <br class="clearboth"/>- settings no longer used are removed: <strong>channel_types</strong>, <strong>signal_tower_active_low</strong> and the spindles' <strong>pid_vel</strong> (since 09 November 2026). <br class="clearboth"/>Missing file: created from the shipped copy.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>RosettaSet_v1.ini.bak-<em>YYYYMMDD-HHMMSS</em></strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/Documents/<strong>RosettaSet_v1.ini.bak-<em>YYYYMMDD-HHMMSS</em></strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> A copy of the settings file from before the change - only when something was added, changed or removed.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Other /home/reuben/Documents/<strong>*.ini</strong> settings files
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Other ~/Documents/<strong>*.ini</strong> settings files
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> The explanatory comment lines are added to saved and exported settings files that lack them.  Their settings aren't changed.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> The EtherLab keyring named in ethercat.sources
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Replaced, only if a newer copy of the same key is available.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>report_log.jsonl</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/.config/Rosetta/<strong>report_log.jsonl</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> One line added for every version report, whether or not it could be sent.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>serial</strong>, the folder shortcuts
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/.config/Rosetta/<strong>serial</strong>, the folder shortcuts
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Only the first time, on a machine that doesn't have them yet.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /etc/<strong>hostname</strong>, /etc/<strong>hosts</strong>, /etc/cloud/cloud.cfg.d/<strong>99_rosetta_hostname.cfg</strong>, /home/reuben/.config/Rosetta/<strong>machine-name-offered</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /etc/<strong>hostname</strong>, /etc/<strong>hosts</strong>, /etc/cloud/cloud.cfg.d/<strong>99_rosetta_hostname.cfg</strong>, ~/.config/Rosetta/<strong>machine-name-offered</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Only if the operator agrees to the new computer name (see the note below).  The last file records the name offered, so a "no" isn't asked again unless the serial number changes.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> System packages
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Updated by apt.
 </td></tr></table>
 <h1 id="Notes-for-support">Notes for support</h1>
 <ul><li><strong>It updates whichever branch the machine is on.</strong> Check with <strong>git branch --show-current</strong> - customer machines should be on <strong>main</strong>.
-</li><li><strong>"git pull failed"</strong> - usually no internet.  On a machine using SSH (<strong>git remote -v</strong>), GitHub may be asking for a passphrase or rejecting the key - test it with <strong>ssh -T git@github.com</strong> as reuben.
+</li><li><strong>"git pull failed"</strong> - usually no internet.  On a machine using SSH (<strong>git remote -v</strong>), GitHub may be asking for a passphrase or rejecting the key - test it with <strong>ssh -T git@github.com</strong> as the Rosetta login.
 </li><li><strong>"local changes could not be re-applied"</strong> - see <a href="UpdatingRosetta.html">Updating Rosetta</a> for finding them in the stash.
-</li><li><strong>"settings file could not be checked"</strong> - RosettaSet_v1.ini couldn't be read.  It is left as it was; check it isn't empty or hand-edited, and that reuben owns it (<strong>ls -l ~/Documents/RosettaSet_v1.ini</strong>).
+</li><li><strong>"settings file could not be checked"</strong> - RosettaSet_v1.ini couldn't be read.  It is left as it was; check it isn't empty or hand-edited, and that the Rosetta login owns it (<strong>ls -l ~/Documents/RosettaSet_v1.ini</strong>).
 </li><li><strong>EtherLab key warnings</strong> are harmless - nothing Rosetta uses comes from that source.
 </li><li><strong>Version report.</strong> Every update sends this machine's Raspberry Pi hardware serial number, its serial number (if one was recorded), the Rosetta version and date shown on the panel, and the time, to <strong><a class="online" href="https://rosetta.colvintools.com/Support/reb_report.php" rel="noopener" target="_blank" title="Opens on the Internet">https://rosetta.colvintools.com/Support/reb_report.php</a></strong>.  Nothing else is sent.  It is logged first in ~/.config/Rosetta/report_log.jsonl; if there's no internet it prints a warning and the update carries on (that report isn't sent later).
 </li><li><strong>Computer name</strong> (since 22 November 2026): an owner with more than one Rosetta needs them named differently - two computers with the same name both answer to <strong>name.local</strong>, one quietly becomes <strong>name-2</strong>, and remote desktop or SSH can reach the wrong one.  The update offers once to rename the computer <strong>rosetta-</strong> plus its serial number (S/N Rosetta003 gives <strong>rosetta-003</strong>, S/N 4 gives <strong>rosetta-004</strong>); the new name takes effect at the next restart.  Anything that connects to it by name must use the new name afterwards.  To be asked again after saying no:
 </li></ul>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Machine_Name.sh --force
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Machine_Name.sh --force
 </p></td></tr></table>
-<ul><li><strong>It asks for a serial number</strong> at every update until one is given (press Enter to skip).  To set it later, run <strong>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Serial_Number.sh</strong>.
+<ul><li><strong>It asks for a serial number</strong> at every update until one is given (press Enter to skip).  To set it later, run <strong>bash ~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Serial_Number.sh</strong>.
 </li><li><strong>Run it twice</strong> after a big change: the first run may update Rosetta_Update.sh or Rosetta_Update_Settings.py themselves, and the second run uses the new versions.
 </li><li>Once the update has run, start Rosetta normally - the new files take effect at the next launch.
-</li><li>The installer also puts a copy of this script at /home/reuben/<strong>Rosetta_Update.sh</strong>.  Nothing uses it - the menu entry runs the one in the Rosetta folder - and updates never refresh it, so don't run it.
+</li><li>The installer also puts a copy of this script at ~/<strong>Rosetta_Update.sh</strong>.  Nothing uses it - the menu entry runs the one in the Rosetta folder - and updates never refresh it, so don't run it.
 </li></ul>
 <table border="0" width="100%"><tr><td valign="top">  
 </td></tr></table>

@@ -29,7 +29,7 @@
 <h1 id="Key-Notes">Key Notes</h1>
 <p>Rosetta uses  <a class="online" href="https://www.clamav.net" rel="noopener" target="_blank" title="Opens on the Internet">ClamAV</a> (web site), the scanner most often recommended for a Raspberry Pi.  Files mostly arrive on a Rosetta from USB sticks (G-code, settings) and web downloads, so those are what the regular scan covers.
 </p>
-<ul><li>The installer (<a href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>) installs ClamAV and creates /home/reuben/ClamAv/SuspiciousFiles.
+<ul><li>The installer (<a href="RosettaInstall.html">Rosetta_Install_Debian_13_Trixie.sh</a>) installs ClamAV and creates ~/ClamAv/SuspiciousFiles.
 </li><li>ClamAV keeps its virus signatures up to date <strong>by itself</strong> (below) - nothing needs scheduling for that.
 </li><li>A scan uses a lot of the Raspberry Pi's processor and memory (about 1 GB for the signatures).  <span style="color: red;">Never scan while a program is cutting</span> - the weekly scan below skips itself if LinuxCNC is running.
 </li></ul><hr/>
@@ -39,7 +39,7 @@
 
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
 <p>sudo apt install -y clamav <br class="clearboth"/>
-mkdir -p /home/reuben/ClamAv/SuspiciousFiles
+mkdir -p ~/ClamAv/SuspiciousFiles
 </p></td></tr></table>
 <p class="vspace">Installing <strong>clamav</strong> also installs <strong>clamav-freshclam</strong>, a background service that checks for new signatures several times a day.
 </p>
@@ -66,14 +66,14 @@ sudo systemctl start clamav-freshclam
 </p>
 
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>clamscan -r -i /media/reuben
+<p>clamscan -r -i /media/$USER
 </p></td></tr></table>
 <p class="vspace"><strong>-i</strong> lists only infected files.  The last lines give a summary - “Infected files: 0” means nothing was found.
 </p>
 <hr/>
 <p><a id="Schedule"></a>
 </p><h1 id="Scheduling-the-Weekly-Scan">Scheduling the Weekly Scan</h1>
-<p>This scans the operator's files and any inserted USB stick each Monday at 03:00, at the lowest priority, and skips the scan if LinuxCNC is running.  Files found are moved to /home/reuben/ClamAv/SuspiciousFiles.
+<p>This scans the operator's files and any inserted USB stick each Monday at 03:00, at the lowest priority, and skips the scan if LinuxCNC is running.  Files found are moved to ~/ClamAv/SuspiciousFiles.
 </p>
 <p class="vspace">Open a terminal emulator, and enter this command (it edits <strong>root's</strong> schedule, so the scan doesn't need sudo):
 </p>
@@ -85,7 +85,7 @@ sudo systemctl start clamav-freshclam
 </p>
 
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>0 3 * * 1 pgrep -x linuxcncsvr &gt;/dev/null || nice -n 19 ionice -c3 clamscan -r -i --exclude-dir=/home/reuben/ClamAv --move=/home/reuben/ClamAv/SuspiciousFiles --log=/home/reuben/ClamAv/ScanLog.txt /home/reuben /media
+<p>0 3 * * 1 pgrep -x linuxcncsvr &gt;/dev/null || nice -n 19 ionice -c3 clamscan -r -i --exclude-dir=~/ClamAv --move=~/ClamAv/SuspiciousFiles --log=~/ClamAv/ScanLog.txt ~ /media
 </p></td></tr></table>
 <p class="vspace">Press <strong>Ctrl-O</strong> then <strong>Enter</strong> to save, and <strong>Ctrl-X</strong> to exit.
 </p>
@@ -99,13 +99,13 @@ sudo systemctl start clamav-freshclam
 </li></ol><hr/>
 <h1 id="Checking-the-Results">Checking the Results</h1>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>sudo tail -n 30 /home/reuben/ClamAv/ScanLog.txt <br class="clearboth"/>
-sudo grep FOUND /home/reuben/ClamAv/ScanLog.txt <br class="clearboth"/>
-ls -l /home/reuben/ClamAv/SuspiciousFiles
+<p>sudo tail -n 30 ~/ClamAv/ScanLog.txt <br class="clearboth"/>
+sudo grep FOUND ~/ClamAv/ScanLog.txt <br class="clearboth"/>
+ls -l ~/ClamAv/SuspiciousFiles
 </p></td></tr></table>
 <p class="vspace">Each run adds a section to ScanLog.txt ending with a summary.  Lines ending in <strong>FOUND</strong> name a file that was detected and moved.
 </p>
-<ul><li><strong>A file was moved:</strong> it is in /home/reuben/ClamAv/SuspiciousFiles.  If it is a file the customer recognises and trusts (e.g. their own G-code - a false alarm is possible), move it back with <strong>sudo mv</strong>.  Otherwise delete it, and check where it came from (usually a USB stick - scan that stick on another computer too).
+<ul><li><strong>A file was moved:</strong> it is in ~/ClamAv/SuspiciousFiles.  If it is a file the customer recognises and trusts (e.g. their own G-code - a false alarm is possible), move it back with <strong>sudo mv</strong>.  Otherwise delete it, and check where it came from (usually a USB stick - scan that stick on another computer too).
 </li><li><strong>Nothing has run:</strong> check the cron line with <strong>sudo crontab -l</strong>, and that the machine was on and LinuxCNC closed on Monday at 03:00.
 </li></ul><hr/>
 <h1 id="Scanning-the-Whole-System">Scanning the Whole System</h1>
@@ -113,7 +113,7 @@ ls -l /home/reuben/ClamAv/SuspiciousFiles
 </p>
 
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>sudo nice -n 19 ionice -c3 clamscan -r -i --exclude-dir="^/(proc|sys|dev|run)" --log=/home/reuben/ClamAv/FullScanLog.txt /
+<p>sudo nice -n 19 ionice -c3 clamscan -r -i --exclude-dir="^/(proc|sys|dev|run)" --log=~/ClamAv/FullScanLog.txt /
 </p></td></tr></table>
 <p class="vspace">Report anything it finds before deleting it.
 </p>

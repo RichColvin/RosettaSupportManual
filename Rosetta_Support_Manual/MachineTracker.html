@@ -74,9 +74,9 @@
 <h1 id="Files-on-the-machine">Files on the machine</h1>
 <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="45%"> <span style="color: white;"> <strong>File</strong></span>
 </td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>Purpose</strong></span>
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>serial</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/.config/Rosetta/<strong>serial</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> The machine's serial number - one line, just the number.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/.config/Rosetta/<strong>report_log.jsonl</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/.config/Rosetta/<strong>report_log.jsonl</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Every report this machine has built, one per line, whether or not it reached the server.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta/Rosetta_Setup/<strong>Rosetta_Set_Serial_Number.sh</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Asks for the serial number if none is recorded; does nothing if one already is.
@@ -125,7 +125,7 @@
 </li></ol><h3 id="A-machine-doesn-t-appear-in-the-tracker">A machine doesn't appear in the tracker</h3>
 <ul><li>Check it has been updated since 23 October 2026 (when reporting started).
 </li><li>On the machine, run the report by hand (the command under <em>Change a machine's serial number</em>).  It prints <em>Version report sent to ...</em> when it works, or a <em>WARNING</em> saying why not - usually no internet connection.
-</li><li>Look at the end of /home/reuben/.config/Rosetta/<strong>report_log.jsonl</strong> to see what the machine has been sending.
+</li><li>Look at the end of ~/.config/Rosetta/<strong>report_log.jsonl</strong> to see what the machine has been sending.
 </li></ul><h3 id="Change-the-Machine-Tracker-password">Change the Machine Tracker password</h3>
 <p>Create a new .htpasswd line for user <strong>REBmachines</strong> with an htpasswd generator (or the <em>htpasswd</em> command on a Pi), and replace the line in <strong>.htpasswd</strong> with it.  Keep the password somewhere safe - it isn't recorded anywhere else.
 </p>

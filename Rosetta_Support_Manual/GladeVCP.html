@@ -27,7 +27,7 @@
   <div class="content">
 
 <h1 id="Key-Notes">Key Notes</h1>
-<p>Rosetta's screens are built with GladeVCP.  All the files are in /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Display.
+<p>Rosetta's screens are built with GladeVCP.  All the files are in ~/linuxcnc/configs/Rosetta/Rosetta_Display.
 </p>
 
 <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="200px"> <span style="color: white;"> <strong>File</strong></span>
@@ -42,7 +42,7 @@
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Loaded after the GUI starts: wires the panel's ENA buttons and indicator pins into HAL.  (LinuxCNC actually loads the generated Rosetta_PostGUI_v1.local.hal copy - see <a href="LaunchingRosetta.html">Launching Rosetta</a>.)
 </td></tr></table>
 <h1 id="The-Settings-program-is-not-GladeVCP">The Settings program is not GladeVCP</h1>
-<p>The <strong>Rosetta Settings</strong> program (<strong>Rosetta_Settings.py</strong> with <strong>Rosetta_Settings_v1.ui</strong>) is a standalone GTK program, run from the Applications menu or <strong>Rosetta_Settings.sh</strong>.  It only runs while LinuxCNC is <strong>not</strong> running, and writes its settings to /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>, which the next launch reads.  See <a href="RosettaSettings.html">Rosetta_Settings.sh</a>.
+<p>The <strong>Rosetta Settings</strong> program (<strong>Rosetta_Settings.py</strong> with <strong>Rosetta_Settings_v1.ui</strong>) is a standalone GTK program, run from the Applications menu or <strong>Rosetta_Settings.sh</strong>.  It only runs while LinuxCNC is <strong>not</strong> running, and writes its settings to ~/Documents/<strong>RosettaSet_v1.ini</strong>, which the next launch reads.  See <a href="RosettaSettings.html">Rosetta_Settings.sh</a>.
 </p>
 <h1 id="Data-types">Data types</h1>
 <p>Widget and HAL pin data types must match - see <a href="DataTypes.html">Data Types</a>.

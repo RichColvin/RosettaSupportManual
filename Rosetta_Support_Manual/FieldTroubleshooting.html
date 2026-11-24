@@ -30,22 +30,22 @@
 <ol><li>The software version:
 </li></ol>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>cd /home/reuben/linuxcnc/configs/Rosetta <br class="clearboth"/>
+<p>cd ~/linuxcnc/configs/Rosetta <br class="clearboth"/>
 git log -1 --oneline <br class="clearboth"/>
 git status
 </p></td></tr></table>
 <ol><li value="2"> The generator's output (what LinuxCNC will load):
 </li></ol>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>cd /home/reuben/linuxcnc/configs/Rosetta <br class="clearboth"/>
+<p>cd ~/linuxcnc/configs/Rosetta <br class="clearboth"/>
 python3 Rosetta_Setup/Rosetta_Generate_Local_Ini.py
 </p></td></tr></table>
 <ol><li value="3"> The network check (which cards answer, and the Raspberry Pi's wired address):
 </li></ol>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh check
+<p>bash ~/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh check
 </p></td></tr></table>
-<ol><li value="4"> A copy of /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>.
+<ol><li value="4"> A copy of ~/Documents/<strong>RosettaSet_v1.ini</strong>.
 </li><li value="5"> Whether the machine has an expansion box, and whether <strong>Expansion Box - Connected</strong> is ticked in the Settings program (Axis Selection tab).
 </li><li value="6"> If LinuxCNC starts: the HAL state, from a terminal while it is running:
 </li></ol>

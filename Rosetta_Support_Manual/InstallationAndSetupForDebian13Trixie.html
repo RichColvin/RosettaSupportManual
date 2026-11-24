@@ -25,6 +25,7 @@
   <h1>Software Installation and Setup for Debian 13 Trixie</h1>
   <nav class="toc" aria-label="On this page"><p>On this page</p><ul><li class="toc-l0"><a href="#Prerequisites">Prerequisites</a></li><li class="toc-l0"><a href="#Part-1-Build-the-Boot-Drive-for-LinuxCNC">Part 1 - Build the Boot Drive for LinuxCNC</a></li><li class="toc-l1"><a href="#1-1-Get-the-Raspberry-Pi-Imager">1.1 Get the Raspberry Pi Imager</a></li><li class="toc-l1"><a href="#1-2-Download-the-LinuxCNC-Image-File">1.2 Download the LinuxCNC Image File</a></li><li class="toc-l1"><a href="#1-3-Create-the-Boot-Disk-for-the-Raspberry-Pi">1.3 Create the Boot Disk for the Raspberry Pi</a></li><li class="toc-l0"><a href="#Part-2-Configure-Linux-on-the-Raspberry-Pi">Part 2 - Configure Linux on the Raspberry Pi</a></li><li class="toc-l1"><a href="#2-1-Start-the-Raspberry-Pi">2.1 Start the Raspberry Pi</a></li><li class="toc-l1"><a href="#2-2-Set-System-Defaults">2.2 Set System Defaults</a></li><li class="toc-l1"><a href="#2-3-Set-Wired-Network-Connection-Test-Network-Connections">2.3 Set Wired Network Connection &amp; Test Network Connections</a></li><li class="toc-l1"><a href="#2-4-Set-Rest-of-System-Options">2.4 Set Rest of System Options</a></li><li class="toc-l1"><a href="#2-5-Download-the-Files-Needed">2.5 Download the Files Needed</a></li><li class="toc-l1"><a href="#2-6-Clean-Up-the-Desktop">2.6 Clean Up the Desktop</a></li><li class="toc-l0"><a href="#Part-3-Setup-LinuxCNC">Part 3 - Setup LinuxCNC</a></li><li class="toc-l1"><a href="#3-1-Run-the-Automated-Install-Base-Box">3.1 Run the Automated Install (Base Box)</a></li><li class="toc-l2"><a href="#3-1-1-Move-the-Base-Card-s-Jumpers">3.1.1 Move the Base Card&#x27;s Jumpers</a></li><li class="toc-l1"><a href="#3-2-Add-the-Expansion-Box">3.2 Add the Expansion Box</a></li><li class="toc-l1"><a href="#3-3-If-a-Script-Fails-Doing-It-by-Hand">3.3 If a Script Fails - Doing It by Hand</a></li><li class="toc-l2"><a href="#3-3-1-Set-Up-a-Mesa-Card-by-Hand">3.3.1 Set Up a Mesa Card by Hand</a></li><li class="toc-l2"><a href="#3-3-2-Undo-Put-a-Card-or-the-Raspberry-Pi-Back">3.3.2 Undo: Put a Card or the Raspberry Pi Back</a></li><li class="toc-l2"><a href="#3-3-3-Automated-Install-Programs">3.3.3 Automated Install Programs</a></li><li class="toc-l1"><a href="#3-4-Schedule-the-Virus-Scan">3.4 Schedule the Virus Scan</a></li><li class="toc-l1"><a href="#3-5-Set-the-Wallpaper">3.5 Set the Wallpaper</a></li><li class="toc-l1"><a href="#3-6-Desktop-Icons-and-Applications-Menu">3.6 Desktop Icons and Applications Menu</a></li><li class="toc-l1"><a href="#3-7-Set-Rosetta-to-Auto-start-When-Starting-up-the-System">3.7 Set Rosetta to Auto-start When Starting up the System</a></li><li class="toc-l1"><a href="#3-8-Turn-off-Hidden-Files-in-Thunar">3.8 Turn off Hidden Files in Thunar</a></li><li class="toc-l1"><a href="#3-9-Reboot">3.9 Reboot</a></li><li class="toc-l0"><a href="#Part-4-Install-Development-System-Applications">Part 4 - Install Development System Applications</a></li><li class="toc-l1"><a href="#4-1-Glade">4.1 Glade</a></li><li class="toc-l1"><a href="#4-2-GIMP">4.2 GIMP</a></li><li class="toc-l0"><a href="#Part-5-Other-Notes">Part 5 - Other Notes</a></li><li class="toc-l1"><a href="#5-1-To-SSH-In">5.1 To SSH In</a></li><li class="toc-l1"><a href="#5-2-To-Unzip">5.2 To Unzip</a></li></ul></nav>
   <div class="content">
+<p class="note"><strong>Note:</strong> ~ means the Rosetta login's home folder - /home/rosetta, or /home/reuben on machines built before November 2026.  Commands written with ~ work on both.</p>
 
 <p>This page covers installing and setting up the Rosetta software on the Raspberry Pi, and setting up the Mesa cards in the base box and the optional expansion box.  Build the hardware first - see <a href="HardwareBuild.html">Hardware Build</a>.
 </p>
@@ -120,7 +121,7 @@ The Raspberry Pi has two network connections, and each has its own job:
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
 <p>sudo passwd rpi-first-boot-wizard
 </p></td></tr></table>
-<p class="vspace">Set the password to something simple like “reuben”.  You may not need this, but if the screen locks before everything is changed over to the new username, you may need this.
+<p class="vspace">Set the password to something simple like “rosetta”.  You may not need this, but if the screen locks before everything is changed over to the new username, you may need this.
 </p>
 <p class="vspace">In the pop-up window which came at start-up, select the values as outlined below:
 </p>
@@ -135,15 +136,15 @@ The Raspberry Pi has two network connections, and each has its own job:
 </td></tr></table>
 <p class="vspace">Click <strong>Next</strong>, and then enter this information.  
 </p>
-<p class="vspace"><span style="background-color: red; color: yellow;">  The username <strong>MUST</strong> be “<em>reuben</em>”!  </span>   The system is built around this.
+<p class="vspace">Use the username “<em>rosetta</em>”.  (Machines built before November 2026 used “reuben”.  Rosetta works with any username, but the same one on every machine keeps support simple.)
 </p>
 
 <table style="width: calc(100% - 60px); border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Username</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> reuben</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> rosetta</span>
 </td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Password</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> reuben</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> rosetta</span>
 </td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Confirm Password</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> reuben</span>
+</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: red;"> rosetta</span>
 </td></tr></table>
 <p class="vspace">Click <strong>Next</strong>.  
 </p>
@@ -229,7 +230,7 @@ git clone <a class="online" href="https://github.com/RichColvin/Rosetta" rel="no
 </p>
 
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta
+<p>~/linuxcnc/configs/Rosetta
 </p></td></tr></table>
 <h2 id="2-6-Clean-Up-the-Desktop">2.6 Clean Up the Desktop</h2>
 <p>Right-click on the desktop.  Select <strong>Desktop Settings …</strong>
@@ -262,7 +263,7 @@ git clone <a class="online" href="https://github.com/RichColvin/Rosetta" rel="no
 </p>
 
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Install_Debian_13_Trixie.sh
+<p>bash ~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Install_Debian_13_Trixie.sh
 </p></td></tr></table>
 <p class="vspace">The install asks these questions while it sets up the base card:
 </p>
@@ -287,7 +288,7 @@ git clone <a class="online" href="https://github.com/RichColvin/Rosetta" rel="no
 </li><li>the <strong>Rosetta</strong> menu under Applications,
 </li><li>the <strong>Rosetta</strong>, <strong>Rosetta Settings</strong>, <strong>Rosetta User Manual</strong> and <strong>Rosetta Gcode Library</strong> icons on the desktop, and
 </li><li><strong>Shut Down</strong>, at the bottom of the Applications menu and on the bottom panel.
-</li></ul><p class="vspace">Last, it <strong>checks the install</strong>.  Each check is listed as <strong>OK</strong>, <strong>WARN</strong> (works, but worth a look - e.g. no serial number) or <strong>FAIL</strong>.  The list is also saved in <em>/home/reuben/Documents/Rosetta_Install_Check.txt</em>.  The base card can't answer yet (its jumper is moved next), so that is only a WARN for now.  If anything says FAIL, see <a href="#3-3-If-a-Script-Fails-Doing-It-by-Hand">3.3</a>.
+</li></ul><p class="vspace">Last, it <strong>checks the install</strong>.  Each check is listed as <strong>OK</strong>, <strong>WARN</strong> (works, but worth a look - e.g. no serial number) or <strong>FAIL</strong>.  The list is also saved in <em>~/Documents/Rosetta_Install_Check.txt</em>.  The base card can't answer yet (its jumper is moved next), so that is only a WARN for now.  If anything says FAIL, see <a href="#3-3-If-a-Script-Fails-Doing-It-by-Hand">3.3</a>.
 </p>
 <h3 id="3-1-1-Move-the-Base-Card-s-Jumpers">3.1.1 Move the Base Card's Jumpers</h3>
 <p>At the end, the install shuts the Raspberry Pi down (if you answered <strong>y</strong>).  Then:
@@ -297,12 +298,12 @@ git clone <a class="online" href="https://github.com/RichColvin/Rosetta" rel="no
 </li><li>Once the Raspberry Pi has started, open a terminal emulator and enter:
 </li></ol>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>python3 /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Install_Check.py
+<p>python3 ~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Install_Check.py
 </p></td></tr></table>
 <p class="vspace">This is the full check of the install.  It should say
 </p>
 <div class="indent"><code>OK    Base card answers at 10.10.10.10</code>
-</div><p class="vspace">and end with <code>0 failed (FAIL)</code>.  Each FAIL line says what is wrong.  The list is saved in <em>/home/reuben/Documents/Rosetta_Install_Check.txt</em> - send it to support if you need help.
+</div><p class="vspace">and end with <code>0 failed (FAIL)</code>.  Each FAIL line says what is wrong.  The list is saved in <em>~/Documents/Rosetta_Install_Check.txt</em> - send it to support if you need help.
 </p>
 <p class="vspace">If the card doesn't answer, see <a href="#ByHandCheck">3.3.1, Step 7</a>.  For anything else that failed, see <a href="#3-3-If-a-Script-Fails-Doing-It-by-Hand">3.3</a>.
 </p>
@@ -317,12 +318,12 @@ git clone <a class="online" href="https://github.com/RichColvin/Rosetta" rel="no
 </li><li>Switch the base box and the expansion box on.  Once the Raspberry Pi has started, open a terminal emulator.  Put the Raspberry Pi back on 192.168.1.120 (answer <strong>y</strong> to “Continue?”):
 </li></ol>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh back
+<p>bash ~/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh back
 </p></td></tr></table>
 <ol><li value="4"> Set up the expansion card:
 </li></ol>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh expansion
+<p>bash ~/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh expansion
 </p></td></tr></table>
 <div class="indent">Answer the questions as in <a href="#AutoInstall">3.1</a>.  The address it offers to store is <strong>10.10.10.11</strong>.  It then moves the Raspberry Pi to 10.10.10.100 and offers to shut it down - answer <strong>y</strong>.
 </div><ol><li value="5"> Wait for the screen to go dark, then switch the base box and the expansion box off.
@@ -331,7 +332,7 @@ git clone <a class="online" href="https://github.com/RichColvin/Rosetta" rel="no
 </li><li>Switch both boxes on.  Once the Raspberry Pi has started, enter:
 </li></ol>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh check
+<p>bash ~/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh check
 </p></td></tr></table>
 <div class="indent">It should say both <code>Card at 10.10.10.10 answers.</code> and <code>Card at 10.10.10.11 answers.</code>
 </div><ol><li value="9"> Open the <strong>Rosetta Settings</strong> program.  On the <strong>Axis Selection</strong> tab, tick <strong>Expansion Box - Connected</strong>.  Channels 06 - 09 can now be assigned.  (The change takes effect the next time Rosetta starts.)
@@ -378,7 +379,7 @@ sudo nmcli con up "Wired Ethernet"
 </p>
 
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>mesaflash --device 7i92t --addr 192.168.1.121 --write /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/7i92t_Rosetta.bin --reload
+<p>mesaflash --device 7i92t --addr 192.168.1.121 --write ~/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/7i92t_Rosetta.bin --reload
 </p></td></tr></table>
 <p class="vspace"><strong>Step 5 - Store the card's new address:</strong>
 </p>
@@ -412,7 +413,7 @@ mesaflash --device 7i92t --addr 10.10.10.11 --readhmid
 <div class="indent">The first command should show <code>inet 10.10.10.100/24</code>.  If it doesn't, repeat Step 6.  Each card that is set up and connected should list its details.
 </div><h3 id="3-3-2-Undo-Put-a-Card-or-the-Raspberry-Pi-Back"><span style="color: #b22222;"> 3.3.2 Undo: Put a Card or the Raspberry Pi Back</span></h3>
 <ul><li><strong>A card:</strong> switch the machine off, put the card's W5/W6 jumpers back to the factory setting (both down), and switch on.  It answers at 192.168.1.121 again.
-</li><li><strong>The Raspberry Pi:</strong> run <code>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh back</code>, or Step 2 above.
+</li><li><strong>The Raspberry Pi:</strong> run <code>bash ~/linuxcnc/configs/Rosetta/Rosetta_Change_Network.sh back</code>, or Step 2 above.
 </li></ul><p class="vspace"><a id="ByHandInstall"></a>
 </p><h3 id="3-3-3-Automated-Install-Programs"><span style="color: #b22222;"> 3.3.3 Automated Install Programs</span></h3>
 <p>These programs should have been installed by the Automated Install program, <em>Rosetta_Install_Debian_13_Trixie.sh</em>.  If they are not, the commands are below for installing them.
@@ -422,32 +423,32 @@ mesaflash --device 7i92t --addr 10.10.10.11 --readhmid
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
 <p>sudo mkdir -p /usr/lib/firmware/hm2/hostmot2 <br class="clearboth"/>
 cd /usr/lib/firmware/hm2/hostmot2 <br class="clearboth"/>
-sudo cp /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/7i92t_Rosetta.bin . <br class="clearboth"/>
-sudo cp /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/7i92t_Rosetta.pin . <br class="clearboth"/>
-sudo cp /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/PIN_Rosetta_34.vhd .
+sudo cp ~/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/7i92t_Rosetta.bin . <br class="clearboth"/>
+sudo cp ~/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/7i92t_Rosetta.pin . <br class="clearboth"/>
+sudo cp ~/linuxcnc/configs/Rosetta/Rosetta_Setup/MesaCard/PIN_Rosetta_34.vhd .
 </p></td></tr></table>
-<p class="vspace"><span style="color: navy;"> <strong>Copy .axisrc into /home/reuben</strong></span>
+<p class="vspace"><span style="color: navy;"> <strong>Copy .axisrc into ~</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>cd /home/reuben <br class="clearboth"/>
-cp /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/axisrc .axisrc
+<p>cd ~ <br class="clearboth"/>
+cp ~/linuxcnc/configs/Rosetta/Rosetta_Setup/axisrc .axisrc
 </p></td></tr></table>
 <p class="vspace"><span style="color: navy;"> <strong>Create the gcode library</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>cd /home/reuben/linuxcnc/configs/Rosetta <br class="clearboth"/>
+<p>cd ~/linuxcnc/configs/Rosetta <br class="clearboth"/>
 mkdir gcode
 </p></td></tr></table>
 <p class="vspace"><span style="color: navy;"> <strong>Copy the starting settings file into Documents</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>cd /home/reuben/Documents <br class="clearboth"/>
-cp /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/RosettaSet_v1.ini .
+<p>cd ~/Documents <br class="clearboth"/>
+cp ~/linuxcnc/configs/Rosetta/Rosetta_Setup/RosettaSet_v1.ini .
 </p></td></tr></table>
 <p class="vspace"><span style="color: navy;"> <strong>Install ClamAV</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>cd /home/reuben <br class="clearboth"/>
+<p>cd ~ <br class="clearboth"/>
 mkdir ClamAv <br class="clearboth"/>
 cd ClamAv <br class="clearboth"/>
 mkdir SuspiciousFiles <br class="clearboth"/>
@@ -495,47 +496,47 @@ sudo apt install chromium -y
 <p class="vspace"><span style="color: navy;"> <strong>Add the folder shortcuts</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Shortcuts.sh
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Shortcuts.sh
 </p></td></tr></table>
 <p class="vspace"><span style="color: navy;"> <strong>Record the serial number</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Serial_Number.sh
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Serial_Number.sh
 </p></td></tr></table>
 <p class="vspace"><span style="color: navy;"> <strong>Name the computer after the serial number</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Machine_Name.sh --install
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Set_Machine_Name.sh --install
 </p></td></tr></table>
 <p class="vspace"><span style="color: navy;"> <strong>Set up the Rosetta menu and desktop icons</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Menu_And_Desktop.sh --force
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Menu_And_Desktop.sh --force
 </p></td></tr></table>
 <p class="vspace"><span style="color: navy;"> <strong>Add the Rosette Designer to the Rosetta menu</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Rosette_Designer.sh --force
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Rosette_Designer.sh --force
 </p></td></tr></table>
 <p class="vspace"><span style="color: navy;"> <strong>Add Shut Down to the menu and the bottom panel</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Shut_Down.sh --force
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Shut_Down.sh --force
 </p></td></tr></table>
 <p class="vspace"><span style="color: navy;"> <strong>Add the Geometric Chuck Designer to the Rosetta menu</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_GeoChuck_Designer.sh --force
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_GeoChuck_Designer.sh --force
 </p></td></tr></table>
 <p class="vspace"><span style="color: navy;"> <strong>Add the User Manual and Gcode Library icons</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Manuals.sh --force
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Manuals.sh --force
 </p></td></tr></table>
 <p class="vspace"><span style="color: navy;"> <strong>Check the install</strong></span>
 </p>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>python3 /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Install_Check.py
+<p>python3 ~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Install_Check.py
 </p></td></tr></table>
 <p class="vspace">The menu and desktop steps must be run from a terminal emulator on the Raspberry Pi's own screen, not over SSH - they can't mark the desktop icons as trusted without it.  Run them in the order above: the Rosetta menu first, since the next three add to it.
 </p>
@@ -548,7 +549,7 @@ sudo apt install chromium -y
 </p>
 
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Setup/Images
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Setup/Images
 </p></td></tr></table>
 <p class="vspace">right-click on
 </p>
@@ -591,7 +592,7 @@ sudo apt install chromium -y
 </td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
 </td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Command</span>
 </td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>bash /home/reuben/linuxcnc/configs/Rosetta/Rosetta_Launch.sh
+<p>bash ~/linuxcnc/configs/Rosetta/Rosetta_Launch.sh
 </p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Trigger</span>
 </td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> on login
 </td></tr></table>
@@ -642,7 +643,7 @@ sudo apt install chromium -y
 </p>
 
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>ssh reuben@&lt;WiFi address of the Pi&gt;
+<p>ssh rosetta@&lt;WiFi address of the Pi&gt;
 </p></td></tr></table>
 <h2 id="5-2-To-Unzip"><span style="color: #006400;"> 5.2 To Unzip </span></h2>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">

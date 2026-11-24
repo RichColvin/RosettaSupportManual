@@ -30,7 +30,7 @@
 </p>
 <h1 id="The-sequence">The sequence</h1>
 <ol><li>The desktop icon (and the Applications menu entry) runs <strong>Rosetta_Launch.sh</strong>.
-</li><li>Rosetta_Launch.sh runs <strong>Rosetta_Setup/Rosetta_Generate_Local_Ini.py</strong>.  It first checks the gcode folder for reserved file names (starting with Rosetta, or M100 - M199) and stops if it finds one (see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>).  It then reads this machine's settings from /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong> and writes these generated files next to their templates:
+</li><li>Rosetta_Launch.sh runs <strong>Rosetta_Setup/Rosetta_Generate_Local_Ini.py</strong>.  It first checks the gcode folder for reserved file names (starting with Rosetta, or M100 - M199) and stops if it finds one (see <a href="RosettaLaunch.html">Rosetta_Launch.sh</a>).  It then reads this machine's settings from ~/Documents/<strong>RosettaSet_v1.ini</strong> and writes these generated files next to their templates:
 <ul><li><strong>Rosetta.local.ini</strong> - a copy of Rosetta.ini with the axis/channel assignment, jog speeds, measurement system, and backlash applied, and with its HALFILE / POSTGUI_HALFILE lines pointing at the files below;
 </li><li><strong>Rosetta.local.hal</strong> - a copy of Rosetta.hal with the Mesa card line rewritten (the base card at 10.10.10.10 alone, or both cards - 10.10.10.10 and 10.10.10.11 - when <strong>Expansion Box - Connected</strong> is ticked, plus the second card's read/write and watchdog lines), each role's block moved to its assigned channel, card and joint number, unassigned roles left out, and the limit jacks, E-stop button and signal tower wiring and the lost-card E-stop added (see <a href="PanelAccessories.html">Panel Accessories</a> and <a href="Mesa7i92.html">Mesa 7i92</a>);
 </li><li><strong>Rosetta_Display/Rosetta_PostGUI_v1.local.hal</strong> - a copy of Rosetta_PostGUI_v1.hal, plus the lines for the done/pause beeps and the fault siren;
@@ -45,7 +45,7 @@
 </li><li>The generator prints what it did - which cards it loads (and at which addresses), which role is on which channel, which limit jacks, E-stop and signal tower are wired.  Run it by hand to see that output:
 </li></ul>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>cd /home/reuben/linuxcnc/configs/Rosetta <br class="clearboth"/>
+<p>cd ~/linuxcnc/configs/Rosetta <br class="clearboth"/>
 python3 Rosetta_Setup/Rosetta_Generate_Local_Ini.py
 </p></td></tr></table>
 <p class="vspace">If it reports a problem, it refuses to write the .local.hal files and Rosetta_Launch.sh stops, so LinuxCNC never starts with a half-built configuration.  For example, it refuses to start with <strong>Expansion Box - Connected</strong> ticked while the Raspberry Pi's wired connection is still on the old 192.168.1.x network (see <a href="Mesa7i92.html">Mesa 7i92</a>).

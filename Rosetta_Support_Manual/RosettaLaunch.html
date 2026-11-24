@@ -40,7 +40,7 @@
 </li><li>From a terminal, which also shows everything it prints:
 </li></ul>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Launch.sh
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Launch.sh
 </p></td></tr></table>
 <h2 id="Parameters">Parameters</h2>
 <p>None.  Anything typed after the name is ignored.
@@ -58,14 +58,14 @@
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Started on Rosetta.local.ini.  LinuxCNC in turn loads the HAL files, the AXIS screen with the Rosetta side panel (Rosetta_Display/<strong>Rosetta_main.py</strong>), <strong>Rosetta_Settings_Restore.py</strong> (puts the saved scale, PID and limits onto the HAL pins), and at shutdown <strong>Rosetta_Shutdown.hal</strong>, which runs <strong>Rosetta_Scale_Persist.py</strong>.  AXIS also runs Rosetta_Display/<strong>Rosetta_Axis_Commands.py</strong> as it starts (see the notes below).
 </td></tr></table>
 <h1 id="Files-it-reads">Files it reads</h1>
-<p>All paths are under /home/reuben/linuxcnc/configs/Rosetta unless shown in full.
+<p>All paths are under ~/linuxcnc/configs/Rosetta unless shown in full.
 </p><ul><li><strong>Rosetta.ini</strong> - the configuration template
 </li><li><strong>Rosetta.hal</strong> - the realtime HAL template
 </li><li>Rosetta_Display/<strong>Rosetta_PostGUI_v1.hal</strong> - the side-panel HAL template
 </li><li>Rosetta_Display/<strong>Rosetta_Splash.ngc</strong> - the empty start-up program (used when X and Z aren't both assigned)
 </li><li><strong>gcode/</strong> - only the file names, for the reserved-name check
-</li><li>/home/reuben/Documents/<strong>RosettaSet_v1.ini</strong> - this machine's settings
-</li><li>/home/reuben/<strong>.axisrc</strong> - AXIS window size (read by AXIS, through Rosetta_Axis_Commands.py)
+</li><li>~/Documents/<strong>RosettaSet_v1.ini</strong> - this machine's settings
+</li><li>~/<strong>.axisrc</strong> - AXIS window size (read by AXIS, through Rosetta_Axis_Commands.py)
 </li></ul><h1 id="Files-it-creates">Files it creates</h1>
 <p>These are rewritten at every launch.  <span style="color: red;">Never edit them</span> - change the settings (Rosetta Settings) or the templates instead.
 </p>
@@ -90,7 +90,7 @@
 </li><li><strong>Card can't be found:</strong> check the Raspberry Pi's wired address with <strong>Rosetta_Change_Network.sh check</strong> (see <a href="RosettaChangeNetwork.html">Rosetta_Change_Network.sh</a>).  With the cable unplugged, the generator prints a note and uses 10.10.10.10.
 </li><li><strong>Expansion Box - Connected</strong> must match the hardware.  Ticked with no expansion card answering, LinuxCNC stops with a card error.
 </li><li>To compare what was generated with the template, open Rosetta.local.hal and Rosetta.hal side by side.
-</li><li><strong>Rosetta_Axis_Commands.py and .axisrc:</strong> Rosetta.ini names Rosetta_Axis_Commands.py as AXIS's [DISPLAY]USER_COMMAND_FILE.  With that set, AXIS no longer reads /home/reuben/.axisrc itself, so Rosetta_Axis_Commands.py runs it first.  If .axisrc has a mistake, AXIS shows an <strong>Error in ~/.axisrc</strong> box and carries on.
+</li><li><strong>Rosetta_Axis_Commands.py and .axisrc:</strong> Rosetta.ini names Rosetta_Axis_Commands.py as AXIS's [DISPLAY]USER_COMMAND_FILE.  With that set, AXIS no longer reads ~/.axisrc itself, so Rosetta_Axis_Commands.py runs it first.  If .axisrc has a mistake, AXIS shows an <strong>Error in ~/.axisrc</strong> box and carries on.
 </li><li><strong>"X not enabled" box when clicking Run</strong> (since 08 November 2026): the loaded program moves an axis whose ENA button is off - it would stop with a following error as soon as that axis had to move.  Cancel (the default) and turn the ENA on, or Run Anyway.  The side panel's index, Sync Move and Threading buttons give the same warning (with Move Anyway), and also check the spindles.  The check uses AXIS's preview, so a rapid move before the program's first feed move isn't seen.
 </li></ul><h1 id="Related-pages">Related pages</h1>
 <ul><li><a href="LaunchingRosetta.html">Launching Rosetta</a>

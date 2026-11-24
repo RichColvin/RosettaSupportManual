@@ -39,7 +39,7 @@
 </li><li>From a terminal:
 </li></ul>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Backup.sh
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Backup.sh
 </p></td></tr></table>
 <h2 id="Parameters">Parameters</h2>
 <p>None.
@@ -51,13 +51,13 @@
 </li></ol><h1 id="What-it-copies">What it copies</h1>
 <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="50%"> <span style="color: white;"> <strong>From the Raspberry Pi</strong></span>
 </td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>To the stick</strong></span>
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>*.ini</strong> (RosettaSet_v1.ini and saved or exported settings)
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/Documents/<strong>*.ini</strong> (RosettaSet_v1.ini and saved or exported settings)
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Documents/
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/linuxcnc/configs/Rosetta/<strong>gcode/</strong> (all files and subfolders)
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/linuxcnc/configs/Rosetta/<strong>gcode/</strong> (all files and subfolders)
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> gcode/
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> .../Rosetta/Rosetta_Custom/<strong>Rosetta_Custom.hal</strong> and <strong>Rosetta_Tool.tbl</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Rosetta_Custom/
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/linuxcnc/<strong>nc_files/</strong> (all files and subfolders; links to LinuxCNC's own examples are skipped)
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/linuxcnc/<strong>nc_files/</strong> (all files and subfolders; links to LinuxCNC's own examples are skipped)
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> nc_files/
 </td></tr></table>
 <p>A folder missing on this machine is skipped and noted in the log.  The list is <strong>BACKUP_SOURCES</strong> at the top of Rosetta_Display/Rosetta_Backup.py.
@@ -81,7 +81,7 @@ Rosetta_Backup/YYYY-MM-DD_HHMM/backup_log.txt
 </li><li>The stick is ejected, and Rosetta Settings closes without saving.
 </li></ol><p class="vspace">Rules:
 </p><ul><li>It refuses to start while LinuxCNC is running - LinuxCNC saves RosettaSet_v1.ini as it closes, which would undo the restore.
-</li><li>Every file it replaces is first copied to /home/reuben/Documents/<strong>Before_Restore/YYYY-MM-DD_HHMM/</strong>, laid out like a backup.  To undo a restore, copy those files back.
+</li><li>Every file it replaces is first copied to ~/Documents/<strong>Before_Restore/YYYY-MM-DD_HHMM/</strong>, laid out like a backup.  To undo a restore, copy those files back.
 </li><li>Files on the Raspberry Pi that aren't in the backup are left alone - nothing is deleted.
 </li><li>Each file is written beside the old one and then renamed over it, so a failed copy never leaves a half-written file.
 </li><li>Rosetta Settings closes afterwards so it can't save the values it had loaded over the restored settings file.  If it had unsaved tuning changes, it asks about them before the restore starts.

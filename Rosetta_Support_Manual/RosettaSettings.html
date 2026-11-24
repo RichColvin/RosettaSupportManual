@@ -31,14 +31,14 @@
 <h1 id="Purpose">Purpose</h1>
 <p>Rosetta_Settings.sh starts <strong>Rosetta Settings</strong>, the window where this machine's setup is changed: which axis or spindle is on each channel, the expansion box, limit jacks, E-stop button, signal tower, sounds, scale, speed limits, backlash, PID tuning, jog speeds, measurement system and device names.
 </p>
-<p class="vspace">Everything it changes is stored in /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong> and takes effect the next time Rosetta is started.  How to use each page is in the  <a class="online" href="https://rosetta.colvintools.com/Rosetta_User_Manual/" rel="noopener" target="_blank" title="Opens on the Internet">User Manual</a> (web site); this page covers what support needs to know.
+<p class="vspace">Everything it changes is stored in ~/Documents/<strong>RosettaSet_v1.ini</strong> and takes effect the next time Rosetta is started.  How to use each page is in the  <a class="online" href="https://rosetta.colvintools.com/Rosetta_User_Manual/" rel="noopener" target="_blank" title="Opens on the Internet">User Manual</a> (web site); this page covers what support needs to know.
 </p>
 <h1 id="How-it-is-run">How it is run</h1>
 <ul><li>The <strong>Rosetta Settings</strong> (gear) desktop icon, and Applications &gt; Rosetta.
 </li><li>From a terminal, which also shows its messages:
 </li></ul>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>/home/reuben/linuxcnc/configs/Rosetta/Rosetta_Settings.sh
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Settings.sh
 </p></td></tr></table>
 <p class="vspace"><span style="color: red;"><strong>LinuxCNC must be closed first.</strong></span>  If it's running, Rosetta Settings shows "LinuxCNC is currently running" and closes.
 </p>
@@ -64,14 +64,14 @@
 </td></tr></table>
 <h1 id="Files-it-reads">Files it reads</h1>
 <ul><li>Rosetta_Display/<strong>Rosetta_Settings_v1.ui</strong> - the window layout
-</li><li>/home/reuben/Documents/<strong>RosettaSet_v1.ini</strong> - this machine's settings
-</li><li>Any settings file chosen with <strong>Load Settings</strong> (normally in /home/reuben/Documents)
+</li><li>~/Documents/<strong>RosettaSet_v1.ini</strong> - this machine's settings
+</li><li>Any settings file chosen with <strong>Load Settings</strong> (normally in ~/Documents)
 </li></ul><h1 id="Files-it-creates-or-changes">Files it creates or changes</h1>
 <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%;"><tr><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top" width="35%"> <span style="color: white;"> <strong>File</strong></span>
 </td><td style="background-color: #00416a; text-align: left; vertical-align: bottom; padding: 4px;" valign="top"> <span style="color: white;"> <strong>When</strong></span>
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /home/reuben/Documents/<strong>RosettaSet_v1.ini</strong>
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/Documents/<strong>RosettaSet_v1.ini</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>As soon as they change:</strong> channel assignments, expansion box, limit jacks and switch type, E-stop button, signal tower, sounds, startup file check, backlash, jog speeds, measurement system, device names.<br class="clearboth"/><strong>Only on Save All Settings:</strong> scale, Max Speed, Max Acceleration, stepgen limits, PID values.  Closing the window with unsaved tuning asks Save and Close / Close Without Saving / Cancel.
-</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> A file name chosen by the operator, normally in /home/reuben/Documents
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> A file name chosen by the operator, normally in ~/Documents
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> <strong>Save All Settings As...</strong> (a full copy) and <strong>Save Subset</strong> (an export of chosen settings, to bring into another machine).
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> Files restored by <strong>Restore from USB</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> See <a href="RosettaBackup.html">Rosetta_Backup.sh</a>.
