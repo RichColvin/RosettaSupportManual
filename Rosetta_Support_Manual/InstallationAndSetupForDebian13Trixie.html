@@ -582,26 +582,9 @@ sudo apt install chromium -y
 <h2 id="3-7-Set-Rosetta-to-Auto-start-When-Starting-up-the-System">3.7 Set Rosetta to Auto-start When Starting up the System</h2>
 <p><span style="background-color: yellow;">This is an optional step.</span>
 </p>
-<p class="vspace">Click on <strong>Applications</strong>, then <strong>Settings</strong>, and then <strong>Session and Startup</strong>.
+<p class="vspace">If the owner wants Rosetta to open by itself when the computer is switched on, open <strong>Rosetta Settings</strong>, go to its <strong>Other</strong> page and tick <strong>Start Rosetta when the computer starts</strong>.  It is saved at once.  The owner can change it there at any time (see the User Manual's <a href="../Rosetta_User_Manual/Other.html#StartRosetta">Start Rosetta</a>).
 </p>
-<p class="vspace">Click on the <strong>Application Autostart</strong> tab.
-</p>
-<p class="vspace">Click <strong>+Add</strong>.
-</p>
-<p class="vspace">For the entries, enter:
-</p>
-
-<table style="width: calc(100% - 60px); margin-right: 10px; border-collapse: collapse; border: 0px solid darkgray; margin-left: 40px;"><tr><td style="width: 125px; background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Name</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> Rosetta
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Description</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">  
-</td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Command</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top">
-<p>bash ~/linuxcnc/configs/Rosetta/Rosetta_Launch.sh
-</p></td></tr><tr><td style="background-color: #555555; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> <span style="color: white;"> Trigger</span>
-</td><td style="background-color: #dcdcdc; text-align: left; vertical-align: top; padding-left: 5px; padding-right: 5px; border-style: solid; border-color: black; border-width: thin;" valign="top"> on login
-</td></tr></table>
-<p class="vspace">Click <strong>OK</strong>
+<p class="vspace">The tick box writes an entry in <code>~/.config/autostart</code>, the same as adding one by hand in <strong>Applications</strong> &gt; <strong>Settings</strong> &gt; <strong>Session and Startup</strong> &gt; <strong>Application Autostart</strong> did on machines built before November 2026.  On those machines the tick box shows the hand-made entry as ticked, so there is no need to add a second one.
 </p>
 <h2 id="3-8-Turn-off-Hidden-Files-in-Thunar">3.8 Turn off Hidden Files in Thunar</h2>
 <p>Open the File Manager (Thunar).  Click <strong>View</strong>, then unclick <strong>Show Hidden Files</strong>.
