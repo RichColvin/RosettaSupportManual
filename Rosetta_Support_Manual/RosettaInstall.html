@@ -50,7 +50,7 @@ bash Rosetta_Install_Debian_13_Trixie.sh
 <ol><li><strong>Wired network</strong> - deletes any existing "Wired Ethernet" connections and creates one at 192.168.1.120, no gateway or DNS.
 </li><li><strong>Mesa card</strong> - copies 7i92t_Rosetta.bin, 7i92t_Rosetta.pin and PIN_Rosetta_34.vhd to /usr/lib/firmware/hm2/hostmot2, then runs <strong>Rosetta_Change_Network.sh base --no-shutdown</strong> (firmware, address 10.10.10.10, Pi moved to 10.10.10.100).
 </li><li><strong>Key files</strong> - .axisrc, a copy of Rosetta_Update.sh, the gcode folder and the starting RosettaSet_v1.ini (see below).
-</li><li><strong>ClamAV</strong> (virus scanner), with ~/ClamAv/SuspiciousFiles.
+</li><li><strong>ClamAV</strong> (virus scanner), with ~/ClamAv/SuspiciousFiles, and the weekly scan - Rosetta_Setup/<strong>Rosetta_Add_Virus_Scan.sh</strong> writes /etc/cron.d/<strong>rosetta-virus-scan</strong> (Mondays 03:00, skipped while LinuxCNC runs; see <a href="VirusScanning.html#Scheduling-the-Weekly-Scan">Virus Scanning</a>).
 </li><li><strong>MenuLibre</strong> (menu editor - for changing the menus further by hand).
 </li><li><strong>galculator</strong> (calculator).
 </li><li><strong>xfce4-screenshooter</strong> (screenshots).
@@ -87,6 +87,8 @@ bash Rosetta_Install_Debian_13_Trixie.sh
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> This machine's settings, from the starting copy.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/<strong>ClamAv/SuspiciousFiles/</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Virus scan quarantine folder.
+</td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> /etc/cron.d/<strong>rosetta-virus-scan</strong>, ~/.config/Rosetta/<strong>virus-scan-added</strong>
+</td><td style="padding: 4px; vertical-align: top;" valign="top"> The weekly virus scan's schedule, and the marker that stops it being added again (<strong>--force</strong> rewrites it).
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/<strong>.npm-global/</strong>, a PATH line added to <strong>.bashrc</strong>
 </td><td style="padding: 4px; vertical-align: top;" valign="top"> Claude Code.
 </td></tr><tr><td style="padding: 4px; vertical-align: top;" valign="top"> ~/.config/gtk-3.0/<strong>bookmarks</strong>, two launchers on the bottom panel, ~/.config/Rosetta/<strong>shortcuts-added</strong>
@@ -110,7 +112,7 @@ bash Rosetta_Install_Debian_13_Trixie.sh
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
 <p>python3 ~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Install_Check.py
 </p></td></tr></table>
-<p class="vspace">It checks: the Mesa card files, .axisrc, the gcode and ClamAV folders and the settings file; that LinuxCNC, mesaflash, ClamAV, MenuLibre, galculator, xfce4-screenshooter, Chromium and Claude Code are installed; the Wired Ethernet connection (10.10.10.100, no gateway) and that the base card - and the expansion card, if Expansion Box is ticked - answers; WiFi; the serial number and computer name; every entry in the Rosetta submenu, Shut Down and the hidden menus; the four desktop icons (each running something that exists, executable and trusted); the file manager's Places, the bottom-panel launchers and the one-time steps' markers; and that Rosetta.local.ini can be made.
+<p class="vspace">It checks: the Mesa card files, .axisrc, the gcode and ClamAV folders and the settings file; that the weekly virus scan is scheduled and the virus signatures update themselves; that LinuxCNC, mesaflash, ClamAV, MenuLibre, galculator, xfce4-screenshooter, Chromium and Claude Code are installed; the Wired Ethernet connection (10.10.10.100, no gateway) and that the base card - and the expansion card, if Expansion Box is ticked - answers; WiFi; the serial number and computer name; every entry in the Rosetta submenu, Shut Down and the hidden menus; the four desktop icons (each running something that exists, executable and trusted); the file manager's Places, the bottom-panel launchers and the one-time steps' markers; and that Rosetta.local.ini can be made.
 </p>
 <p class="vspace">Each line is <strong>OK</strong>, <strong>WARN</strong> or <strong>FAIL</strong>; it ends with a count, lists the failures again, and saves everything to ~/Documents/Rosetta_Install_Check.txt.  It exits 1 if anything failed.  With <strong>--before-jumpers</strong> (as the installer runs it), a card that doesn't answer is only a WARN.  Run it from a terminal on the Pi's own screen - over SSH it can't tell whether the desktop icons are trusted (WARN).
 </p>

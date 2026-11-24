@@ -73,30 +73,30 @@ sudo systemctl start clamav-freshclam
 <hr/>
 <p><a id="Schedule"></a>
 </p><h1 id="Scheduling-the-Weekly-Scan">Scheduling the Weekly Scan</h1>
-<p>This scans the operator's files and any inserted USB stick each Monday at 03:00, at the lowest priority, and skips the scan if LinuxCNC is running.  Files found are moved to ~/ClamAv/SuspiciousFiles.
+<p>The installer does this (since November 2026; older machines get it at their next update).  It scans the operator's files and any inserted USB stick each Monday at 03:00, at the lowest priority, and skips the scan if LinuxCNC is running.  Files found are moved to ~/ClamAv/SuspiciousFiles.  The scan only runs if the machine is switched on at that time.
 </p>
-<p class="vspace">Open a terminal emulator, and enter this command (it edits <strong>root's</strong> schedule, so the scan doesn't need sudo):
+<p class="vspace">Rosetta_Setup/<strong>Rosetta_Add_Virus_Scan.sh</strong> writes the schedule to the file <strong>/etc/cron.d/rosetta-virus-scan</strong>.  To see it:
 </p>
-
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>sudo crontab -e
+<p>cat /etc/cron.d/rosetta-virus-scan
 </p></td></tr></table>
-<p class="vspace">Choose option 1 if asked.  At the bottom of the file, add this line (it is a single line):
+<p class="vspace">Its last line should look like this, with this machine's home folder (/home/rosetta, or /home/reuben on a machine built before November 2026) written out in full - the scan runs as root, for whom ~ would mean /root:
 </p>
-
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
-<p>0 3 * * 1 pgrep -x linuxcncsvr &gt;/dev/null || nice -n 19 ionice -c3 clamscan -r -i --exclude-dir=/home/rosetta/ClamAv --move=/home/rosetta/ClamAv/SuspiciousFiles --log=/home/rosetta/ClamAv/ScanLog.txt /home/rosetta /media
+<p>0 3 * * 1 root pgrep -x linuxcncsvr &gt;/dev/null || nice -n 19 ionice -c3 clamscan -r -i --exclude-dir=/home/rosetta/ClamAv --move=/home/rosetta/ClamAv/SuspiciousFiles --log=/home/rosetta/ClamAv/ScanLog.txt /home/rosetta /media
 </p></td></tr></table>
-<p class="note"><strong>Note:</strong> this line needs the full path, not ~: it runs in root's schedule, where ~ would mean root's own home folder (/root).  On a machine built before November 2026, write /home/reuben in place of /home/rosetta (four times).</p>
-<p class="vspace">Press <strong>Ctrl-O</strong> then <strong>Enter</strong> to save, and <strong>Ctrl-X</strong> to exit.
+<p class="vspace">If it is missing or wrong, run the script again (it asks for the password):
 </p>
-<p class="vspace">The scan only runs if the machine is switched on at that time.
+<table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
+<p>~/linuxcnc/configs/Rosetta/Rosetta_Setup/Rosetta_Add_Virus_Scan.sh --force
+</p></td></tr></table>
+<p class="vspace">A machine whose scan was added by hand to root's own schedule (<strong>sudo crontab -l</strong> shows a clamscan line) is left as it is, so the scan doesn't run twice.  The install check (<strong>Rosetta_Install_Check.py</strong>) checks the schedule either way.
 </p>
 <h2 id="Machines-set-up-with-the-earlier-instructions">Machines set up with the earlier instructions</h2>
 <p>Earlier instructions scheduled ClamAV differently.  Remove those entries - they either fail or scan the whole system with --move, which could move a system file:
 </p><ol><li><strong>Applications &gt; Settings &gt; Session and Startup &gt; Application Autostart</strong>: select <strong>ClamAV</strong> (sudo nice -n 19 freshclam) and click <strong>Remove</strong>.
 </li><li>Run <strong>crontab -e</strong> (without sudo) and delete the two lines with <strong>freshclam</strong> and <strong>clamscan</strong> in them.
-</li><li>Then add the line above with <strong>sudo crontab -e</strong>.
+</li><li>Then run <strong>Rosetta_Add_Virus_Scan.sh --force</strong> (above).
 </li></ol><hr/>
 <h1 id="Checking-the-Results">Checking the Results</h1>
 <table border="0" style="width: calc(100% - 40px); margin-left: 20px;"><tr><td style="width: 100%; background-color: #fff2cc; font-family: Courier; padding-left: 5px; padding-right: 5px;" valign="top">
@@ -107,7 +107,7 @@ ls -l ~/ClamAv/SuspiciousFiles
 <p class="vspace">Each run adds a section to ScanLog.txt ending with a summary.  Lines ending in <strong>FOUND</strong> name a file that was detected and moved.
 </p>
 <ul><li><strong>A file was moved:</strong> it is in ~/ClamAv/SuspiciousFiles.  If it is a file the customer recognises and trusts (e.g. their own G-code - a false alarm is possible), move it back with <strong>sudo mv</strong>.  Otherwise delete it, and check where it came from (usually a USB stick - scan that stick on another computer too).
-</li><li><strong>Nothing has run:</strong> check the cron line with <strong>sudo crontab -l</strong>, and that the machine was on and LinuxCNC closed on Monday at 03:00.
+</li><li><strong>Nothing has run:</strong> check the schedule with <strong>cat /etc/cron.d/rosetta-virus-scan</strong> (or <strong>sudo crontab -l</strong> on a machine where it was added by hand), and that the machine was on and LinuxCNC closed on Monday at 03:00.
 </li></ul><hr/>
 <h1 id="Scanning-the-Whole-System">Scanning the Whole System</h1>
 <p>Only occasionally, with LinuxCNC closed - it takes hours.  This one <strong>only reports</strong> (no --move), because moving a system file because of a false alarm could stop the Raspberry Pi from starting:
